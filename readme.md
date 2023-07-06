@@ -1,4 +1,4 @@
-O problema que iremos tentar resolver com essa aplicação é:
+Os problemas que iremos tentar resolver com essa aplicação são:
 
 - [] Cadastrar times;
 - [] Cadastrar campeonatos;

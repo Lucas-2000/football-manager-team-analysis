@@ -1,7 +1,7 @@
 import { EnumTeamGrade } from "../utils/dicts/enumTeamGrade";
 
 export interface TeamProps {
-  teamId: string;
+  teamId?: string;
   teamName: string;
   teamLocalization: string;
   teamCountry: string;
