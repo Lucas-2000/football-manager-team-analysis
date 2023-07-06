@@ -17,4 +17,8 @@ export class InMemoryTeamsRepository implements TeamsRepository {
 
     return true;
   }
+
+  async findAllTeams(): Promise<Team[]> {
+    return this.teams;
+  }
 }
