@@ -1,11 +1,11 @@
 import { EnumTeamGrade } from "../utils/dicts/enumTeamGrade";
 
 export interface TeamProps {
-  id: string;
-  team_name: string;
-  team_localization: string;
-  team_country: string;
-  team_grade: EnumTeamGrade;
+  teamId: string;
+  teamName: string;
+  teamLocalization: string;
+  teamCountry: string;
+  teamGrade: EnumTeamGrade;
 }
 
 export class Team {
@@ -15,23 +15,23 @@ export class Team {
     this.props = props;
   }
 
-  get id() {
-    return this.props.id;
+  get teamId() {
+    return this.props.teamId;
   }
 
   get teamName() {
-    return this.props.team_name;
+    return this.props.teamName;
   }
 
   get teamLocalization() {
-    return this.props.team_localization;
+    return this.props.teamLocalization;
   }
 
   get teamCountry() {
-    return this.props.team_country;
+    return this.props.teamCountry;
   }
 
   get teamGrade() {
-    return this.props.team_grade;
+    return this.props.teamGrade;
   }
 }
