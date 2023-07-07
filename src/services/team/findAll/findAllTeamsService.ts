@@ -6,6 +6,6 @@ type FindAllTeamsResponse = Team[];
 export class FindAllTeamsService {
   constructor(private teamsRepository: TeamsRepository) {}
   async execute(): Promise<FindAllTeamsResponse> {
-    return await this.teamsRepository.findAllTeams();
+    return await this.teamsRepository.findAll();
   }
 }

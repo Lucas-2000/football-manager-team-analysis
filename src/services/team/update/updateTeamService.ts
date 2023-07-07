@@ -1,8 +1,8 @@
 import { Team } from "../../../entities/team";
-import { TeamsRepository } from "../../../repositories/teamsRepository";
 import { EnumTeamGrade } from "../../../utils/dicts/enumTeamGrade";
+import { TeamsRepository } from "./../../../repositories/teamsRepository";
 
-interface CreateTeamRequest {
+interface UpdateTeamRequest {
   teamId: string;
   teamName: string;
   teamLocalization: string;
@@ -10,9 +10,9 @@ interface CreateTeamRequest {
   teamGrade: EnumTeamGrade;
 }
 
-type CreateTeamResponse = Team;
+type UpdateTeamResponse = Team;
 
-export class CreateTeamService {
+export class UpdateTeamService {
   constructor(private teamsRepository: TeamsRepository) {}
 
   async execute({
@@ -21,10 +21,10 @@ export class CreateTeamService {
     teamLocalization,
     teamCountry,
     teamGrade,
-  }: CreateTeamRequest): Promise<CreateTeamResponse> {
-    const verifyExisting = await this.teamsRepository.verifyExisting(teamName);
+  }: UpdateTeamRequest): Promise<UpdateTeamResponse> {
+    const verifyIndex = await this.teamsRepository.findIndex(teamId);
 
-    if (verifyExisting) throw new Error(`Team ${teamName} already exists!`);
+    if (verifyIndex < 0) throw new Error("Team not found!");
 
     const team = new Team({
       teamId,
@@ -34,7 +34,7 @@ export class CreateTeamService {
       teamGrade,
     });
 
-    await this.teamsRepository.create(team);
+    await this.teamsRepository.update(team, verifyIndex);
 
     return team;
   }

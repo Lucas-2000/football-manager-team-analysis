@@ -1,0 +1,56 @@
+import { describe, expect, it } from "vitest";
+import { EnumTeamGrade } from "../../../utils/dicts/enumTeamGrade";
+import { Team } from "../../../entities/team";
+import { InMemoryTeamsRepository } from "../../../repositories/inMemory/team/inMemoryTeamsRepository";
+import { CreateTeamService } from "../create/createTeamService";
+import { UpdateTeamService } from "./updateTeamService";
+
+describe("Update Team Service", () => {
+  it("should be able to update a team", async () => {
+    const teamsRepository = new InMemoryTeamsRepository();
+    const createTeam = new CreateTeamService(teamsRepository);
+    const updateTeam = new UpdateTeamService(teamsRepository);
+
+    await createTeam.execute({
+      teamId: "1",
+      teamName: "Corinthians",
+      teamLocalization: "SP",
+      teamCountry: "Brasil",
+      teamGrade: EnumTeamGrade.A,
+    });
+
+    await expect(
+      updateTeam.execute({
+        teamId: "1",
+        teamName: "Corinthians",
+        teamLocalization: "SP",
+        teamCountry: "Brasil",
+        teamGrade: EnumTeamGrade.B,
+      })
+    ).resolves.toBeInstanceOf(Team);
+  });
+
+  it("should not be able to update a team if team don't found", async () => {
+    const teamsRepository = new InMemoryTeamsRepository();
+    const createTeam = new CreateTeamService(teamsRepository);
+    const updateTeam = new UpdateTeamService(teamsRepository);
+
+    await createTeam.execute({
+      teamId: "1",
+      teamName: "Corinthians",
+      teamLocalization: "SP",
+      teamCountry: "Brasil",
+      teamGrade: EnumTeamGrade.A,
+    });
+
+    await expect(
+      updateTeam.execute({
+        teamId: "2",
+        teamName: "Corinthians",
+        teamLocalization: "SP",
+        teamCountry: "Brasil",
+        teamGrade: EnumTeamGrade.B,
+      })
+    ).rejects.toBeInstanceOf(Error);
+  });
+});

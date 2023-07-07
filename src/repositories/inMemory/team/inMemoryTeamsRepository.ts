@@ -8,7 +8,7 @@ export class InMemoryTeamsRepository implements TeamsRepository {
     this.teams.push(team);
   }
 
-  async verifyExistingTeam(teamName: string): Promise<boolean> {
+  async verifyExisting(teamName: string): Promise<boolean> {
     const existingTeam = this.teams.find((team) => {
       return team.teamName === teamName;
     });
@@ -18,13 +18,27 @@ export class InMemoryTeamsRepository implements TeamsRepository {
     return true;
   }
 
-  async findAllTeams(): Promise<Team[]> {
+  async findAll(): Promise<Team[]> {
     return this.teams;
   }
 
-  async findTeamById(teamId: string): Promise<Team | undefined> {
+  async findById(teamId: string): Promise<Team | undefined> {
     const team = this.teams.find((team) => team.teamId === teamId);
 
     return team;
+  }
+
+  async findIndex(teamId: string): Promise<number> {
+    const teamIndex = this.teams.findIndex((obj) => obj.teamId === teamId);
+
+    if (teamIndex < 0) return -1;
+
+    return teamIndex;
+  }
+
+  async update(team: Team, teamIndex: number): Promise<void> {
+    this.teams.splice(teamIndex, 1);
+
+    this.teams.push(team);
   }
 }

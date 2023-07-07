@@ -12,7 +12,7 @@ export class FindTeamByIdService {
   async execute({
     teamId,
   }: FindTeamByIdRequest): Promise<FindTeamByIdResponse> {
-    const team = await this.teamsRepository.findTeamById(teamId);
+    const team = await this.teamsRepository.findById(teamId);
 
     if (!team) {
       throw new Error("Team not found!");
