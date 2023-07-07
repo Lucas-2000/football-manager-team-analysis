@@ -1,5 +1,5 @@
-import { TeamsRepository } from "./../../../repositories/teamsRepository";
-import { Team } from "./../../../entities/team";
+import { TeamsRepository } from "../../../repositories/teamsRepository";
+import { Team } from "../../../entities/team";
 interface FindTeamByIdRequest {
   teamId: string;
 }
