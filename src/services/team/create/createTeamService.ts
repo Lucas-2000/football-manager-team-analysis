@@ -16,6 +16,7 @@ export class CreateTeamService {
   constructor(private teamsRepository: TeamsRepository) {}
 
   async execute({
+    teamId,
     teamName,
     teamLocalization,
     teamCountry,
@@ -28,6 +29,7 @@ export class CreateTeamService {
     if (verifyExistingTeam) throw new Error(`Team ${teamName} already exists!`);
 
     const team = new Team({
+      teamId,
       teamName,
       teamLocalization,
       teamCountry,

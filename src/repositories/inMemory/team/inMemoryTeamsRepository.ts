@@ -21,4 +21,10 @@ export class InMemoryTeamsRepository implements TeamsRepository {
   async findAllTeams(): Promise<Team[]> {
     return this.teams;
   }
+
+  async findTeamById(teamId: string): Promise<Team | undefined> {
+    const team = this.teams.find((team) => team.teamId === teamId);
+
+    return team;
+  }
 }
