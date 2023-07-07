@@ -41,4 +41,8 @@ export class InMemoryTeamsRepository implements TeamsRepository {
 
     this.teams.push(team);
   }
+
+  async delete(teamIndex: number): Promise<void> {
+    this.teams.splice(teamIndex, 1);
+  }
 }

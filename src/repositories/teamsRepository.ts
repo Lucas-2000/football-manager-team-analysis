@@ -7,4 +7,5 @@ export interface TeamsRepository {
   findById(teamId: string): Promise<Team | undefined>;
   findIndex(teamId: string): Promise<number>;
   update(team: Team, teamIndex: number): Promise<void>;
+  delete(teamIndex: number): Promise<void>;
 }
