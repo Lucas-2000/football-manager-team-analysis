@@ -1,5 +1,4 @@
 import { EnumPlayerAttributesRange } from "../utils/dicts/enumPlayerAttributesRange";
-import { PositionProps } from "./position";
 
 export interface PlayerProps {
   playerId?: string;
