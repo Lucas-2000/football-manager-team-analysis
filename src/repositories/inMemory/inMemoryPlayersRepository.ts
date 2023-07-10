@@ -17,6 +17,12 @@ export class InMemoryPlayersRepository implements PlayersRepository {
   }
 
   async findAll(): Promise<Player[]> {
-    return this.players
+    return this.players;
+  }
+
+  async findById(playerId: string): Promise<Player | undefined> {
+    const player = this.players.find((p) => p.playerId === playerId);
+
+    return player;
   }
 }
