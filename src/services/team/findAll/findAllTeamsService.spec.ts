@@ -15,7 +15,9 @@ describe("Find All Teams Service", () => {
       teamName: "Corinthians",
       teamLocalization: "SP",
       teamCountry: "Brasil",
+      teamLeague: "Brasileirão",
       teamGrade: EnumTeamGrade.A,
+      teamLogo: "exemplo",
     });
 
     await expect(findAllTeamsService.execute()).resolves.toEqual([team]);

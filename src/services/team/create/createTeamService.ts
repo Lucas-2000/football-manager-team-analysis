@@ -7,7 +7,9 @@ interface CreateTeamRequest {
   teamName: string;
   teamLocalization: string;
   teamCountry: string;
+  teamLeague: string;
   teamGrade: EnumTeamGrade;
+  teamLogo: string;
 }
 
 type CreateTeamResponse = Team;
@@ -21,6 +23,8 @@ export class CreateTeamService {
     teamLocalization,
     teamCountry,
     teamGrade,
+    teamLeague,
+    teamLogo,
   }: CreateTeamRequest): Promise<CreateTeamResponse> {
     const verifyExisting = await this.teamsRepository.verifyExisting(teamName);
 
@@ -32,6 +36,8 @@ export class CreateTeamService {
       teamLocalization,
       teamCountry,
       teamGrade,
+      teamLeague,
+      teamLogo,
     });
 
     await this.teamsRepository.create(team);

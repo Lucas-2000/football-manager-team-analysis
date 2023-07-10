@@ -16,7 +16,9 @@ describe("Update Team Service", () => {
       teamName: "Corinthians",
       teamLocalization: "SP",
       teamCountry: "Brasil",
+      teamLeague: "Brasileirão",
       teamGrade: EnumTeamGrade.A,
+      teamLogo: "exemplo",
     });
 
     await expect(
@@ -25,7 +27,9 @@ describe("Update Team Service", () => {
         teamName: "Corinthians",
         teamLocalization: "SP",
         teamCountry: "Brasil",
+        teamLeague: "Brasileirão",
         teamGrade: EnumTeamGrade.B,
+        teamLogo: "exemplo",
       })
     ).resolves.toBeInstanceOf(Team);
   });
@@ -40,7 +44,9 @@ describe("Update Team Service", () => {
       teamName: "Corinthians",
       teamLocalization: "SP",
       teamCountry: "Brasil",
+      teamLeague: "Brasileirão",
       teamGrade: EnumTeamGrade.A,
+      teamLogo: "exemplo",
     });
 
     await expect(
@@ -49,7 +55,9 @@ describe("Update Team Service", () => {
         teamName: "Corinthians",
         teamLocalization: "SP",
         teamCountry: "Brasil",
+        teamLeague: "Brasileirão",
         teamGrade: EnumTeamGrade.B,
+        teamLogo: "exemplo",
       })
     ).rejects.toBeInstanceOf(Error);
   });

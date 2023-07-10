@@ -14,7 +14,9 @@ describe("Create Team Service", () => {
         teamName: "Corinthians",
         teamLocalization: "SP",
         teamCountry: "Brasil",
+        teamLeague: "Brasileirão",
         teamGrade: EnumTeamGrade.A,
+        teamLogo: "exemplo",
       })
     ).resolves.toBeInstanceOf(Team);
   });
@@ -27,7 +29,9 @@ describe("Create Team Service", () => {
       teamName: "Corinthians",
       teamLocalization: "SP",
       teamCountry: "Brasil",
+      teamLeague: "Brasileirão",
       teamGrade: EnumTeamGrade.A,
+      teamLogo: "exemplo",
     });
 
     await expect(
@@ -36,7 +40,9 @@ describe("Create Team Service", () => {
         teamName: "Corinthians",
         teamLocalization: "SP",
         teamCountry: "Brasil",
+        teamLeague: "Brasileirão",
         teamGrade: EnumTeamGrade.A,
+        teamLogo: "exemplo",
       })
     ).rejects.toBeInstanceOf(Error);
   });

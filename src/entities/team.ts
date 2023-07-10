@@ -5,7 +5,9 @@ export interface TeamProps {
   teamName: string;
   teamLocalization: string;
   teamCountry: string;
+  teamLeague: string;
   teamGrade: EnumTeamGrade;
+  teamLogo: string;
 }
 
 export class Team {
@@ -31,7 +33,15 @@ export class Team {
     return this.props.teamCountry;
   }
 
+  get teamLeague() {
+    return this.props.teamLeague;
+  }
+
   get teamGrade() {
     return this.props.teamGrade;
+  }
+
+  get teamLogo() {
+    return this.props.teamLogo;
   }
 }
