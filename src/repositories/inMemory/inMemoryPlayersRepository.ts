@@ -15,4 +15,8 @@ export class InMemoryPlayersRepository implements PlayersRepository {
 
     return false;
   }
+
+  async findAll(): Promise<Player[]> {
+    return this.players
+  }
 }
