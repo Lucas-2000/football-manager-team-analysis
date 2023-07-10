@@ -1,9 +1,9 @@
 import { describe, expect, it } from "vitest";
-import { InMemoryTeamsRepository } from "../../../repositories/inMemory/team/inMemoryTeamsRepository";
 import { CreateTeamService } from "../create/createTeamService";
 import { EnumTeamGrade } from "../../../utils/dicts/enumTeamGrade";
 import { FindTeamByIdService } from "./findTeamByIdService";
 import { Team } from "../../../entities/team";
+import { InMemoryTeamsRepository } from "../../../repositories/inMemory/inMemoryTeamsRepository";
 
 describe("Find Team By Id Service", () => {
   it("should return team by id", async () => {

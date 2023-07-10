@@ -2,7 +2,7 @@ import { CreateTeamService } from "./createTeamService";
 import { describe, expect, it } from "vitest";
 import { EnumTeamGrade } from "../../../utils/dicts/enumTeamGrade";
 import { Team } from "../../../entities/team";
-import { InMemoryTeamsRepository } from "../../../repositories/inMemory/team/inMemoryTeamsRepository";
+import { InMemoryTeamsRepository } from "../../../repositories/inMemory/inMemoryTeamsRepository";
 
 describe("Create Team Service", () => {
   it("should be able to create a new team", async () => {

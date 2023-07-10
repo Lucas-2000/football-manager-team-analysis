@@ -1,5 +1,5 @@
-import { Team } from "../../../entities/team";
-import { TeamsRepository } from "../../teamsRepository";
+import { Team } from "../../entities/team";
+import { TeamsRepository } from "../teamsRepository";
 
 export class InMemoryTeamsRepository implements TeamsRepository {
   public teams: Team[] = [];

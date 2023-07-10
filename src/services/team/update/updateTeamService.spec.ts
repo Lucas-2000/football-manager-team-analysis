@@ -1,9 +1,9 @@
 import { describe, expect, it } from "vitest";
 import { EnumTeamGrade } from "../../../utils/dicts/enumTeamGrade";
 import { Team } from "../../../entities/team";
-import { InMemoryTeamsRepository } from "../../../repositories/inMemory/team/inMemoryTeamsRepository";
 import { CreateTeamService } from "../create/createTeamService";
 import { UpdateTeamService } from "./updateTeamService";
+import { InMemoryTeamsRepository } from "../../../repositories/inMemory/inMemoryTeamsRepository";
 
 describe("Update Team Service", () => {
   it("should be able to update a team", async () => {

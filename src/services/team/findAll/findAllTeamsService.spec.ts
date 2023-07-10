@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { InMemoryTeamsRepository } from "../../../repositories/inMemory/team/inMemoryTeamsRepository";
+import { InMemoryTeamsRepository } from "../../../repositories/inMemory/inMemoryTeamsRepository";
 import { FindAllTeamsService } from "./findAllTeamsService";
 import { CreateTeamService } from "../create/createTeamService";
 import { EnumTeamGrade } from "../../../utils/dicts/enumTeamGrade";
