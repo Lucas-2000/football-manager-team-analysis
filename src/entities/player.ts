@@ -1,14 +1,16 @@
 import { EnumPlayerAttributesRange } from "../utils/dicts/enumPlayerAttributesRange";
 import { PositionProps } from "./position";
 
-export interface PlayerProps extends PositionProps {
-  playerId: string;
+export interface PlayerProps {
+  playerId?: string;
   name: string;
   birthdate: Date;
   lenght: number;
   weight: number;
   jersey: number;
   playerImage?: string;
+  positionId: string;
+  teamId: string;
   corners: EnumPlayerAttributesRange;
   crossing: EnumPlayerAttributesRange;
   dribbling: EnumPlayerAttributesRange;
@@ -78,16 +80,8 @@ export class Player {
     return this.props.positionId;
   }
 
-  get basePosition() {
-    return this.props.basePosition;
-  }
-
-  get positionRole() {
-    return this.props.positionRole;
-  }
-
-  get roleType() {
-    return this.props.roleType;
+  get teamId() {
+    return this.props.teamId;
   }
 
   get playerImage() {

@@ -1,9 +1,6 @@
 import { expect, test } from "vitest";
 import { Player } from "./player";
 import { EnumPlayerAttributesRange } from "../utils/dicts/enumPlayerAttributesRange";
-import { EnumPlayerPositionBase } from "../utils/dicts/enumPlayerPositionBase";
-import { EnumPlayerPositionRole } from "../utils/dicts/enumPlayerPositionRole";
-import { EnumRoleType } from "../utils/dicts/enumRoleType";
 
 test("create a player", () => {
   const player = new Player({
@@ -14,9 +11,7 @@ test("create a player", () => {
     weight: 68,
     jersey: 17,
     positionId: "1",
-    basePosition: EnumPlayerPositionBase.Midfielder,
-    positionRole: EnumPlayerPositionRole.AttackingMidfielder,
-    roleType: [EnumRoleType.Attack, EnumRoleType.Support],
+    teamId: "1",
     corners: EnumPlayerAttributesRange.Fifteen,
     crossing: EnumPlayerAttributesRange.Fifteen,
     dribbling: EnumPlayerAttributesRange.Fifteen,
