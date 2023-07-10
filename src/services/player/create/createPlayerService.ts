@@ -3,6 +3,7 @@ import { EnumPlayerAttributesRange } from "../../../utils/dicts/enumPlayerAttrib
 import { PlayersRepository } from "./../../../repositories/playersRepository";
 
 interface CreatePlayerRequest {
+  playerId: string;
   name: string;
   birthdate: Date;
   lenght: number;
@@ -55,6 +56,7 @@ export class CreatePlayerService {
   constructor(private playersRepository: PlayersRepository) {}
 
   async execute({
+    playerId,
     name,
     birthdate,
     lenght,
@@ -105,6 +107,7 @@ export class CreatePlayerService {
     if (playerExists) throw new Error(`Player ${name} already exists`);
 
     const player = new Player({
+      playerId,
       name,
       birthdate,
       lenght,

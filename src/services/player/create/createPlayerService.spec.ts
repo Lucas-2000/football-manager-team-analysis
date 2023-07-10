@@ -10,6 +10,7 @@ describe("Create Player Service", () => {
     const createPlayer = new CreatePlayerService(playersRepository);
     await expect(
       createPlayer.execute({
+        playerId: "1",
         name: "Kevin de Bruyne",
         birthdate: new Date("1991-08-01"),
         lenght: 181,
@@ -62,6 +63,7 @@ describe("Create Player Service", () => {
     const createPlayer = new CreatePlayerService(playersRepository);
 
     await createPlayer.execute({
+      playerId: "1",
       name: "Kevin de Bruyne",
       birthdate: new Date("1991-08-01"),
       lenght: 181,
@@ -109,6 +111,7 @@ describe("Create Player Service", () => {
 
     await expect(
       createPlayer.execute({
+        playerId: "1",
         name: "Kevin de Bruyne",
         birthdate: new Date("1991-08-01"),
         lenght: 181,
