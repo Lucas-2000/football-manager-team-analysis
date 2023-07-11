@@ -39,4 +39,8 @@ export class InMemoryPlayersRepository implements PlayersRepository {
 
     this.players.push(player);
   }
+
+  async delete(playerIndex: number): Promise<void> {
+    this.players.splice(playerIndex, 1);
+  }
 }

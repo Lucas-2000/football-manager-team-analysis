@@ -7,4 +7,5 @@ export interface PlayersRepository {
   findById(playerId: string): Promise<Player | undefined>;
   findIndex(playerId: string): Promise<number>;
   update(player: Player, playerIndex: number): Promise<void>;
+  delete(playerIndex: number): Promise<void>;
 }
