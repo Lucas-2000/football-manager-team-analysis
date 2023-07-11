@@ -25,4 +25,18 @@ export class InMemoryPlayersRepository implements PlayersRepository {
 
     return player;
   }
+
+  async findIndex(playerId: string): Promise<number> {
+    const index = this.players.findIndex((p) => p.playerId === playerId);
+
+    if (index < 0) return -1;
+
+    return index;
+  }
+
+  async update(player: Player, playerIndex: number): Promise<void> {
+    this.players.splice(playerIndex, 1);
+
+    this.players.push(player);
+  }
 }
