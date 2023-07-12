@@ -1,3 +1,4 @@
+import { EnumPlayerAttributesRange } from "../utils/dicts/enumPlayerAttributesRange";
 import { Player } from "./../entities/player";
 
 export interface PlayersRepository {
@@ -8,4 +9,5 @@ export interface PlayersRepository {
   findIndex(playerId: string): Promise<number>;
   update(player: Player, playerIndex: number): Promise<void>;
   delete(playerIndex: number): Promise<void>;
+  checkAttributeInteval(attribute: EnumPlayerAttributesRange): Promise<boolean>;
 }

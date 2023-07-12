@@ -1,4 +1,5 @@
 import { Team } from "../../entities/team";
+import { EnumTeamGrade } from "../../utils/dicts/enumTeamGrade";
 import { TeamsRepository } from "../teamsRepository";
 
 export class InMemoryTeamsRepository implements TeamsRepository {
@@ -44,5 +45,11 @@ export class InMemoryTeamsRepository implements TeamsRepository {
 
   async delete(teamIndex: number): Promise<void> {
     this.teams.splice(teamIndex, 1);
+  }
+
+  async checkTeamGradeInterval(teamGrade: EnumTeamGrade): Promise<boolean> {
+    if (["A", "B", "C", "D", "E"].includes(teamGrade)) return true;
+
+    return false;
   }
 }

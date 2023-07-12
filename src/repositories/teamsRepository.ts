@@ -1,4 +1,5 @@
 import { Team } from "../entities/team";
+import { EnumTeamGrade } from "../utils/dicts/enumTeamGrade";
 
 export interface TeamsRepository {
   create(team: Team): Promise<void>;
@@ -8,4 +9,5 @@ export interface TeamsRepository {
   findIndex(teamId: string): Promise<number>;
   update(team: Team, teamIndex: number): Promise<void>;
   delete(teamIndex: number): Promise<void>;
+  checkTeamGradeInterval(teamGrade: EnumTeamGrade): Promise<boolean>;
 }

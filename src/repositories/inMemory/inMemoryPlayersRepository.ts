@@ -1,4 +1,5 @@
 import { Player } from "../../entities/player";
+import { EnumPlayerAttributesRange } from "../../utils/dicts/enumPlayerAttributesRange";
 import { PlayersRepository } from "../playersRepository";
 
 export class InMemoryPlayersRepository implements PlayersRepository {
@@ -42,5 +43,13 @@ export class InMemoryPlayersRepository implements PlayersRepository {
 
   async delete(playerIndex: number): Promise<void> {
     this.players.splice(playerIndex, 1);
+  }
+
+  async checkAttributeInteval(
+    attribute: EnumPlayerAttributesRange
+  ): Promise<boolean> {
+    if (attribute < 0 || attribute > 20) return false;
+
+    return true;
   }
 }

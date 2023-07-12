@@ -20,8 +20,76 @@ model Team {
   teamLogo         String?
   createdAt        DateTime  @default(now())
   updatedAt        DateTime  @updatedAt
+  players          Player[]
 
   @@map("teams")
+}
+
+model Position {
+  id           String             @id @default(uuid())
+  basePosition PlayerPositionBase
+  positionRole PlayerPositionRole
+  roleType     RoleType[]
+  createdAt    DateTime           @default(now())
+  updatedAt    DateTime           @updatedAt
+  player       Player[]
+
+  @@map("positions")
+}
+
+model Player {
+  id             String   @id @default(uuid())
+  name           String
+  birthdate      DateTime
+  lenght         Int
+  weight         Int
+  jersey         Int
+  playerImage    String?
+  corners        Int
+  crossing       Int
+  dribbling      Int
+  finishing      Int
+  firstTouch     Int
+  freeKickTaking Int
+  heading        Int
+  longShots      Int
+  longThrows     Int
+  marking        Int
+  passing        Int
+  penaltyTaking  Int
+  tackling       Int
+  technique      Int
+  agression      Int
+  anticipation   Int
+  bravery        Int
+  composure      Int
+  concentration  Int
+  decisions      Int
+  determination  Int
+  flair          Int
+  leadership     Int
+  offTheBall     Int
+  positioning    Int
+  teamWork       Int
+  vision         Int
+  workRate       Int
+  acceleration   Int
+  agility        Int
+  balance        Int
+  jumpingReach   Int
+  naturalFitness Int
+  pace           Int
+  stamina        Int
+  strenght       Int
+  team           Team     @relation(fields: [teamId], references: [id], onDelete: Cascade)
+  teamId         String
+  position       Position @relation(fields: [positionId], references: [id], onDelete: Cascade)
+  positionId     String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("players")
 }
 
 //Enums
@@ -31,4 +99,68 @@ enum TeamGrade {
   C
   D
   E
+}
+
+enum PlayerPositionBase {
+  Goalkeeper
+  Defenser
+  Midfielder
+  Winger
+  Striker
+}
+
+enum PlayerPositionRole {
+  Goalkeeper
+  SweeperKeeper
+  WideCentreBack
+  CentralDefender
+  Libero
+  BallPlayingDefender
+  NoNonsenseCentreBack
+  DefensiveMidfielder
+  DeepLyingPlaymaker
+  BallWinningMidfielder
+  AnchorMan
+  HalfBack
+  Regista
+  RoamingPlaymaker
+  SegundoVolante
+  CentralMidfielder
+  BoxToBoxMidfielder
+  AdvancedPlaymaker
+  Mezzala
+  Carrilero
+  FullBack
+  WingBack
+  NoNonsenseFullBack
+  CompleteWingBack
+  InvertedWingBack
+  WideMidfielder
+  Winger
+  DefensiveWinger
+  WidePlaymaker
+  InvertedWinger
+  InsideForward
+  WideTargetMan
+  Raumdeuter
+  AttackingMidfielder
+  Trequartista
+  Enganche
+  ShadowStriker
+  DeepLyingForward
+  AdvancedForward
+  TargetMan
+  Poacher
+  CompleteForward
+  PressingForward
+  FalseNine
+}
+
+enum RoleType {
+  Attack
+  Support
+  Defend
+  Stopper
+  Cover
+  Automatic
 }

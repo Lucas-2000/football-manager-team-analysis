@@ -30,6 +30,9 @@ export class UpdateTeamService {
 
     if (verifyIndex < 0) throw new Error("Team not found!");
 
+    if ((await this.teamsRepository.checkTeamGradeInterval(teamGrade)) == false)
+      throw new Error("Incorrect Team Grade Interval!");
+
     const team = new Team({
       id,
       teamName,

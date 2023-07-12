@@ -106,6 +106,50 @@ export class CreatePlayerService {
 
     if (playerExists) throw new Error(`Player ${name} already exists`);
 
+    const attList = [
+      corners,
+      crossing,
+      dribbling,
+      finishing,
+      firstTouch,
+      freeKickTaking,
+      heading,
+      longShots,
+      longThrows,
+      marking,
+      passing,
+      penaltyTaking,
+      tackling,
+      technique,
+      agression,
+      anticipation,
+      bravery,
+      composure,
+      concentration,
+      decisions,
+      determination,
+      flair,
+      leadership,
+      offTheBall,
+      positioning,
+      teamWork,
+      vision,
+      workRate,
+      acceleration,
+      agility,
+      balance,
+      jumpingReach,
+      naturalFitness,
+      pace,
+      stamina,
+      strenght,
+    ];
+
+    attList.map(async (att) => {
+      if ((await this.playersRepository.checkAttributeInteval(att)) === false)
+        throw new Error("Incorret attribute interval");
+    });
+
     const player = new Player({
       id,
       name,

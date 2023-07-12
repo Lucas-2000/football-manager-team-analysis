@@ -30,6 +30,9 @@ export class CreateTeamService {
 
     if (verifyExisting) throw new Error(`Team ${teamName} already exists!`);
 
+    if ((await this.teamsRepository.checkTeamGradeInterval(teamGrade)) == false)
+      throw new Error("Incorrect Team Grade Interval!");
+
     const team = new Team({
       id,
       teamName,
