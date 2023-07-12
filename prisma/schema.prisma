@@ -11,15 +11,24 @@ datasource db {
 }
 
 model Team {
-  id               String   @id @default(uuid())
+  id               String    @id @default(uuid())
   teamName         String
   teamLocalization String
   teamCountry      String
   teamLeague       String
-  teamGrade        Int
-  teamLogo         String
-  createdAt        DateTime @default(now())
-  updatedAt        DateTime @updatedAt
+  teamGrade        TeamGrade
+  teamLogo         String?
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
 
   @@map("teams")
+}
+
+//Enums
+enum TeamGrade {
+  A
+  B
+  C
+  D
+  E
 }

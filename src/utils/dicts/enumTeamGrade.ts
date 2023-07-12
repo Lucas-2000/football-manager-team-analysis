@@ -1,7 +1,7 @@
 export enum EnumTeamGrade {
-  A = 5,
-  B = 4,
-  C = 3,
-  D = 2,
-  E = 1,
+  A = "A",
+  B = "B",
+  C = "C",
+  D = "D",
+  E = "E",
 }
