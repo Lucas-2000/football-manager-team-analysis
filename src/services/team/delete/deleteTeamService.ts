@@ -14,7 +14,7 @@ export class DeleteTeamService {
 
     if (verifyIndex < 0) throw new Error("Team not found!");
 
-    await this.teamsRepository.delete(verifyIndex);
+    await this.teamsRepository.delete(id);
 
     return [];
   }

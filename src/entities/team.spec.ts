@@ -1,6 +1,6 @@
 import { expect, test } from "vitest";
 import { Team } from "./team";
-import { EnumTeamGrade } from "../utils/dicts/enumTeamGrade";
+import { EnumTeamGrade } from "@prisma/client";
 
 test("create a team", () => {
   const team = new Team({

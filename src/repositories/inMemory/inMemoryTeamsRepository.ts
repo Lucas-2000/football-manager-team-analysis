@@ -37,14 +37,20 @@ export class InMemoryTeamsRepository implements TeamsRepository {
     return teamIndex;
   }
 
-  async update(team: Team, teamIndex: number): Promise<void> {
-    this.teams.splice(teamIndex, 1);
+  async update(team: Team): Promise<void> {
+    const teamToUpdate = this.teams.find((t) => t.id === team.id);
 
-    this.teams.push(team);
+    if (teamToUpdate !== undefined) {
+      Object.assign(teamToUpdate, team);
+    }
   }
 
-  async delete(teamIndex: number): Promise<void> {
-    this.teams.splice(teamIndex, 1);
+  async delete(teamId: string): Promise<void> {
+    const teamIndex = this.teams.findIndex((team) => team.id === teamId);
+
+    if (teamIndex !== -1) {
+      this.teams.splice(teamIndex, 1);
+    }
   }
 
   async checkTeamGradeInterval(teamGrade: EnumTeamGrade): Promise<boolean> {

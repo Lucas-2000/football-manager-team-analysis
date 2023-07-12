@@ -43,7 +43,7 @@ export class UpdateTeamService {
       teamLogo,
     });
 
-    await this.teamsRepository.update(team, verifyIndex);
+    await this.teamsRepository.update(team);
 
     return team;
   }

@@ -11,27 +11,27 @@ datasource db {
 }
 
 model Team {
-  id               String    @id @default(uuid())
+  id               String        @id @default(uuid())
   teamName         String
   teamLocalization String
   teamCountry      String
   teamLeague       String
-  teamGrade        TeamGrade
+  teamGrade        EnumTeamGrade
   teamLogo         String?
-  createdAt        DateTime  @default(now())
-  updatedAt        DateTime  @updatedAt
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
   players          Player[]
 
   @@map("teams")
 }
 
 model Position {
-  id           String             @id @default(uuid())
-  basePosition PlayerPositionBase
-  positionRole PlayerPositionRole
-  roleType     RoleType[]
-  createdAt    DateTime           @default(now())
-  updatedAt    DateTime           @updatedAt
+  id           String                 @id @default(uuid())
+  basePosition EnumPlayerPositionBase
+  positionRole EnumPlayerPositionRole
+  roleType     EnumRoleType[]
+  createdAt    DateTime               @default(now())
+  updatedAt    DateTime               @updatedAt
   player       Player[]
 
   @@map("positions")
@@ -93,7 +93,7 @@ model Player {
 }
 
 //Enums
-enum TeamGrade {
+enum EnumTeamGrade {
   A
   B
   C
@@ -101,7 +101,7 @@ enum TeamGrade {
   E
 }
 
-enum PlayerPositionBase {
+enum EnumPlayerPositionBase {
   Goalkeeper
   Defenser
   Midfielder
@@ -109,7 +109,7 @@ enum PlayerPositionBase {
   Striker
 }
 
-enum PlayerPositionRole {
+enum EnumPlayerPositionRole {
   Goalkeeper
   SweeperKeeper
   WideCentreBack
@@ -156,7 +156,7 @@ enum PlayerPositionRole {
   FalseNine
 }
 
-enum RoleType {
+enum EnumRoleType {
   Attack
   Support
   Defend

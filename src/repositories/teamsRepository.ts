@@ -7,7 +7,7 @@ export interface TeamsRepository {
   findAll(): Promise<Team[]>;
   findById(teamId: string): Promise<Team | undefined>;
   findIndex(teamId: string): Promise<number>;
-  update(team: Team, teamIndex: number): Promise<void>;
-  delete(teamIndex: number): Promise<void>;
+  update(team: Team): Promise<void>;
+  delete(teamId: string): Promise<void>;
   checkTeamGradeInterval(teamGrade: EnumTeamGrade): Promise<boolean>;
 }

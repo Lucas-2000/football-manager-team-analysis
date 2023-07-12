@@ -7,7 +7,7 @@ export interface TeamProps {
   teamCountry: string;
   teamLeague: string;
   teamGrade: EnumTeamGrade;
-  teamLogo: string;
+  teamLogo: string | null;
 }
 
 export class Team {

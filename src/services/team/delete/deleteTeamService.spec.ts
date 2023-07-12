@@ -1,8 +1,8 @@
 import { describe, expect, it } from "vitest";
-import { EnumTeamGrade } from "../../../utils/dicts/enumTeamGrade";
 import { InMemoryTeamsRepository } from "../../../repositories/inMemory/inMemoryTeamsRepository";
 import { CreateTeamService } from "../create/createTeamService";
 import { DeleteTeamService } from "./deleteTeamService";
+import { EnumTeamGrade } from "@prisma/client";
 
 describe("Delete Team Service", () => {
   it("should be able to delete a team", async () => {
