@@ -11,7 +11,7 @@ datasource db {
 }
 
 model Team {
-  teamid           String   @id @default(uuid())
+  id               String   @id @default(uuid())
   teamName         String
   teamLocalization String
   teamCountry      String

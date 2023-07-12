@@ -1,7 +1,7 @@
 import { EnumTeamGrade } from "../utils/dicts/enumTeamGrade";
 
 export interface TeamProps {
-  teamId?: string;
+  id?: string;
   teamName: string;
   teamLocalization: string;
   teamCountry: string;
@@ -17,8 +17,8 @@ export class Team {
     this.props = props;
   }
 
-  get teamId() {
-    return this.props.teamId;
+  get id() {
+    return this.props.id;
   }
 
   get teamName() {

@@ -10,7 +10,7 @@ describe("Create Team Service", () => {
     const createTeam = new CreateTeamService(teamsRepository);
     await expect(
       createTeam.execute({
-        teamId: "1",
+        id: "1",
         teamName: "Corinthians",
         teamLocalization: "SP",
         teamCountry: "Brasil",
@@ -25,7 +25,7 @@ describe("Create Team Service", () => {
     const teamsRepository = new InMemoryTeamsRepository();
     const createTeam = new CreateTeamService(teamsRepository);
     await createTeam.execute({
-      teamId: "1",
+      id: "1",
       teamName: "Corinthians",
       teamLocalization: "SP",
       teamCountry: "Brasil",
@@ -36,7 +36,7 @@ describe("Create Team Service", () => {
 
     await expect(
       createTeam.execute({
-        teamId: "1",
+        id: "1",
         teamName: "Corinthians",
         teamLocalization: "SP",
         teamCountry: "Brasil",

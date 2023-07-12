@@ -18,7 +18,7 @@ describe("Update Position Service", () => {
     );
 
     await createPositionService.execute({
-      positionId: "1",
+      id: "1",
       basePosition: EnumPlayerPositionBase.Midfielder,
       positionRole: EnumPlayerPositionRole.AttackingMidfielder,
       roleType: [EnumRoleType.Attack, EnumRoleType.Support],
@@ -26,7 +26,7 @@ describe("Update Position Service", () => {
 
     await expect(
       updatePositionService.execute({
-        positionId: "1",
+        id: "1",
         basePosition: EnumPlayerPositionBase.Striker,
         positionRole: EnumPlayerPositionRole.AttackingMidfielder,
         roleType: [EnumRoleType.Attack, EnumRoleType.Support],
@@ -44,7 +44,7 @@ describe("Update Position Service", () => {
     );
 
     await createPositionService.execute({
-      positionId: "1",
+      id: "1",
       basePosition: EnumPlayerPositionBase.Midfielder,
       positionRole: EnumPlayerPositionRole.AttackingMidfielder,
       roleType: [EnumRoleType.Attack, EnumRoleType.Support],
@@ -52,7 +52,7 @@ describe("Update Position Service", () => {
 
     await expect(
       updatePositionService.execute({
-        positionId: "2",
+        id: "2",
         basePosition: EnumPlayerPositionBase.Striker,
         positionRole: EnumPlayerPositionRole.AttackingMidfielder,
         roleType: [EnumRoleType.Attack, EnumRoleType.Support],

@@ -11,7 +11,7 @@ describe("Delete player Service", () => {
     const deletePlayer = new DeletePlayerService(playersRepository);
 
     await createPlayer.execute({
-      playerId: "1",
+      id: "1",
       name: "Kevin de Bruyne",
       birthdate: new Date("1991-08-01"),
       lenght: 181,
@@ -59,7 +59,7 @@ describe("Delete player Service", () => {
 
     await expect(
       deletePlayer.execute({
-        playerId: "1",
+        id: "1",
       })
     ).resolves.toBeInstanceOf(Array);
   });
@@ -70,7 +70,7 @@ describe("Delete player Service", () => {
     const deletePlayer = new DeletePlayerService(playersRepository);
 
     await createPlayer.execute({
-      playerId: "1",
+      id: "1",
       name: "Kevin de Bruyne",
       birthdate: new Date("1991-08-01"),
       lenght: 181,
@@ -118,7 +118,7 @@ describe("Delete player Service", () => {
 
     await expect(
       deletePlayer.execute({
-        playerId: "2",
+        id: "2",
       })
     ).rejects.toBeInstanceOf(Error);
   });

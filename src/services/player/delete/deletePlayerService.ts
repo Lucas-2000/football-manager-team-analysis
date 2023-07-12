@@ -1,8 +1,7 @@
-import { Player } from "../../../entities/player";
 import { PlayersRepository } from "./../../../repositories/playersRepository";
 
 interface DeletePlayerRequest {
-  playerId: string;
+  id: string;
 }
 
 type DeletePlayerResponse = [];
@@ -10,10 +9,8 @@ type DeletePlayerResponse = [];
 export class DeletePlayerService {
   constructor(private playersRepository: PlayersRepository) {}
 
-  async execute({
-    playerId,
-  }: DeletePlayerRequest): Promise<DeletePlayerResponse> {
-    const playerIndex = await this.playersRepository.findIndex(playerId);
+  async execute({ id }: DeletePlayerRequest): Promise<DeletePlayerResponse> {
+    const playerIndex = await this.playersRepository.findIndex(id);
 
     if (playerIndex < 0) throw new Error("Player not found!");
 

@@ -3,7 +3,7 @@ import { EnumTeamGrade } from "../../../utils/dicts/enumTeamGrade";
 import { TeamsRepository } from "./../../../repositories/teamsRepository";
 
 interface UpdateTeamRequest {
-  teamId: string;
+  id: string;
   teamName: string;
   teamLocalization: string;
   teamCountry: string;
@@ -18,7 +18,7 @@ export class UpdateTeamService {
   constructor(private teamsRepository: TeamsRepository) {}
 
   async execute({
-    teamId,
+    id,
     teamName,
     teamLocalization,
     teamCountry,
@@ -26,12 +26,12 @@ export class UpdateTeamService {
     teamGrade,
     teamLogo,
   }: UpdateTeamRequest): Promise<UpdateTeamResponse> {
-    const verifyIndex = await this.teamsRepository.findIndex(teamId);
+    const verifyIndex = await this.teamsRepository.findIndex(id);
 
     if (verifyIndex < 0) throw new Error("Team not found!");
 
     const team = new Team({
-      teamId,
+      id,
       teamName,
       teamLocalization,
       teamCountry,

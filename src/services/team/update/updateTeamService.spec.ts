@@ -12,7 +12,7 @@ describe("Update Team Service", () => {
     const updateTeam = new UpdateTeamService(teamsRepository);
 
     await createTeam.execute({
-      teamId: "1",
+      id: "1",
       teamName: "Corinthians",
       teamLocalization: "SP",
       teamCountry: "Brasil",
@@ -23,7 +23,7 @@ describe("Update Team Service", () => {
 
     await expect(
       updateTeam.execute({
-        teamId: "1",
+        id: "1",
         teamName: "Corinthians",
         teamLocalization: "SP",
         teamCountry: "Brasil",
@@ -40,7 +40,7 @@ describe("Update Team Service", () => {
     const updateTeam = new UpdateTeamService(teamsRepository);
 
     await createTeam.execute({
-      teamId: "1",
+      id: "1",
       teamName: "Corinthians",
       teamLocalization: "SP",
       teamCountry: "Brasil",
@@ -51,7 +51,7 @@ describe("Update Team Service", () => {
 
     await expect(
       updateTeam.execute({
-        teamId: "2",
+        id: "2",
         teamName: "Corinthians",
         teamLocalization: "SP",
         teamCountry: "Brasil",

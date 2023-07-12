@@ -1,7 +1,7 @@
 import { TeamsRepository } from "../../../repositories/teamsRepository";
 import { Team } from "../../../entities/team";
 interface FindTeamByIdRequest {
-  teamId: string;
+  id: string;
 }
 
 type FindTeamByIdResponse = Team;
@@ -9,10 +9,8 @@ type FindTeamByIdResponse = Team;
 export class FindTeamByIdService {
   constructor(private teamsRepository: TeamsRepository) {}
 
-  async execute({
-    teamId,
-  }: FindTeamByIdRequest): Promise<FindTeamByIdResponse> {
-    const team = await this.teamsRepository.findById(teamId);
+  async execute({ id }: FindTeamByIdRequest): Promise<FindTeamByIdResponse> {
+    const team = await this.teamsRepository.findById(id);
 
     if (!team) {
       throw new Error("Team not found!");

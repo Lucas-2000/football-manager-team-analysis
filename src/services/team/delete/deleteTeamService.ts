@@ -1,7 +1,7 @@
 import { TeamsRepository } from "./../../../repositories/teamsRepository";
 
 interface DeleteTeamRequest {
-  teamId: string;
+  id: string;
 }
 
 type DeleteTeamResponse = [];
@@ -9,8 +9,8 @@ type DeleteTeamResponse = [];
 export class DeleteTeamService {
   constructor(private teamsRepository: TeamsRepository) {}
 
-  async execute({ teamId }: DeleteTeamRequest): Promise<DeleteTeamResponse> {
-    const verifyIndex = await this.teamsRepository.findIndex(teamId);
+  async execute({ id }: DeleteTeamRequest): Promise<DeleteTeamResponse> {
+    const verifyIndex = await this.teamsRepository.findIndex(id);
 
     if (verifyIndex < 0) throw new Error("Team not found!");
 

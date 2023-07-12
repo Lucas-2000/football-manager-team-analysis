@@ -3,7 +3,7 @@ import { EnumPlayerAttributesRange } from "../../../utils/dicts/enumPlayerAttrib
 import { PlayersRepository } from "./../../../repositories/playersRepository";
 
 interface UpdatePlayerRequest {
-  playerId: string;
+  id: string;
   name: string;
   birthdate: Date;
   lenght: number;
@@ -56,7 +56,7 @@ export class UpdatePlayerService {
   constructor(private playersRepository: PlayersRepository) {}
 
   async execute({
-    playerId,
+    id,
     name,
     birthdate,
     lenght,
@@ -102,12 +102,12 @@ export class UpdatePlayerService {
     stamina,
     strenght,
   }: UpdatePlayerRequest): Promise<UpdatePlayerResponse> {
-    const index = await this.playersRepository.findIndex(playerId);
+    const index = await this.playersRepository.findIndex(id);
 
     if (index < 0) throw new Error("Player not found!");
 
     const player = new Player({
-      playerId,
+      id,
       name,
       birthdate,
       lenght,

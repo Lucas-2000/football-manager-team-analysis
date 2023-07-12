@@ -5,7 +5,7 @@ import { EnumRoleType } from "../../../utils/dicts/enumRoleType";
 import { PositionsRepository } from "./../../../repositories/positionsRepository";
 
 interface CreatePositionRequest {
-  positionId: string;
+  id: string;
   basePosition: EnumPlayerPositionBase;
   positionRole: EnumPlayerPositionRole;
   roleType: EnumRoleType[];
@@ -17,19 +17,17 @@ export class CreatePositionService {
   constructor(private positionsRepository: PositionsRepository) {}
 
   async execute({
-    positionId,
+    id,
     basePosition,
     positionRole,
     roleType,
   }: CreatePositionRequest): Promise<CreatePositionResponse> {
-    const positionExists = await this.positionsRepository.verifyExists(
-      positionId
-    );
+    const positionExists = await this.positionsRepository.verifyExists(id);
 
     if (positionExists) throw new Error("Position already exists!");
 
     const position = new Position({
-      positionId,
+      id,
       basePosition,
       positionRole,
       roleType,

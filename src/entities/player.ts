@@ -1,7 +1,7 @@
 import { EnumPlayerAttributesRange } from "../utils/dicts/enumPlayerAttributesRange";
 
 export interface PlayerProps {
-  playerId?: string;
+  id?: string;
   name: string;
   birthdate: Date;
   lenght: number;
@@ -55,8 +55,8 @@ export class Player {
     this.props = props;
   }
 
-  get playerId() {
-    return this.props.playerId;
+  get id() {
+    return this.props.id;
   }
 
   get name() {

@@ -11,7 +11,7 @@ describe("Delete Team Service", () => {
     const deleteTeam = new DeleteTeamService(teamsRepository);
 
     await createTeam.execute({
-      teamId: "1",
+      id: "1",
       teamName: "Corinthians",
       teamLocalization: "SP",
       teamCountry: "Brasil",
@@ -22,7 +22,7 @@ describe("Delete Team Service", () => {
 
     await expect(
       deleteTeam.execute({
-        teamId: "1",
+        id: "1",
       })
     ).resolves.toBeInstanceOf(Array);
   });
@@ -33,7 +33,7 @@ describe("Delete Team Service", () => {
     const deleteTeam = new DeleteTeamService(teamsRepository);
 
     await createTeam.execute({
-      teamId: "1",
+      id: "1",
       teamName: "Corinthians",
       teamLocalization: "SP",
       teamCountry: "Brasil",
@@ -44,7 +44,7 @@ describe("Delete Team Service", () => {
 
     await expect(
       deleteTeam.execute({
-        teamId: "2",
+        id: "2",
       })
     ).rejects.toBeInstanceOf(Error);
   });

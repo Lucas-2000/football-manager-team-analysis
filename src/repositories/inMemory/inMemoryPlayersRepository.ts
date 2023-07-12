@@ -21,13 +21,13 @@ export class InMemoryPlayersRepository implements PlayersRepository {
   }
 
   async findById(playerId: string): Promise<Player | undefined> {
-    const player = this.players.find((p) => p.playerId === playerId);
+    const player = this.players.find((p) => p.id === playerId);
 
     return player;
   }
 
   async findIndex(playerId: string): Promise<number> {
-    const index = this.players.findIndex((p) => p.playerId === playerId);
+    const index = this.players.findIndex((p) => p.id === playerId);
 
     if (index < 0) return -1;
 

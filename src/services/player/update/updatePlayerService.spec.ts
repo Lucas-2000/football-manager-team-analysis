@@ -12,7 +12,7 @@ describe("Update Player Service", () => {
     const updatePlayer = new UpdatePlayerService(playersRepository);
 
     await createPlayer.execute({
-      playerId: "1",
+      id: "1",
       name: "Kevin de Bruyne",
       birthdate: new Date("1991-08-01"),
       lenght: 181,
@@ -60,7 +60,7 @@ describe("Update Player Service", () => {
 
     await expect(
       updatePlayer.execute({
-        playerId: "1",
+        id: "1",
         name: "Kevin de Bruyne",
         birthdate: new Date("1991-08-01"),
         lenght: 181,
@@ -114,7 +114,7 @@ describe("Update Player Service", () => {
     const updatePlayer = new UpdatePlayerService(playersRepository);
 
     await createPlayer.execute({
-      playerId: "1",
+      id: "1",
       name: "Kevin de Bruyne",
       birthdate: new Date("1991-08-01"),
       lenght: 181,
@@ -162,7 +162,7 @@ describe("Update Player Service", () => {
 
     await expect(
       updatePlayer.execute({
-        playerId: "2",
+        id: "2",
         name: "Kevin de Bruyne",
         birthdate: new Date("1991-08-01"),
         lenght: 181,

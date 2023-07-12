@@ -3,7 +3,7 @@ import { TeamsRepository } from "../../../repositories/teamsRepository";
 import { EnumTeamGrade } from "../../../utils/dicts/enumTeamGrade";
 
 interface CreateTeamRequest {
-  teamId: string;
+  id: string;
   teamName: string;
   teamLocalization: string;
   teamCountry: string;
@@ -18,7 +18,7 @@ export class CreateTeamService {
   constructor(private teamsRepository: TeamsRepository) {}
 
   async execute({
-    teamId,
+    id,
     teamName,
     teamLocalization,
     teamCountry,
@@ -31,7 +31,7 @@ export class CreateTeamService {
     if (verifyExisting) throw new Error(`Team ${teamName} already exists!`);
 
     const team = new Team({
-      teamId,
+      id,
       teamName,
       teamLocalization,
       teamCountry,

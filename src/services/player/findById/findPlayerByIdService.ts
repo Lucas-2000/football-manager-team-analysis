@@ -2,7 +2,7 @@ import { Player } from "../../../entities/player";
 import { PlayersRepository } from "./../../../repositories/playersRepository";
 
 interface FindPlayerByIdRequest {
-  playerId: string;
+  id: string;
 }
 
 type FindPlayerByIdResponse = Player | undefined;
@@ -11,9 +11,9 @@ export class FindPlayerByIdService {
   constructor(private playersRepository: PlayersRepository) {}
 
   async execute({
-    playerId,
+    id,
   }: FindPlayerByIdRequest): Promise<FindPlayerByIdResponse> {
-    const player = await this.playersRepository.findById(playerId);
+    const player = await this.playersRepository.findById(id);
 
     if (!player) throw new Error("Player not found!");
 

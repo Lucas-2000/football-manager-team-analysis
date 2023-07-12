@@ -6,7 +6,7 @@ import { EnumRoleType } from "../utils/dicts/enumRoleType";
 
 test("create a position", () => {
   const position = new Position({
-    positionId: "1",
+    id: "1",
     basePosition: EnumPlayerPositionBase.Midfielder,
     positionRole: EnumPlayerPositionRole.AttackingMidfielder,
     roleType: [EnumRoleType.Attack, EnumRoleType.Support],

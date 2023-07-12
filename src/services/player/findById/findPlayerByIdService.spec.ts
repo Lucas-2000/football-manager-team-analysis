@@ -12,7 +12,7 @@ describe("Find Player By Id", () => {
     const createPlayerService = new CreatePlayerService(playersRepository);
 
     await createPlayerService.execute({
-      playerId: "1",
+      id: "1",
       name: "Kevin de Bruyne",
       birthdate: new Date("1991-08-01"),
       lenght: 181,
@@ -60,7 +60,7 @@ describe("Find Player By Id", () => {
 
     await expect(
       findPlayersByIdService.execute({
-        playerId: "1",
+        id: "1",
       })
     ).resolves.toBeInstanceOf(Player);
   });
@@ -71,7 +71,7 @@ describe("Find Player By Id", () => {
     const createPlayerService = new CreatePlayerService(playersRepository);
 
     await createPlayerService.execute({
-      playerId: "1",
+      id: "1",
       name: "Kevin de Bruyne",
       birthdate: new Date("1991-08-01"),
       lenght: 181,
@@ -119,7 +119,7 @@ describe("Find Player By Id", () => {
 
     await expect(
       findPlayersByIdService.execute({
-        playerId: "2",
+        id: "2",
       })
     ).rejects.toBeInstanceOf(Error);
   });

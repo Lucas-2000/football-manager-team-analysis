@@ -23,13 +23,13 @@ export class InMemoryTeamsRepository implements TeamsRepository {
   }
 
   async findById(teamId: string): Promise<Team | undefined> {
-    const team = this.teams.find((team) => team.teamId === teamId);
+    const team = this.teams.find((team) => team.id === teamId);
 
     return team;
   }
 
   async findIndex(teamId: string): Promise<number> {
-    const teamIndex = this.teams.findIndex((obj) => obj.teamId === teamId);
+    const teamIndex = this.teams.findIndex((obj) => obj.id === teamId);
 
     if (teamIndex < 0) return -1;
 

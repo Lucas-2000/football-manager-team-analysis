@@ -23,9 +23,7 @@ export class InMemoryPositionsRepository implements PositionsRepository {
     return position;
   }
   async verifyExists(positionId: string): Promise<boolean> {
-    const positionExists = this.positions.find(
-      (p) => p.positionId === positionId
-    );
+    const positionExists = this.positions.find((p) => p.id === positionId);
 
     if (positionExists) return true;
 
@@ -33,7 +31,7 @@ export class InMemoryPositionsRepository implements PositionsRepository {
   }
 
   async findIndex(positionId: string): Promise<number> {
-    const index = this.positions.findIndex((p) => p.positionId === positionId);
+    const index = this.positions.findIndex((p) => p.id === positionId);
 
     if (index < 0) return -1;
 

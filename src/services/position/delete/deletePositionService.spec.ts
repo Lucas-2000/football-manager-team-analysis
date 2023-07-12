@@ -3,7 +3,6 @@ import { describe, expect, it } from "vitest";
 import { EnumPlayerPositionBase } from "../../../utils/dicts/enumPlayerPositionBase";
 import { EnumPlayerPositionRole } from "../../../utils/dicts/enumPlayerPositionRole";
 import { EnumRoleType } from "../../../utils/dicts/enumRoleType";
-import { Position } from "../../../entities/position";
 import { CreatePositionService } from "../create/createPositionService";
 import { DeletePositionService } from "./deletePositionService";
 
@@ -18,7 +17,7 @@ describe("Delete Position Service", () => {
     );
 
     await createPositionService.execute({
-      positionId: "1",
+      id: "1",
       basePosition: EnumPlayerPositionBase.Midfielder,
       positionRole: EnumPlayerPositionRole.AttackingMidfielder,
       roleType: [EnumRoleType.Attack, EnumRoleType.Support],
@@ -26,7 +25,7 @@ describe("Delete Position Service", () => {
 
     await expect(
       deletePositionRespository.execute({
-        positionId: "1",
+        id: "1",
       })
     ).resolves.toBeInstanceOf(Array);
   });
@@ -41,7 +40,7 @@ describe("Delete Position Service", () => {
     );
 
     await createPositionService.execute({
-      positionId: "1",
+      id: "1",
       basePosition: EnumPlayerPositionBase.Midfielder,
       positionRole: EnumPlayerPositionRole.AttackingMidfielder,
       roleType: [EnumRoleType.Attack, EnumRoleType.Support],
@@ -49,7 +48,7 @@ describe("Delete Position Service", () => {
 
     await expect(
       deletePositionRespository.execute({
-        positionId: "2",
+        id: "2",
       })
     ).rejects.toBeInstanceOf(Error);
   });

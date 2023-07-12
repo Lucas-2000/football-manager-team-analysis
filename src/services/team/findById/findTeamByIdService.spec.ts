@@ -12,7 +12,7 @@ describe("Find Team By Id Service", () => {
     const createTeamService = new CreateTeamService(teamsRepository);
 
     await createTeamService.execute({
-      teamId: "1",
+      id: "1",
       teamName: "Corinthians",
       teamLocalization: "SP",
       teamCountry: "Brasil",
@@ -22,7 +22,7 @@ describe("Find Team By Id Service", () => {
     });
 
     await expect(
-      findTeamByIdService.execute({ teamId: "1" })
+      findTeamByIdService.execute({ id: "1" })
     ).resolves.toBeInstanceOf(Team);
   });
 
@@ -32,7 +32,7 @@ describe("Find Team By Id Service", () => {
     const createTeamService = new CreateTeamService(teamsRepository);
 
     await createTeamService.execute({
-      teamId: "1",
+      id: "1",
       teamName: "Corinthians",
       teamLocalization: "SP",
       teamCountry: "Brasil",
@@ -42,7 +42,7 @@ describe("Find Team By Id Service", () => {
     });
 
     await expect(
-      findTeamByIdService.execute({ teamId: "2" })
+      findTeamByIdService.execute({ id: "2" })
     ).rejects.toBeInstanceOf(Error);
   });
 });

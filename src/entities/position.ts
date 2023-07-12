@@ -3,7 +3,7 @@ import { EnumPlayerPositionRole } from "../utils/dicts/enumPlayerPositionRole";
 import { EnumRoleType } from "../utils/dicts/enumRoleType";
 
 export interface PositionProps {
-  positionId?: string;
+  id?: string;
   basePosition: EnumPlayerPositionBase;
   positionRole: EnumPlayerPositionRole;
   roleType: EnumRoleType[];
@@ -16,8 +16,8 @@ export class Position {
     this.props = props;
   }
 
-  get positionId() {
-    return this.props.positionId;
+  get id() {
+    return this.props.id;
   }
 
   get basePosition() {
