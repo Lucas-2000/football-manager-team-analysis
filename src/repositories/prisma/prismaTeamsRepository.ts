@@ -2,6 +2,7 @@ import { EnumTeamGrade } from "@prisma/client";
 import { Team } from "../../entities/team";
 import { prisma } from "../../prisma/prismaClient";
 import { TeamsRepository } from "../teamsRepository";
+import { v4 as uuid } from "uuid";
 
 export class PrismaTeamsRepository implements TeamsRepository {
   async create({
@@ -14,6 +15,7 @@ export class PrismaTeamsRepository implements TeamsRepository {
   }: Team): Promise<void> {
     await prisma.team.create({
       data: {
+        id: uuid(),
         teamName,
         teamLocalization,
         teamCountry,

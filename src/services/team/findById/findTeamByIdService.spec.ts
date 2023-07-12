@@ -4,6 +4,7 @@ import { FindTeamByIdService } from "./findTeamByIdService";
 import { Team } from "../../../entities/team";
 import { InMemoryTeamsRepository } from "../../../repositories/inMemory/inMemoryTeamsRepository";
 import { EnumTeamGrade } from "@prisma/client";
+import { v4 as uuid } from "uuid";
 
 describe("Find Team By Id Service", () => {
   it("should return team by id", async () => {
@@ -11,8 +12,10 @@ describe("Find Team By Id Service", () => {
     const findTeamByIdService = new FindTeamByIdService(teamsRepository);
     const createTeamService = new CreateTeamService(teamsRepository);
 
+    const correctId = uuid();
+
     await createTeamService.execute({
-      id: "1",
+      id: correctId,
       teamName: "Corinthians",
       teamLocalization: "SP",
       teamCountry: "Brasil",
@@ -22,7 +25,7 @@ describe("Find Team By Id Service", () => {
     });
 
     await expect(
-      findTeamByIdService.execute({ id: "1" })
+      findTeamByIdService.execute({ id: correctId })
     ).resolves.toBeInstanceOf(Team);
   });
 
@@ -31,8 +34,10 @@ describe("Find Team By Id Service", () => {
     const findTeamByIdService = new FindTeamByIdService(teamsRepository);
     const createTeamService = new CreateTeamService(teamsRepository);
 
+    const correctId = uuid();
+
     await createTeamService.execute({
-      id: "1",
+      id: correctId,
       teamName: "Corinthians",
       teamLocalization: "SP",
       teamCountry: "Brasil",

@@ -3,7 +3,7 @@ import { TeamsRepository } from "../../../repositories/teamsRepository";
 import { EnumTeamGrade } from "../../../utils/dicts/enumTeamGrade";
 
 interface CreateTeamRequest {
-  id: string;
+  id?: string;
   teamName: string;
   teamLocalization: string;
   teamCountry: string;
