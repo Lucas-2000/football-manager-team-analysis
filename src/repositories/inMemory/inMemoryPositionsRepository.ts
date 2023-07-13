@@ -1,3 +1,4 @@
+import { EnumPlayerPositionRole, EnumRoleType } from "@prisma/client";
 import { Position } from "../../entities/position";
 import { EnumPlayerPositionBase } from "../../utils/dicts/enumPlayerPositionBase";
 import { PositionsRepository } from "../positionsRepository";
@@ -22,12 +23,22 @@ export class InMemoryPositionsRepository implements PositionsRepository {
 
     return position;
   }
-  async verifyExists(positionId: string): Promise<boolean> {
-    const positionExists = this.positions.find((p) => p.id === positionId);
+  async verifyExists(
+    basePosition: EnumPlayerPositionBase,
+    positionRole: EnumPlayerPositionRole,
+    roleType: EnumRoleType[]
+  ): Promise<boolean> {
+    const positionExists = this.positions.some((p) => {
+      return (
+        p.basePosition === basePosition &&
+        p.positionRole === positionRole &&
+        JSON.stringify(p.roleType) === JSON.stringify(roleType)
+      );
+    });
 
-    if (positionExists) return true;
+    console.log(positionExists);
 
-    return false;
+    return positionExists;
   }
 
   async findIndex(positionId: string): Promise<number> {

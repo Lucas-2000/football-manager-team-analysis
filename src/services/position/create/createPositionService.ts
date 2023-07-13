@@ -1,17 +1,17 @@
-import { Position } from "../../../entities/position";
+import { Position, PositionProps } from "../../../entities/position";
 import { EnumPlayerPositionBase } from "../../../utils/dicts/enumPlayerPositionBase";
 import { EnumPlayerPositionRole } from "../../../utils/dicts/enumPlayerPositionRole";
 import { EnumRoleType } from "../../../utils/dicts/enumRoleType";
 import { PositionsRepository } from "./../../../repositories/positionsRepository";
 
 interface CreatePositionRequest {
-  id: string;
+  id?: string;
   basePosition: EnumPlayerPositionBase;
   positionRole: EnumPlayerPositionRole;
   roleType: EnumRoleType[];
 }
 
-type CreatePositionResponse = Position;
+type CreatePositionResponse = PositionProps;
 
 export class CreatePositionService {
   constructor(private positionsRepository: PositionsRepository) {}
@@ -22,7 +22,11 @@ export class CreatePositionService {
     positionRole,
     roleType,
   }: CreatePositionRequest): Promise<CreatePositionResponse> {
-    const positionExists = await this.positionsRepository.verifyExists(id);
+    const positionExists = await this.positionsRepository.verifyExists(
+      basePosition,
+      positionRole,
+      roleType
+    );
 
     if (positionExists) throw new Error("Position already exists!");
 
@@ -35,6 +39,6 @@ export class CreatePositionService {
 
     await this.positionsRepository.create(position);
 
-    return position;
+    return position.getSummary();
   }
 }

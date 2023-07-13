@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createTeamFactory } from "../services/team/create/createTeamFactory";
+import { CreateTeamFactory } from "../services/team/create/createTeamFactory";
 import { FindAllTeamsFactory } from "../services/team/findAll/findAllTeamsFactory";
 import { FindTeamByIdFactory } from "../services/team/findById/findTeamByIdFactory";
 import { UpdateTeamFactory } from "../services/team/update/updateTeamFactory";
@@ -8,7 +8,7 @@ import { DeleteTeamFactory } from "../services/team/delete/deleteTeamFactory";
 const teamRoutes = Router();
 
 teamRoutes.post("/", (request, response) =>
-  createTeamFactory().handle(request, response)
+  CreateTeamFactory().handle(request, response)
 );
 teamRoutes.get("/", (request, response) =>
   FindAllTeamsFactory().handle(request, response)

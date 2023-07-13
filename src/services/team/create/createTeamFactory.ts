@@ -2,7 +2,7 @@ import { PrismaTeamsRepository } from "../../../repositories/prisma/prismaTeamsR
 import { CreateTeamController } from "./createTeamController";
 import { CreateTeamService } from "./createTeamService";
 
-export const createTeamFactory = () => {
+export const CreateTeamFactory = () => {
   const teamsRepository = new PrismaTeamsRepository();
   const createTeamService = new CreateTeamService(teamsRepository);
   const createTeamController = new CreateTeamController(createTeamService);

@@ -1,4 +1,8 @@
-import { EnumPlayerPositionBase } from "@prisma/client";
+import {
+  EnumPlayerPositionBase,
+  EnumPlayerPositionRole,
+  EnumRoleType,
+} from "@prisma/client";
 import { Position } from "../../entities/position";
 import { prisma } from "../../prisma/prismaClient";
 import { PositionsRepository } from "../positionsRepository";
@@ -54,10 +58,16 @@ export class PrismaPositionsRepository implements PositionsRepository {
     );
   }
 
-  async verifyExists(positionId: string): Promise<boolean> {
-    const position = await prisma.position.findUnique({
+  async verifyExists(
+    basePosition: EnumPlayerPositionBase,
+    positionRole: EnumPlayerPositionRole,
+    roleType: EnumRoleType[]
+  ): Promise<boolean> {
+    const position = await prisma.position.findFirst({
       where: {
-        id: positionId,
+        basePosition,
+        positionRole,
+        roleType: { hasEvery: roleType },
       },
     });
 
