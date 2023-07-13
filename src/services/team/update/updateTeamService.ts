@@ -1,4 +1,4 @@
-import { Team } from "../../../entities/team";
+import { Team, TeamProps } from "../../../entities/team";
 import { EnumTeamGrade } from "../../../utils/dicts/enumTeamGrade";
 import { TeamsRepository } from "./../../../repositories/teamsRepository";
 
@@ -12,7 +12,7 @@ interface UpdateTeamRequest {
   teamLogo: string;
 }
 
-type UpdateTeamResponse = Team;
+type UpdateTeamResponse = TeamProps;
 
 export class UpdateTeamService {
   constructor(private teamsRepository: TeamsRepository) {}

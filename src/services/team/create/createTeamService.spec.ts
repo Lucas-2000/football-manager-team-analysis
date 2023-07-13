@@ -1,6 +1,5 @@
 import { CreateTeamService } from "./createTeamService";
 import { describe, expect, it } from "vitest";
-import { Team } from "../../../entities/team";
 import { InMemoryTeamsRepository } from "../../../repositories/inMemory/inMemoryTeamsRepository";
 import { EnumTeamGrade } from "@prisma/client";
 
@@ -18,7 +17,7 @@ describe("Create Team Service", () => {
         teamGrade: EnumTeamGrade.A,
         teamLogo: "exemplo",
       })
-    ).resolves.toBeInstanceOf(Team);
+    ).resolves.toHaveProperty("id");
   });
 
   it("should not be able to create a team if team name already exists", async () => {

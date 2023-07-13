@@ -1,7 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { CreateTeamService } from "../create/createTeamService";
 import { FindTeamByIdService } from "./findTeamByIdService";
-import { Team } from "../../../entities/team";
 import { InMemoryTeamsRepository } from "../../../repositories/inMemory/inMemoryTeamsRepository";
 import { EnumTeamGrade } from "@prisma/client";
 import { v4 as uuid } from "uuid";
@@ -26,7 +25,7 @@ describe("Find Team By Id Service", () => {
 
     await expect(
       findTeamByIdService.execute({ id: correctId })
-    ).resolves.toBeInstanceOf(Team);
+    ).resolves.toHaveProperty("id");
   });
 
   it("should not return team by id if id not found", async () => {

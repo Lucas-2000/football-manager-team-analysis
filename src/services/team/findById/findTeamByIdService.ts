@@ -1,10 +1,11 @@
 import { TeamsRepository } from "../../../repositories/teamsRepository";
-import { Team } from "../../../entities/team";
+import { TeamProps } from "../../../entities/team";
+
 interface FindTeamByIdRequest {
   id: string;
 }
 
-type FindTeamByIdResponse = Team;
+type FindTeamByIdResponse = TeamProps;
 
 export class FindTeamByIdService {
   constructor(private teamsRepository: TeamsRepository) {}
@@ -16,6 +17,8 @@ export class FindTeamByIdService {
       throw new Error("Team not found!");
     }
 
-    return team;
+    const teamSummaries: TeamProps = team.getSummary();
+
+    return teamSummaries;
   }
 }

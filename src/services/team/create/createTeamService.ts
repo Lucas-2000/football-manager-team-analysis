@@ -1,4 +1,4 @@
-import { Team } from "../../../entities/team";
+import { Team, TeamProps } from "../../../entities/team";
 import { TeamsRepository } from "../../../repositories/teamsRepository";
 import { EnumTeamGrade } from "../../../utils/dicts/enumTeamGrade";
 
@@ -12,7 +12,7 @@ interface CreateTeamRequest {
   teamLogo: string;
 }
 
-type CreateTeamResponse = Team;
+type CreateTeamResponse = TeamProps;
 
 export class CreateTeamService {
   constructor(private teamsRepository: TeamsRepository) {}
@@ -45,6 +45,6 @@ export class CreateTeamService {
 
     await this.teamsRepository.create(team);
 
-    return team;
+    return team.getSummary();
   }
 }
