@@ -14,7 +14,7 @@ export class CreateTeamController {
       teamLogo,
     } = request.body;
 
-    const user = await this.createTeamService.execute({
+    const team = await this.createTeamService.execute({
       teamName,
       teamLocalization,
       teamCountry,
@@ -23,6 +23,6 @@ export class CreateTeamController {
       teamLogo,
     });
 
-    return response.status(201).json(user);
+    return response.status(201).json(team);
   }
 }
