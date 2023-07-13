@@ -44,4 +44,16 @@ export class Team {
   get teamLogo() {
     return this.props.teamLogo;
   }
+
+  getSummary(): TeamProps {
+    return {
+      id: this.props.id,
+      teamName: this.props.teamName,
+      teamLocalization: this.props.teamLocalization,
+      teamCountry: this.props.teamCountry,
+      teamLeague: this.props.teamLeague,
+      teamGrade: this.props.teamGrade,
+      teamLogo: this.props.teamLogo,
+    };
+  }
 }
