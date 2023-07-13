@@ -1,5 +1,4 @@
 import { describe, expect, it } from "vitest";
-import { Team } from "../../../entities/team";
 import { CreateTeamService } from "../create/createTeamService";
 import { UpdateTeamService } from "./updateTeamService";
 import { InMemoryTeamsRepository } from "../../../repositories/inMemory/inMemoryTeamsRepository";
@@ -31,7 +30,7 @@ describe("Update Team Service", () => {
         teamGrade: EnumTeamGrade.B,
         teamLogo: "exemplo",
       })
-    ).resolves.toBeInstanceOf(Team);
+    ).resolves.toHaveProperty("id");
   });
 
   it("should not be able to update a team if team don't found", async () => {

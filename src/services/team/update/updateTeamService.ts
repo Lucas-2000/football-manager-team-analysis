@@ -45,6 +45,6 @@ export class UpdateTeamService {
 
     await this.teamsRepository.update(team);
 
-    return team;
+    return team.getSummary();
   }
 }
