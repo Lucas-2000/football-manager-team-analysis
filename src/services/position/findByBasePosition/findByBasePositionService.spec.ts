@@ -1,10 +1,12 @@
 import { InMemoryPositionsRepository } from "./../../../repositories/inMemory/inMemoryPositionsRepository";
 import { describe, expect, it } from "vitest";
-import { EnumPlayerPositionBase } from "../../../utils/dicts/enumPlayerPositionBase";
-import { EnumPlayerPositionRole } from "../../../utils/dicts/enumPlayerPositionRole";
-import { EnumRoleType } from "../../../utils/dicts/enumRoleType";
 import { CreatePositionService } from "../create/createPositionService";
 import { FindByBasePositionService } from "./findByBasePositionService";
+import {
+  EnumPlayerPositionBase,
+  EnumPlayerPositionRole,
+  EnumRoleType,
+} from "@prisma/client";
 
 describe("Find by Base Position Service", () => {
   it("should be able to find by base position", async () => {
@@ -17,7 +19,7 @@ describe("Find by Base Position Service", () => {
     );
 
     const position = await createPositionService.execute({
-      positionId: "1",
+      id: "1",
       basePosition: EnumPlayerPositionBase.Midfielder,
       positionRole: EnumPlayerPositionRole.AttackingMidfielder,
       roleType: [EnumRoleType.Attack, EnumRoleType.Support],
@@ -40,7 +42,7 @@ describe("Find by Base Position Service", () => {
     );
 
     await createPositionService.execute({
-      positionId: "1",
+      id: "1",
       basePosition: EnumPlayerPositionBase.Midfielder,
       positionRole: EnumPlayerPositionRole.AttackingMidfielder,
       roleType: [EnumRoleType.Attack, EnumRoleType.Support],

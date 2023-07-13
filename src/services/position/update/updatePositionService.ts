@@ -33,7 +33,7 @@ export class UpdatePositionService {
       roleType,
     });
 
-    await this.positionsRepository.update(position, index);
+    await this.positionsRepository.update(position);
 
     return position;
   }

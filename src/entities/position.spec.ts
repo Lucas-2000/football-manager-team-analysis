@@ -1,8 +1,10 @@
 import { expect, test } from "vitest";
 import { Position } from "./position";
-import { EnumPlayerPositionBase } from "../utils/dicts/enumPlayerPositionBase";
-import { EnumPlayerPositionRole } from "../utils/dicts/enumPlayerPositionRole";
-import { EnumRoleType } from "../utils/dicts/enumRoleType";
+import {
+  EnumPlayerPositionBase,
+  EnumPlayerPositionRole,
+  EnumRoleType,
+} from "@prisma/client";
 
 test("create a position", () => {
   const position = new Position({

@@ -38,13 +38,21 @@ export class InMemoryPositionsRepository implements PositionsRepository {
     return index;
   }
 
-  async update(position: Position, positionIndex: number): Promise<void> {
-    this.positions.splice(positionIndex, 1);
+  async update(position: Position): Promise<void> {
+    const positionToUpdate = this.positions.find((p) => p.id === position.id);
 
-    this.positions.push(position);
+    if (positionToUpdate !== undefined) {
+      Object.assign(positionToUpdate, position);
+    }
   }
 
-  async delete(positionIndex: number): Promise<void> {
-    this.positions.splice(positionIndex, 1);
+  async delete(positionId: string): Promise<void> {
+    const positionIndex = this.positions.findIndex(
+      (positions) => positions.id === positionId
+    );
+
+    if (positionIndex !== -1) {
+      this.positions.splice(positionIndex, 1);
+    }
   }
 }

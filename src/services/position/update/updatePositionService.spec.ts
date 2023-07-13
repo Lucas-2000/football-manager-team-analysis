@@ -1,11 +1,13 @@
 import { InMemoryPositionsRepository } from "./../../../repositories/inMemory/inMemoryPositionsRepository";
 import { describe, expect, it } from "vitest";
-import { EnumPlayerPositionBase } from "../../../utils/dicts/enumPlayerPositionBase";
-import { EnumPlayerPositionRole } from "../../../utils/dicts/enumPlayerPositionRole";
-import { EnumRoleType } from "../../../utils/dicts/enumRoleType";
 import { Position } from "../../../entities/position";
 import { CreatePositionService } from "../create/createPositionService";
 import { UpdatePositionService } from "./updatePositionService";
+import {
+  EnumPlayerPositionBase,
+  EnumPlayerPositionRole,
+  EnumRoleType,
+} from "@prisma/client";
 
 describe("Update Position Service", () => {
   it("should be able to update a position", async () => {

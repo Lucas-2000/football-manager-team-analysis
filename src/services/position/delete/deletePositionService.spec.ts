@@ -1,10 +1,12 @@
 import { InMemoryPositionsRepository } from "../../../repositories/inMemory/inMemoryPositionsRepository";
 import { describe, expect, it } from "vitest";
-import { EnumPlayerPositionBase } from "../../../utils/dicts/enumPlayerPositionBase";
-import { EnumPlayerPositionRole } from "../../../utils/dicts/enumPlayerPositionRole";
-import { EnumRoleType } from "../../../utils/dicts/enumRoleType";
 import { CreatePositionService } from "../create/createPositionService";
 import { DeletePositionService } from "./deletePositionService";
+import {
+  EnumPlayerPositionBase,
+  EnumPlayerPositionRole,
+  EnumRoleType,
+} from "@prisma/client";
 
 describe("Delete Position Service", () => {
   it("should be able to delete a position", async () => {

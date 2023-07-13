@@ -1,10 +1,11 @@
 import { InMemoryPositionsRepository } from "./../../../repositories/inMemory/inMemoryPositionsRepository";
 import { describe, expect, it } from "vitest";
 import { CreatePositionService } from "./createPositionService";
-import { EnumPlayerPositionBase } from "../../../utils/dicts/enumPlayerPositionBase";
-import { EnumPlayerPositionRole } from "../../../utils/dicts/enumPlayerPositionRole";
-import { EnumRoleType } from "../../../utils/dicts/enumRoleType";
-import { Position } from "../../../entities/position";
+import {
+  EnumPlayerPositionBase,
+  EnumPlayerPositionRole,
+  EnumRoleType,
+} from "@prisma/client";
 
 describe("Create Position Service", () => {
   it("should be able to create a position", async () => {
@@ -20,7 +21,7 @@ describe("Create Position Service", () => {
         positionRole: EnumPlayerPositionRole.AttackingMidfielder,
         roleType: [EnumRoleType.Attack, EnumRoleType.Support],
       })
-    ).resolves.toBeInstanceOf(Position);
+    ).resolves.toHaveProperty("id");
   });
 
   it("should not be able to create a position if position already exists", async () => {
