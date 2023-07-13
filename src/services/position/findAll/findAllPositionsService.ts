@@ -1,7 +1,7 @@
-import { Position } from "../../../entities/position";
+import { PositionProps } from "../../../entities/position";
 import { PositionsRepository } from "./../../../repositories/positionsRepository";
 
-type FindAllPositionsServiceResponse = Position[];
+type FindAllPositionsServiceResponse = PositionProps[];
 
 export class FindAllPositionsService {
   constructor(private positionsRepository: PositionsRepository) {}
@@ -9,6 +9,10 @@ export class FindAllPositionsService {
   async execute(): Promise<FindAllPositionsServiceResponse> {
     const positions = await this.positionsRepository.findAll();
 
-    return positions;
+    const positionsSummaries: PositionProps[] = positions.map((position) =>
+      position.getSummary()
+    );
+
+    return positionsSummaries;
   }
 }

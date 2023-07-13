@@ -36,8 +36,6 @@ export class InMemoryPositionsRepository implements PositionsRepository {
       );
     });
 
-    console.log(positionExists);
-
     return positionExists;
   }
 

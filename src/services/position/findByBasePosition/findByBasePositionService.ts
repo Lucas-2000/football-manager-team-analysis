@@ -1,11 +1,11 @@
 import { PositionsRepository } from "./../../../repositories/positionsRepository";
-import { Position } from "./../../../entities/position";
+import { PositionProps } from "./../../../entities/position";
 import { EnumPlayerPositionBase } from "./../../../utils/dicts/enumPlayerPositionBase";
 interface FindByBasePositionRequest {
   basePosition: EnumPlayerPositionBase;
 }
 
-type FindByBasePositionResponse = Position[];
+type FindByBasePositionResponse = PositionProps[];
 
 export class FindByBasePositionService {
   constructor(private positionsRepository: PositionsRepository) {}
@@ -13,12 +13,16 @@ export class FindByBasePositionService {
   async execute({
     basePosition,
   }: FindByBasePositionRequest): Promise<FindByBasePositionResponse> {
-    const position = await this.positionsRepository.findByBasePosition(
+    const positions = await this.positionsRepository.findByBasePosition(
       basePosition
     );
 
-    if (position.length < 1) throw new Error("Base position not found!");
+    if (positions.length < 1) throw new Error("Base position not found!");
 
-    return position;
+    const positionSummaries: PositionProps[] = positions.map((position) =>
+      position.getSummary()
+    );
+
+    return positionSummaries;
   }
 }
