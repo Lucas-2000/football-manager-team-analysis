@@ -1,46 +1,48 @@
-export enum EnumPlayerPositionRole {
-  Goalkeeper = "Goalkeeper",
-  SweeperKeeper = "Sweeper Keeper",
-  WideCentreBack = "Wide Centre Back",
-  CentralDefender = "Central Defender",
-  Libero = "Libero",
-  BallPlayingDefender = "Ball Playing Defender",
-  NoNonsenseCentreBack = "No Nonsense CentreBack",
-  DefensiveMidfielder = "Defensive Midfielder",
-  DeepLyingPlaymaker = "Deep Lying Playmaker",
-  BallWinningMidfielder = "Ball Winning Midfielder",
-  AnchorMan = "Anchor Man",
-  HalfBack = "Half Back",
-  Regista = "Regista",
-  RoamingPlaymaker = "Roaming Playmaker",
-  SegundoVolante = "Segundo Volante",
-  CentralMidfielder = "Central Midfielder",
-  BoxToBoxMidfielder = "Box To Box Midfielder",
-  AdvancedPlaymaker = "Advanced Playmaker",
-  Mezzala = "Mezzala",
-  Carrilero = "Carrilero",
-  FullBack = "Full Back",
-  WingBack = "Wing Back",
-  NoNonsenseFullBack = "No Nonsense Full Back",
-  CompleteWingBack = "Complete WingBack",
-  InvertedWingBack = "Inverted WingBack",
-  WideMidfielder = "Wide Midfielder",
-  Winger = "Winger",
-  DefensiveWinger = "Defensive Winger",
-  WidePlaymaker = "Wide Playmaker",
-  InvertedWinger = "Inverted Winger",
-  InsideForward = "Inside Forward",
-  WideTargetMan = "Wide Target Man",
-  Raumdeuter = "Raumdeuter",
-  AttackingMidfielder = "Attacking Midfielder",
-  Trequartista = "Trequartista",
-  Enganche = "Enganche",
-  ShadowStriker = "Shadow Striker",
-  DeepLyingForward = "Deep Lying Forward",
-  AdvancedForward = "Advanced Forward",
-  TargetMan = "Target Man",
-  Poacher = "Poacher",
-  CompleteForward = "Complete Forward",
-  PressingForward = "Pressing Forward",
-  FalseNine = "False Nine",
+interface PrismaEnumPlayerPositionRole {
+  Goalkeeper: "Goalkeeper";
+  SweeperKeeper: "Sweeper Keeper";
+  WideCentreBack: "Wide Centre Back";
+  CentralDefender: "Central Defender";
+  Libero: "Libero";
+  BallPlayingDefender: "Ball Playing Defender";
+  NoNonsenseCentreBack: "No Nonsense CentreBack";
+  DefensiveMidfielder: "Defensive Midfielder";
+  DeepLyingPlaymaker: "Deep Lying Playmaker";
+  BallWinningMidfielder: "Ball Winning Midfielder";
+  AnchorMan: "Anchor Man";
+  HalfBack: "Half Back";
+  Regista: "Regista";
+  RoamingPlaymaker: "Roaming Playmaker";
+  SegundoVolante: "Segundo Volante";
+  CentralMidfielder: "Central Midfielder";
+  BoxToBoxMidfielder: "Box To Box Midfielder";
+  AdvancedPlaymaker: "Advanced Playmaker";
+  Mezzala: "Mezzala";
+  Carrilero: "Carrilero";
+  FullBack: "Full Back";
+  WingBack: "Wing Back";
+  NoNonsenseFullBack: "No Nonsense Full Back";
+  CompleteWingBack: "Complete WingBack";
+  InvertedWingBack: "Inverted WingBack";
+  WideMidfielder: "Wide Midfielder";
+  Winger: "Winger";
+  DefensiveWinger: "Defensive Winger";
+  WidePlaymaker: "Wide Playmaker";
+  InvertedWinger: "Inverted Winger";
+  InsideForward: "Inside Forward";
+  WideTargetMan: "Wide Target Man";
+  Raumdeuter: "Raumdeuter";
+  AttackingMidfielder: "Attacking Midfielder";
+  Trequartista: "Trequartista";
+  Enganche: "Enganche";
+  ShadowStriker: "Shadow Striker";
+  DeepLyingForward: "Deep Lying Forward";
+  AdvancedForward: "Advanced Forward";
+  TargetMan: "Target Man";
+  Poacher: "Poacher";
+  CompleteForward: "Complete Forward";
+  PressingForward: "Pressing Forward";
+  FalseNine: "False Nine";
 }
+
+export type EnumPlayerPositionRole = keyof PrismaEnumPlayerPositionRole;
