@@ -3,6 +3,7 @@ import { createTeamFactory } from "../services/team/create/createTeamFactory";
 import { FindAllTeamsFactory } from "../services/team/findAll/findAllTeamsFactory";
 import { FindTeamByIdFactory } from "../services/team/findById/findTeamByIdFactory";
 import { UpdateTeamFactory } from "../services/team/update/updateTeamFactory";
+import { DeleteTeamFactory } from "../services/team/delete/deleteTeamFactory";
 
 const teamRoutes = Router();
 
@@ -17,6 +18,9 @@ teamRoutes.get("/:id", (request, response) =>
 );
 teamRoutes.put("/:id", (request, response) =>
   UpdateTeamFactory().handle(request, response)
+);
+teamRoutes.delete("/:id", (request, response) =>
+  DeleteTeamFactory().handle(request, response)
 );
 
 export { teamRoutes };
