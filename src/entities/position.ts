@@ -31,4 +31,13 @@ export class Position {
   get roleType() {
     return this.props.roleType;
   }
+
+  getSummary(): PositionProps {
+    return {
+      id: this.props.id,
+      basePosition: this.props.basePosition,
+      positionRole: this.props.positionRole,
+      roleType: this.props.roleType,
+    };
+  }
 }
