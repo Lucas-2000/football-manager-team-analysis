@@ -1,4 +1,4 @@
-import { Position } from "../../../entities/position";
+import { Position, PositionProps } from "../../../entities/position";
 import { PositionsRepository } from "../../../repositories/positionsRepository";
 import { EnumPlayerPositionBase } from "../../../utils/dicts/enumPlayerPositionBase";
 import { EnumPlayerPositionRole } from "../../../utils/dicts/enumPlayerPositionRole";
@@ -11,7 +11,7 @@ interface UpdatePositionServiceRequest {
   roleType: EnumRoleType[];
 }
 
-type UpdatePositionServiceResponse = Position;
+type UpdatePositionServiceResponse = PositionProps;
 
 export class UpdatePositionService {
   constructor(private positionsRepository: PositionsRepository) {}
@@ -35,6 +35,6 @@ export class UpdatePositionService {
 
     await this.positionsRepository.update(position);
 
-    return position;
+    return position.getSummary();
   }
 }

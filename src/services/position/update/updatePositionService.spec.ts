@@ -33,7 +33,7 @@ describe("Update Position Service", () => {
         positionRole: EnumPlayerPositionRole.AttackingMidfielder,
         roleType: [EnumRoleType.Attack, EnumRoleType.Support],
       })
-    ).resolves.toBeInstanceOf(Position);
+    ).resolves.toHaveProperty("id");
   });
 
   it("should not be able to update a position if position don't exists", async () => {
