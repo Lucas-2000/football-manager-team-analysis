@@ -16,7 +16,7 @@ export class DeletePositionService {
 
     if (index < 0) throw new Error("Position not found!");
 
-    await this.positionsRepository.delete(index);
+    await this.positionsRepository.delete(id);
 
     return [];
   }
