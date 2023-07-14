@@ -1,6 +1,5 @@
 import { InMemoryPositionsRepository } from "./../../../repositories/inMemory/inMemoryPositionsRepository";
 import { describe, expect, it } from "vitest";
-import { Position } from "../../../entities/position";
 import { CreatePositionService } from "../create/createPositionService";
 import { UpdatePositionService } from "./updatePositionService";
 import {
