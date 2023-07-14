@@ -35,14 +35,22 @@ export class InMemoryPlayersRepository implements PlayersRepository {
     return index;
   }
 
-  async update(player: Player, playerIndex: number): Promise<void> {
-    this.players.splice(playerIndex, 1);
+  async update(player: Player): Promise<void> {
+    const playerToUpdate = this.players.find((p) => p.id === player.id);
 
-    this.players.push(player);
+    if (playerToUpdate !== undefined) {
+      Object.assign(playerToUpdate, player);
+    }
   }
 
-  async delete(playerIndex: number): Promise<void> {
-    this.players.splice(playerIndex, 1);
+  async delete(playerId: string): Promise<void> {
+    const playerIndex = this.players.findIndex(
+      (players) => players.id === playerId
+    );
+
+    if (playerIndex !== -1) {
+      this.players.splice(playerIndex, 1);
+    }
   }
 
   async checkAttributeInteval(

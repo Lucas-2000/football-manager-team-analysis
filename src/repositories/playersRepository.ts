@@ -7,7 +7,7 @@ export interface PlayersRepository {
   findAll(): Promise<Player[]>;
   findById(playerId: string): Promise<Player | undefined>;
   findIndex(playerId: string): Promise<number>;
-  update(player: Player, playerIndex: number): Promise<void>;
-  delete(playerIndex: number): Promise<void>;
+  update(player: Player): Promise<void>;
+  delete(playerId: string): Promise<void>;
   checkAttributeInteval(attribute: EnumPlayerAttributesRange): Promise<boolean>;
 }

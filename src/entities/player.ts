@@ -7,7 +7,7 @@ export interface PlayerProps {
   lenght: number;
   weight: number;
   jersey: number;
-  playerImage?: string;
+  playerImage?: string | null;
   positionId: string;
   teamId: string;
   corners: EnumPlayerAttributesRange;
@@ -63,6 +63,10 @@ export class Player {
     return this.props.name;
   }
 
+  get birthdate() {
+    return this.props.birthdate;
+  }
+
   get lenght() {
     return this.props.lenght;
   }
@@ -101,6 +105,10 @@ export class Player {
 
   get finishing() {
     return this.props.finishing;
+  }
+
+  get firstTouch() {
+    return this.props.firstTouch;
   }
 
   get freeKickTaking() {
@@ -225,5 +233,55 @@ export class Player {
 
   get strenght() {
     return this.props.strenght;
+  }
+
+  getSummary(): PlayerProps {
+    return {
+      id: this.props.id,
+      name: this.props.name,
+      birthdate: this.props.birthdate,
+      lenght: this.props.lenght,
+      weight: this.props.weight,
+      jersey: this.props.jersey,
+      playerImage: this.props.playerImage,
+      positionId: this.props.positionId,
+      teamId: this.props.teamId,
+      corners: this.props.corners,
+      crossing: this.props.crossing,
+      dribbling: this.props.dribbling,
+      finishing: this.props.finishing,
+      firstTouch: this.props.firstTouch,
+      freeKickTaking: this.props.freeKickTaking,
+      heading: this.props.heading,
+      longShots: this.props.longShots,
+      longThrows: this.props.longThrows,
+      marking: this.props.marking,
+      passing: this.props.passing,
+      penaltyTaking: this.props.penaltyTaking,
+      tackling: this.props.tackling,
+      technique: this.props.technique,
+      agression: this.props.agression,
+      anticipation: this.props.anticipation,
+      bravery: this.props.bravery,
+      composure: this.props.composure,
+      concentration: this.props.concentration,
+      decisions: this.props.decisions,
+      determination: this.props.determination,
+      flair: this.props.flair,
+      leadership: this.props.leadership,
+      offTheBall: this.props.offTheBall,
+      positioning: this.props.positioning,
+      teamWork: this.props.teamWork,
+      vision: this.props.vision,
+      workRate: this.props.workRate,
+      acceleration: this.props.acceleration,
+      agility: this.props.agility,
+      balance: this.props.balance,
+      jumpingReach: this.props.jumpingReach,
+      naturalFitness: this.props.naturalFitness,
+      pace: this.props.pace,
+      stamina: this.props.stamina,
+      strenght: this.props.strenght,
+    };
   }
 }
