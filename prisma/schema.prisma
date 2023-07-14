@@ -39,7 +39,7 @@ model Position {
 
 model Player {
   id             String   @id @default(uuid())
-  name           String
+  name           String   @unique
   birthdate      String
   lenght         Int
   weight         Int

@@ -1,4 +1,6 @@
 import { Player, PlayerProps } from "../../../entities/player";
+import { PositionsRepository } from "../../../repositories/positionsRepository";
+import { TeamsRepository } from "../../../repositories/teamsRepository";
 import { EnumPlayerAttributesRange } from "../../../utils/dicts/enumPlayerAttributesRange";
 import { PlayersRepository } from "./../../../repositories/playersRepository";
 
@@ -53,7 +55,11 @@ interface UpdatePlayerRequest {
 type UpdatePlayerResponse = PlayerProps;
 
 export class UpdatePlayerService {
-  constructor(private playersRepository: PlayersRepository) {}
+  constructor(
+    private playersRepository: PlayersRepository,
+    private teamsRepository: TeamsRepository,
+    private positionsRepository: PositionsRepository
+  ) {}
 
   async execute({
     id,
@@ -106,6 +112,14 @@ export class UpdatePlayerService {
 
     if (index < 0) throw new Error("Player not found!");
 
+    const teamExists = await this.teamsRepository.findById(teamId);
+
+    if (!teamExists) throw new Error("Team don't exists");
+
+    const positionExists = await this.positionsRepository.findById(positionId);
+
+    if (!positionExists) throw new Error("Position don't exists");
+
     const attList = [
       corners,
       crossing,
@@ -145,10 +159,13 @@ export class UpdatePlayerService {
       strenght,
     ];
 
-    attList.map(async (att) => {
-      if ((await this.playersRepository.checkAttributeInteval(att)) === false)
-        throw new Error("Incorret attribute interval");
-    });
+    await Promise.all(
+      attList.map(async (att) => {
+        if (!(await this.playersRepository.checkAttributeInteval(att))) {
+          throw new Error("Incorrect attribute interval");
+        }
+      })
+    );
 
     const player = new Player({
       id,
@@ -200,6 +217,6 @@ export class UpdatePlayerService {
 
     await this.playersRepository.update(player);
 
-    return player;
+    return player.getSummary();
   }
 }
