@@ -12,7 +12,7 @@ datasource db {
 
 model Team {
   id               String        @id @default(uuid())
-  teamName         String
+  teamName         String        @unique
   teamLocalization String
   teamCountry      String
   teamLeague       String
