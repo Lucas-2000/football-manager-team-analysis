@@ -3,18 +3,54 @@ import { InMemoryPlayersRepository } from "./../../../repositories/inMemory/inMe
 import { FindPlayerByIdService } from "./findPlayerByIdService";
 import { CreatePlayerService } from "./../create/createPlayerService";
 import { EnumPlayerAttributesRange } from "../../../utils/dicts/enumPlayerAttributesRange";
-import { Player } from "../../../entities/player";
+import { InMemoryTeamsRepository } from "../../../repositories/inMemory/inMemoryTeamsRepository";
+import { InMemoryPositionsRepository } from "../../../repositories/inMemory/inMemoryPositionsRepository";
+import { CreateTeamService } from "../../team/create/createTeamService";
+import { CreatePositionService } from "../../position/create/createPositionService";
+import {
+  EnumPlayerPositionBase,
+  EnumPlayerPositionRole,
+  EnumRoleType,
+  EnumTeamGrade,
+} from "@prisma/client";
 
 describe("Find Player By Id", () => {
   it("should be able to find player by id", async () => {
     const playersRepository = new InMemoryPlayersRepository();
     const findPlayersByIdService = new FindPlayerByIdService(playersRepository);
-    const createPlayerService = new CreatePlayerService(playersRepository);
+    const teamsRepository = new InMemoryTeamsRepository();
+    const positionsRepository = new InMemoryPositionsRepository();
+    const createPlayerService = new CreatePlayerService(
+      playersRepository,
+      teamsRepository,
+      positionsRepository
+    );
+    const createTeam = new CreateTeamService(teamsRepository);
+    const createPositionService = new CreatePositionService(
+      positionsRepository
+    );
+
+    await createPositionService.execute({
+      id: "1",
+      basePosition: EnumPlayerPositionBase.Midfielder,
+      positionRole: EnumPlayerPositionRole.AttackingMidfielder,
+      roleType: [EnumRoleType.Attack, EnumRoleType.Support],
+    });
+
+    await createTeam.execute({
+      id: "1",
+      teamName: "Corinthians",
+      teamLocalization: "SP",
+      teamCountry: "Brasil",
+      teamLeague: "Brasileirão",
+      teamGrade: EnumTeamGrade.A,
+      teamLogo: "exemplo",
+    });
 
     await createPlayerService.execute({
       id: "1",
       name: "Kevin de Bruyne",
-      birthdate: new Date("1991-08-01"),
+      birthdate: "1991-08-01",
       lenght: 181,
       weight: 68,
       jersey: 17,
@@ -62,18 +98,45 @@ describe("Find Player By Id", () => {
       findPlayersByIdService.execute({
         id: "1",
       })
-    ).resolves.toBeInstanceOf(Player);
+    ).resolves.toHaveProperty("id");
   });
 
   it("should not be able to find player by id if player don't exists", async () => {
     const playersRepository = new InMemoryPlayersRepository();
     const findPlayersByIdService = new FindPlayerByIdService(playersRepository);
-    const createPlayerService = new CreatePlayerService(playersRepository);
+    const teamsRepository = new InMemoryTeamsRepository();
+    const positionsRepository = new InMemoryPositionsRepository();
+    const createPlayerService = new CreatePlayerService(
+      playersRepository,
+      teamsRepository,
+      positionsRepository
+    );
+    const createTeam = new CreateTeamService(teamsRepository);
+    const createPositionService = new CreatePositionService(
+      positionsRepository
+    );
+
+    await createPositionService.execute({
+      id: "1",
+      basePosition: EnumPlayerPositionBase.Midfielder,
+      positionRole: EnumPlayerPositionRole.AttackingMidfielder,
+      roleType: [EnumRoleType.Attack, EnumRoleType.Support],
+    });
+
+    await createTeam.execute({
+      id: "1",
+      teamName: "Corinthians",
+      teamLocalization: "SP",
+      teamCountry: "Brasil",
+      teamLeague: "Brasileirão",
+      teamGrade: EnumTeamGrade.A,
+      teamLogo: "exemplo",
+    });
 
     await createPlayerService.execute({
       id: "1",
       name: "Kevin de Bruyne",
-      birthdate: new Date("1991-08-01"),
+      birthdate: "1991-08-01",
       lenght: 181,
       weight: 68,
       jersey: 17,

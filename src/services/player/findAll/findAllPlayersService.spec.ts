@@ -3,16 +3,53 @@ import { CreatePlayerService } from "../create/createPlayerService";
 import { FindAllPlayersService } from "./findAllPlayersService";
 import { InMemoryPlayersRepository } from "../../../repositories/inMemory/inMemoryPlayersRepository";
 import { EnumPlayerAttributesRange } from "../../../utils/dicts/enumPlayerAttributesRange";
+import { InMemoryTeamsRepository } from "../../../repositories/inMemory/inMemoryTeamsRepository";
+import { InMemoryPositionsRepository } from "../../../repositories/inMemory/inMemoryPositionsRepository";
+import { CreateTeamService } from "../../team/create/createTeamService";
+import { CreatePositionService } from "../../position/create/createPositionService";
+import {
+  EnumPlayerPositionBase,
+  EnumPlayerPositionRole,
+  EnumRoleType,
+  EnumTeamGrade,
+} from "@prisma/client";
 
 describe("Find All Teams Players", () => {
   it("should return all players", async () => {
     const playersRepository = new InMemoryPlayersRepository();
     const findAllPlayersService = new FindAllPlayersService(playersRepository);
-    const createPlayer = new CreatePlayerService(playersRepository);
+    const teamsRepository = new InMemoryTeamsRepository();
+    const positionsRepository = new InMemoryPositionsRepository();
+    const createPlayer = new CreatePlayerService(
+      playersRepository,
+      teamsRepository,
+      positionsRepository
+    );
+    const createTeam = new CreateTeamService(teamsRepository);
+    const createPositionService = new CreatePositionService(
+      positionsRepository
+    );
+
+    await createPositionService.execute({
+      id: "1",
+      basePosition: EnumPlayerPositionBase.Midfielder,
+      positionRole: EnumPlayerPositionRole.AttackingMidfielder,
+      roleType: [EnumRoleType.Attack, EnumRoleType.Support],
+    });
+
+    await createTeam.execute({
+      id: "1",
+      teamName: "Corinthians",
+      teamLocalization: "SP",
+      teamCountry: "Brasil",
+      teamLeague: "Brasileirão",
+      teamGrade: EnumTeamGrade.A,
+      teamLogo: "exemplo",
+    });
 
     const player = await createPlayer.execute({
       name: "Kevin de Bruyne",
-      birthdate: new Date("1991-08-01"),
+      birthdate: "1991-08-01",
       lenght: 181,
       weight: 68,
       jersey: 17,

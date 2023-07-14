@@ -6,7 +6,7 @@ test("create a player", () => {
   const player = new Player({
     id: "1",
     name: "Kevin de Bruyne",
-    birthdate: new Date("1991-08-01"),
+    birthdate: "1991-08-01",
     lenght: 181,
     weight: 68,
     jersey: 17,

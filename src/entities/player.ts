@@ -3,7 +3,7 @@ import { EnumPlayerAttributesRange } from "../utils/dicts/enumPlayerAttributesRa
 export interface PlayerProps {
   id?: string;
   name: string;
-  birthdate: Date;
+  birthdate: string;
   lenght: number;
   weight: number;
   jersey: number;

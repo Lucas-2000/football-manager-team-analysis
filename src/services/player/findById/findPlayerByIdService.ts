@@ -1,11 +1,11 @@
-import { Player } from "../../../entities/player";
+import { PlayerProps } from "../../../entities/player";
 import { PlayersRepository } from "./../../../repositories/playersRepository";
 
 interface FindPlayerByIdRequest {
   id: string;
 }
 
-type FindPlayerByIdResponse = Player | undefined;
+type FindPlayerByIdResponse = PlayerProps | undefined;
 
 export class FindPlayerByIdService {
   constructor(private playersRepository: PlayersRepository) {}
@@ -17,6 +17,8 @@ export class FindPlayerByIdService {
 
     if (!player) throw new Error("Player not found!");
 
-    return player;
+    const playerSummaries: PlayerProps = player.getSummary();
+
+    return playerSummaries;
   }
 }

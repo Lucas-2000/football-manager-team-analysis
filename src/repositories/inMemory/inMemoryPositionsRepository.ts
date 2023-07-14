@@ -23,6 +23,13 @@ export class InMemoryPositionsRepository implements PositionsRepository {
 
     return position;
   }
+
+  async findById(positionId: string): Promise<Position | undefined> {
+    const position = this.positions.find((p) => p.id === positionId);
+
+    return position;
+  }
+
   async verifyExists(
     basePosition: EnumPlayerPositionBase,
     positionRole: EnumPlayerPositionRole,

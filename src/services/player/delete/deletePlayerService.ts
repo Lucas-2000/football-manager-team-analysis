@@ -14,7 +14,7 @@ export class DeletePlayerService {
 
     if (playerIndex < 0) throw new Error("Player not found!");
 
-    this.playersRepository.delete(playerIndex);
+    this.playersRepository.delete(id);
 
     return [];
   }

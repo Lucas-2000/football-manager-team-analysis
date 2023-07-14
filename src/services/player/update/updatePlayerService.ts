@@ -1,11 +1,11 @@
-import { Player } from "../../../entities/player";
+import { Player, PlayerProps } from "../../../entities/player";
 import { EnumPlayerAttributesRange } from "../../../utils/dicts/enumPlayerAttributesRange";
 import { PlayersRepository } from "./../../../repositories/playersRepository";
 
 interface UpdatePlayerRequest {
   id: string;
   name: string;
-  birthdate: Date;
+  birthdate: string;
   lenght: number;
   weight: number;
   jersey: number;
@@ -50,7 +50,7 @@ interface UpdatePlayerRequest {
   strenght: EnumPlayerAttributesRange;
 }
 
-type UpdatePlayerResponse = Player;
+type UpdatePlayerResponse = PlayerProps;
 
 export class UpdatePlayerService {
   constructor(private playersRepository: PlayersRepository) {}
@@ -198,7 +198,7 @@ export class UpdatePlayerService {
       strenght,
     });
 
-    await this.playersRepository.update(player, index);
+    await this.playersRepository.update(player);
 
     return player;
   }

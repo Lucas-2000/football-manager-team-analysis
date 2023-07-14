@@ -1,11 +1,13 @@
-import { Player } from "../../../entities/player";
+import { Player, PlayerProps } from "../../../entities/player";
+import { PositionsRepository } from "../../../repositories/positionsRepository";
+import { TeamsRepository } from "../../../repositories/teamsRepository";
 import { EnumPlayerAttributesRange } from "../../../utils/dicts/enumPlayerAttributesRange";
 import { PlayersRepository } from "./../../../repositories/playersRepository";
 
 interface CreatePlayerRequest {
-  id: string;
+  id?: string;
   name: string;
-  birthdate: Date;
+  birthdate: string;
   lenght: number;
   weight: number;
   jersey: number;
@@ -50,10 +52,14 @@ interface CreatePlayerRequest {
   strenght: EnumPlayerAttributesRange;
 }
 
-type CreatePlayerResponse = Player;
+type CreatePlayerResponse = PlayerProps;
 
 export class CreatePlayerService {
-  constructor(private playersRepository: PlayersRepository) {}
+  constructor(
+    private playersRepository: PlayersRepository,
+    private teamsRepository: TeamsRepository,
+    private positionsRepository: PositionsRepository
+  ) {}
 
   async execute({
     id,
@@ -104,7 +110,15 @@ export class CreatePlayerService {
   }: CreatePlayerRequest): Promise<CreatePlayerResponse> {
     const playerExists = await this.playersRepository.verifyExists(name);
 
-    if (playerExists) throw new Error(`Player ${name} already exists`);
+    if (playerExists) throw new Error(`Player ${name} already exists!`);
+
+    const teamExists = await this.teamsRepository.findById(teamId);
+
+    if (!teamExists) throw new Error("Team don't exists");
+
+    const positionExists = await this.positionsRepository.findById(positionId);
+
+    if (!positionExists) throw new Error("Position don't exists");
 
     const attList = [
       corners,
@@ -200,6 +214,6 @@ export class CreatePlayerService {
 
     await this.playersRepository.create(player);
 
-    return player;
+    return player.getSummary();
   }
 }

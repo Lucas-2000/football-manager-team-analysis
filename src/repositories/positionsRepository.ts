@@ -6,6 +6,7 @@ export interface PositionsRepository {
   create(position: Position): Promise<void>;
   findAll(): Promise<Position[]>;
   findByBasePosition(basePosition: EnumPlayerPositionBase): Promise<Position[]>;
+  findById(positionId: string): Promise<Position | undefined>;
   verifyExists(
     basePosition: EnumPlayerPositionBase,
     positionRole: EnumPlayerPositionRole,

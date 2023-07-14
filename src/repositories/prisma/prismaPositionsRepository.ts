@@ -58,6 +58,23 @@ export class PrismaPositionsRepository implements PositionsRepository {
     );
   }
 
+  async findById(positionId: string): Promise<Position | undefined> {
+    const position = await prisma.position.findFirst({
+      where: {
+        id: positionId,
+      },
+    });
+
+    if (position === null) return;
+
+    return new Position({
+      id: position.id,
+      basePosition: position.basePosition,
+      positionRole: position.positionRole,
+      roleType: position.roleType,
+    });
+  }
+
   async verifyExists(
     basePosition: EnumPlayerPositionBase,
     positionRole: EnumPlayerPositionRole,
