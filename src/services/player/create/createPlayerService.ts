@@ -159,10 +159,13 @@ export class CreatePlayerService {
       strenght,
     ];
 
-    attList.map(async (att) => {
-      if ((await this.playersRepository.checkAttributeInteval(att)) === false)
-        throw new Error("Incorret attribute interval");
-    });
+    await Promise.all(
+      attList.map(async (att) => {
+        if (!(await this.playersRepository.checkAttributeInteval(att))) {
+          throw new Error("Incorrect attribute interval");
+        }
+      })
+    );
 
     const player = new Player({
       id,
