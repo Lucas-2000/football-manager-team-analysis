@@ -17,7 +17,7 @@ export class FindByBasePositionService {
       basePosition
     );
 
-    if (positions.length < 1) throw new Error("Base position not found!");
+    if (positions.length < 1) throw new Error("Position not found!");
 
     const positionSummaries: PositionProps[] = positions.map((position) =>
       position.getSummary()
