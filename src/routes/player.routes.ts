@@ -3,6 +3,7 @@ import { CreatePlayerFactory } from "../services/player/create/createPlayerFacto
 import { FindAllPlayersFactory } from "../services/player/findAll/findAllPlayersFactory";
 import { FindPlayerByIdFactory } from "../services/player/findById/findPlayerByIdFactory";
 import { UpdatePlayerFactory } from "../services/player/update/updatePlayerFactory";
+import { DeletePlayerFactory } from "../services/player/delete/deletePlayerFactory";
 
 const playerRoutes = Router();
 
@@ -17,6 +18,9 @@ playerRoutes.get("/:id", (request, response) =>
 );
 playerRoutes.put("/:id", (request, response) =>
   UpdatePlayerFactory().handle(request, response)
+);
+playerRoutes.delete("/:id", (request, response) =>
+  DeletePlayerFactory().handle(request, response)
 );
 
 export { playerRoutes };
