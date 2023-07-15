@@ -12,7 +12,7 @@ datasource db {
 
 model Team {
   id               String        @id @default(uuid())
-  teamName         String        @unique
+  teamName         String        
   teamLocalization String
   teamCountry      String
   teamLeague       String
@@ -39,7 +39,7 @@ model Position {
 
 model Player {
   id             String   @id @default(uuid())
-  name           String   @unique
+  name           String  
   birthdate      String
   lenght         Int
   weight         Int

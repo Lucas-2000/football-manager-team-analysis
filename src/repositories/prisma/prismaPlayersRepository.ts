@@ -102,10 +102,11 @@ export class PrismaPlayerRepository implements PlayersRepository {
     });
   }
 
-  async verifyExists(playerName: string): Promise<boolean> {
+  async verifyExists(playerName: string, teamId: string): Promise<boolean> {
     const player = await prisma.player.findFirst({
       where: {
         name: playerName,
+        teamId: teamId,
       },
     });
 

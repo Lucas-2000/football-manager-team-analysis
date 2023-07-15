@@ -108,7 +108,10 @@ export class CreatePlayerService {
     stamina,
     strenght,
   }: CreatePlayerRequest): Promise<CreatePlayerResponse> {
-    const playerExists = await this.playersRepository.verifyExists(name);
+    const playerExists = await this.playersRepository.verifyExists(
+      name,
+      teamId
+    );
 
     if (playerExists) throw new Error(`Player ${name} already exists!`);
 

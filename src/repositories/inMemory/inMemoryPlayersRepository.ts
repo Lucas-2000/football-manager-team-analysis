@@ -9,12 +9,12 @@ export class InMemoryPlayersRepository implements PlayersRepository {
     this.players.push(player);
   }
 
-  async verifyExists(playerName: string): Promise<boolean> {
-    const playerExists = this.players.find((p) => p.name === playerName);
+  async verifyExists(playerName: string, teamId: string): Promise<boolean> {
+    const player = this.players.find(
+      (p) => p.name === playerName && p.teamId === teamId
+    );
 
-    if (playerExists) return true;
-
-    return false;
+    return !!player;
   }
 
   async findAll(): Promise<Player[]> {
