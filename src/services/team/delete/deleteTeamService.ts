@@ -20,10 +20,6 @@ export class DeleteTeamService {
 
     const teamLogo = team?.teamLogo;
 
-    if (!teamLogo) {
-      throw new Error("Team logo not found!");
-    }
-
     const uploadsFolder = path.join(
       __dirname,
       "..",
@@ -32,9 +28,11 @@ export class DeleteTeamService {
       "..",
       "uploads"
     ); // Caminho base da pasta de uploads
-    const logoPath = path.join(uploadsFolder, teamLogo);
 
-    await fs.unlink(logoPath);
+    if (teamLogo) {
+      const logoPath = path.join(uploadsFolder, teamLogo);
+      await fs.unlink(logoPath);
+    }
 
     await this.teamsRepository.delete(id);
 
