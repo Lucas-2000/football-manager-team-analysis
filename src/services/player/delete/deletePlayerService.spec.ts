@@ -1,3 +1,5 @@
+import fs from "fs/promises";
+import path from "path";
 import { DeletePlayerService } from "./deletePlayerService";
 import { CreatePlayerService } from "./../create/createPlayerService";
 import { InMemoryPlayersRepository } from "./../../../repositories/inMemory/inMemoryPlayersRepository";
@@ -13,6 +15,7 @@ import {
 } from "@prisma/client";
 import { InMemoryTeamsRepository } from "../../../repositories/inMemory/inMemoryTeamsRepository";
 import { InMemoryPositionsRepository } from "../../../repositories/inMemory/inMemoryPositionsRepository";
+import { UploadPlayerImageService } from "../uploadImage/uploadPlayerImageService";
 
 describe("Delete player Service", () => {
   it("should be able to delete a player", async () => {
@@ -28,6 +31,7 @@ describe("Delete player Service", () => {
     const createPositionService = new CreatePositionService(
       positionsRepository
     );
+    const uploadPlayerImage = new UploadPlayerImageService(playersRepository);
 
     await createPositionService.execute({
       id: "1",
@@ -92,6 +96,24 @@ describe("Delete player Service", () => {
       pace: EnumPlayerAttributesRange.Fifteen,
       stamina: EnumPlayerAttributesRange.Fifteen,
       strenght: EnumPlayerAttributesRange.Fifteen,
+    });
+
+    const uploadsFolder = path.join(
+      __dirname,
+      "..",
+      "..",
+      "..",
+      "..",
+      "uploads"
+    ); // Caminho base da pasta de uploads
+    const tempFilePath = path.join(uploadsFolder, "teste");
+
+    // Cria um arquivo temporário
+    fs.writeFile(tempFilePath, "conteúdo do arquivo");
+
+    await uploadPlayerImage.execute({
+      id: "1",
+      playerImage: "teste",
     });
 
     await expect(
@@ -114,6 +136,7 @@ describe("Delete player Service", () => {
     const createPositionService = new CreatePositionService(
       positionsRepository
     );
+    const uploadPlayerImage = new UploadPlayerImageService(playersRepository);
 
     await createPositionService.execute({
       id: "1",
@@ -178,6 +201,24 @@ describe("Delete player Service", () => {
       pace: EnumPlayerAttributesRange.Fifteen,
       stamina: EnumPlayerAttributesRange.Fifteen,
       strenght: EnumPlayerAttributesRange.Fifteen,
+    });
+
+    const uploadsFolder = path.join(
+      __dirname,
+      "..",
+      "..",
+      "..",
+      "..",
+      "uploads"
+    ); // Caminho base da pasta de uploads
+    const tempFilePath = path.join(uploadsFolder, "teste");
+
+    // Cria um arquivo temporário
+    fs.writeFile(tempFilePath, "conteúdo do arquivo");
+
+    await uploadPlayerImage.execute({
+      id: "1",
+      playerImage: "teste",
     });
 
     await expect(
