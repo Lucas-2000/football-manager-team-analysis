@@ -15,7 +15,6 @@ describe("Create Team Service", () => {
         teamCountry: "Brasil",
         teamLeague: "Brasileirão",
         teamGrade: EnumTeamGrade.A,
-        teamLogo: "exemplo",
       })
     ).resolves.toHaveProperty("id");
   });
@@ -30,7 +29,6 @@ describe("Create Team Service", () => {
       teamCountry: "Brasil",
       teamLeague: "Brasileirão",
       teamGrade: EnumTeamGrade.A,
-      teamLogo: "exemplo",
     });
 
     await expect(
@@ -41,7 +39,6 @@ describe("Create Team Service", () => {
         teamCountry: "Brasil",
         teamLeague: "Brasileirão",
         teamGrade: EnumTeamGrade.A,
-        teamLogo: "exemplo",
       })
     ).rejects.toBeInstanceOf(Error);
   });

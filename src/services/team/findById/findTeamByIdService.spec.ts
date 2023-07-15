@@ -20,7 +20,6 @@ describe("Find Team By Id Service", () => {
       teamCountry: "Brasil",
       teamLeague: "Brasileirão",
       teamGrade: EnumTeamGrade.A,
-      teamLogo: "exemplo",
     });
 
     await expect(
@@ -42,7 +41,6 @@ describe("Find Team By Id Service", () => {
       teamCountry: "Brasil",
       teamLeague: "Brasileirão",
       teamGrade: EnumTeamGrade.A,
-      teamLogo: "exemplo",
     });
 
     await expect(

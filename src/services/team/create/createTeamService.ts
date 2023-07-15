@@ -9,7 +9,7 @@ interface CreateTeamRequest {
   teamCountry: string;
   teamLeague: string;
   teamGrade: EnumTeamGrade;
-  teamLogo: string;
+  teamLogo?: string;
 }
 
 type CreateTeamResponse = TeamProps;

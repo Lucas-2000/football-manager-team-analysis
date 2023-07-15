@@ -5,14 +5,8 @@ export class CreateTeamController {
   constructor(private createTeamService: CreateTeamService) {}
 
   async handle(request: Request, response: Response) {
-    const {
-      teamName,
-      teamLocalization,
-      teamCountry,
-      teamGrade,
-      teamLeague,
-      teamLogo,
-    } = request.body;
+    const { teamName, teamLocalization, teamCountry, teamGrade, teamLeague } =
+      request.body;
 
     const team = await this.createTeamService.execute({
       teamName,
@@ -20,7 +14,6 @@ export class CreateTeamController {
       teamCountry,
       teamGrade,
       teamLeague,
-      teamLogo,
     });
 
     return response.status(201).json(team);

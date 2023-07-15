@@ -17,7 +17,6 @@ describe("Delete Team Service", () => {
       teamCountry: "Brasil",
       teamLeague: "Brasileirão",
       teamGrade: EnumTeamGrade.A,
-      teamLogo: "exemplo",
     });
 
     await expect(
@@ -39,7 +38,6 @@ describe("Delete Team Service", () => {
       teamCountry: "Brasil",
       teamLeague: "Brasileirão",
       teamGrade: EnumTeamGrade.A,
-      teamLogo: "exemplo",
     });
 
     await expect(

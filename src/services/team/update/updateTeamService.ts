@@ -9,7 +9,7 @@ interface UpdateTeamRequest {
   teamCountry: string;
   teamLeague: string;
   teamGrade: EnumTeamGrade;
-  teamLogo: string;
+  teamLogo?: Express.Multer.File;
 }
 
 type UpdateTeamResponse = TeamProps;
