@@ -1,12 +1,12 @@
 import { Team, TeamProps } from "../../../entities/team";
 import { TeamsRepository } from "../../../repositories/teamsRepository";
 
-interface FindTeamByIdRequest {
+interface UploadTeamLogoRequest {
   id: string;
   teamLogo?: string;
 }
 
-type FindTeamByIdResponse = TeamProps;
+type UploadTeamLogoResponse = TeamProps;
 
 export class UploadTeamLogoService {
   constructor(private teamsRepository: TeamsRepository) {}
@@ -14,7 +14,7 @@ export class UploadTeamLogoService {
   async execute({
     id,
     teamLogo,
-  }: FindTeamByIdRequest): Promise<FindTeamByIdResponse> {
+  }: UploadTeamLogoRequest): Promise<UploadTeamLogoResponse> {
     const team = await this.teamsRepository.findById(id);
 
     if (!team) throw new Error("Team not found!");
