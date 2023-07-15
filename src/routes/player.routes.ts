@@ -4,8 +4,12 @@ import { FindAllPlayersFactory } from "../services/player/findAll/findAllPlayers
 import { FindPlayerByIdFactory } from "../services/player/findById/findPlayerByIdFactory";
 import { UpdatePlayerFactory } from "../services/player/update/updatePlayerFactory";
 import { DeletePlayerFactory } from "../services/player/delete/deletePlayerFactory";
+import { UploadPlayerImageFactory } from "../services/player/uploadImage/uploadPlayerImageFactory";
+import multer from "multer";
+import { storage } from "../utils/config/multerConfig";
 
 const playerRoutes = Router();
+const upload = multer({ storage: storage });
 
 playerRoutes.post("/", (request, response) =>
   CreatePlayerFactory().handle(request, response)
@@ -21,6 +25,11 @@ playerRoutes.put("/:id", (request, response) =>
 );
 playerRoutes.delete("/:id", (request, response) =>
   DeletePlayerFactory().handle(request, response)
+);
+playerRoutes.post(
+  "/:id/playerImage",
+  upload.single("file"),
+  (request, response) => UploadPlayerImageFactory().handle(request, response)
 );
 
 export { playerRoutes };

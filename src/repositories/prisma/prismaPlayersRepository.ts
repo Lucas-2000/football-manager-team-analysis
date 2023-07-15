@@ -4,7 +4,7 @@ import { EnumPlayerAttributesRange } from "../../utils/dicts/enumPlayerAttribute
 import { PlayersRepository } from "../playersRepository";
 import { v4 as uuid } from "uuid";
 
-export class PrismaPlayerRepository implements PlayersRepository {
+export class PrismaPlayersRepository implements PlayersRepository {
   async create({
     name,
     birthdate,
