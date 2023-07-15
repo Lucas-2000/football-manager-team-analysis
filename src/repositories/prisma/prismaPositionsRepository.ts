@@ -4,7 +4,7 @@ import {
   EnumRoleType,
 } from "@prisma/client";
 import { Position } from "../../entities/position";
-import { prisma } from "../../prisma/prismaClient";
+import { prisma } from "../../utils/config/prisma/prismaClient";
 import { PositionsRepository } from "../positionsRepository";
 import { v4 as uuid } from "uuid";
 

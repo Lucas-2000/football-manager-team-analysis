@@ -1,6 +1,6 @@
 import { EnumTeamGrade } from "@prisma/client";
 import { Team } from "../../entities/team";
-import { prisma } from "../../prisma/prismaClient";
+import { prisma } from "../../utils/config/prisma/prismaClient";
 import { TeamsRepository } from "../teamsRepository";
 import { v4 as uuid } from "uuid";
 

@@ -6,7 +6,7 @@ import { UpdatePlayerFactory } from "../services/player/update/updatePlayerFacto
 import { DeletePlayerFactory } from "../services/player/delete/deletePlayerFactory";
 import { UploadPlayerImageFactory } from "../services/player/uploadImage/uploadPlayerImageFactory";
 import multer from "multer";
-import { storage } from "../utils/config/multerConfig";
+import { storage } from "../utils/config/multer/multerConfig";
 
 const playerRoutes = Router();
 const upload = multer({ storage: storage });

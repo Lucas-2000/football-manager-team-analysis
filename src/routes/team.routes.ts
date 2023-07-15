@@ -5,7 +5,7 @@ import { FindTeamByIdFactory } from "../services/team/findById/findTeamByIdFacto
 import { UpdateTeamFactory } from "../services/team/update/updateTeamFactory";
 import { DeleteTeamFactory } from "../services/team/delete/deleteTeamFactory";
 import multer from "multer";
-import { storage } from "../utils/config/multerConfig";
+import { storage } from "../utils/config/multer/multerConfig";
 import { UploadTeamLogoFactory } from "../services/team/uploadLogo/uploadTeamLogoFactory";
 
 const teamRoutes = Router();
