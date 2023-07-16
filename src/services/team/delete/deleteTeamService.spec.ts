@@ -12,6 +12,27 @@ describe("Delete Team Service", () => {
     const teamsRepository = new InMemoryTeamsRepository();
     const createTeam = new CreateTeamService(teamsRepository);
     const deleteTeam = new DeleteTeamService(teamsRepository);
+
+    await createTeam.execute({
+      id: "1",
+      teamName: "Corinthians",
+      teamLocalization: "SP",
+      teamCountry: "Brasil",
+      teamLeague: "Brasileirão",
+      teamGrade: EnumTeamGrade.A,
+    });
+
+    await expect(
+      deleteTeam.execute({
+        id: "1",
+      })
+    ).resolves.toBeInstanceOf(Array);
+  });
+
+  it("should be able to delete a team and logo from uploads folder if team have a logo", async () => {
+    const teamsRepository = new InMemoryTeamsRepository();
+    const createTeam = new CreateTeamService(teamsRepository);
+    const deleteTeam = new DeleteTeamService(teamsRepository);
     const uploadLogoTeam = new UploadTeamLogoService(teamsRepository);
 
     await createTeam.execute({
@@ -34,7 +55,7 @@ describe("Delete Team Service", () => {
     const tempFilePath = path.join(uploadsFolder, "teste");
 
     // Cria um arquivo temporário
-    fs.writeFile(tempFilePath, "conteúdo do arquivo");
+    await fs.writeFile(tempFilePath, "conteúdo do arquivo");
 
     await uploadLogoTeam.execute({
       id: "1",
