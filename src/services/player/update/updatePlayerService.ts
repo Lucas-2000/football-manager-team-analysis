@@ -11,7 +11,6 @@ interface UpdatePlayerRequest {
   lenght: number;
   weight: number;
   jersey: number;
-  playerImage?: string;
   positionId: string;
   teamId: string;
   corners: EnumPlayerAttributesRange;
@@ -68,7 +67,6 @@ export class UpdatePlayerService {
     lenght,
     weight,
     jersey,
-    playerImage,
     positionId,
     teamId,
     corners,
@@ -174,7 +172,6 @@ export class UpdatePlayerService {
       lenght,
       weight,
       jersey,
-      playerImage,
       positionId,
       teamId,
       corners,

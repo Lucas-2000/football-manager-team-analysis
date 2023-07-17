@@ -9,7 +9,6 @@ interface UpdateTeamRequest {
   teamCountry: string;
   teamLeague: string;
   teamGrade: EnumTeamGrade;
-  teamLogo?: Express.Multer.File;
 }
 
 type UpdateTeamResponse = TeamProps;
@@ -24,7 +23,6 @@ export class UpdateTeamService {
     teamCountry,
     teamLeague,
     teamGrade,
-    teamLogo,
   }: UpdateTeamRequest): Promise<UpdateTeamResponse> {
     const verifyIndex = await this.teamsRepository.findIndex(id);
 
@@ -40,7 +38,6 @@ export class UpdateTeamService {
       teamCountry,
       teamLeague,
       teamGrade,
-      teamLogo,
     });
 
     await this.teamsRepository.update(team);
