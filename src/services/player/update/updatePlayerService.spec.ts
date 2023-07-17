@@ -13,26 +13,32 @@ import {
   EnumRoleType,
   EnumTeamGrade,
 } from "@prisma/client";
+import { InMemoryUsersRepository } from "../../../repositories/inMemory/inMemoryUsersRepository";
+import { CreateUserService } from "../../user/create/createUserService";
 
 describe("Update Player Service", () => {
   it("should be able to update a player", async () => {
     const playersRepository = new InMemoryPlayersRepository();
     const teamsRepository = new InMemoryTeamsRepository();
     const positionsRepository = new InMemoryPositionsRepository();
+    const usersRepository = new InMemoryUsersRepository();
     const updatePlayer = new UpdatePlayerService(
       playersRepository,
       teamsRepository,
-      positionsRepository
+      positionsRepository,
+      usersRepository
     );
     const createPlayer = new CreatePlayerService(
       playersRepository,
       teamsRepository,
-      positionsRepository
+      positionsRepository,
+      usersRepository
     );
     const createTeam = new CreateTeamService(teamsRepository);
     const createPositionService = new CreatePositionService(
       positionsRepository
     );
+    const createUserService = new CreateUserService(usersRepository);
 
     await createPositionService.execute({
       id: "1",
@@ -49,6 +55,15 @@ describe("Update Player Service", () => {
       teamLeague: "Brasileirão",
       teamGrade: EnumTeamGrade.A,
       teamLogo: "exemplo",
+      userId: "1",
+    });
+
+    await createUserService.execute({
+      id: "1",
+      username: "test",
+      email: "test@example.com",
+      password: "test123",
+      avatar: null,
     });
 
     await createPlayer.execute({
@@ -60,6 +75,7 @@ describe("Update Player Service", () => {
       jersey: 17,
       positionId: "1",
       teamId: "1",
+      userId: "1",
       corners: EnumPlayerAttributesRange.Fifteen,
       crossing: EnumPlayerAttributesRange.Fifteen,
       dribbling: EnumPlayerAttributesRange.Fifteen,
@@ -108,6 +124,7 @@ describe("Update Player Service", () => {
         jersey: 17,
         positionId: "1",
         teamId: "1",
+        userId: "1",
         corners: EnumPlayerAttributesRange.Fifteen,
         crossing: EnumPlayerAttributesRange.Fifteen,
         dribbling: EnumPlayerAttributesRange.Fifteen,
@@ -152,20 +169,24 @@ describe("Update Player Service", () => {
     const playersRepository = new InMemoryPlayersRepository();
     const teamsRepository = new InMemoryTeamsRepository();
     const positionsRepository = new InMemoryPositionsRepository();
+    const usersRepository = new InMemoryUsersRepository();
     const updatePlayer = new UpdatePlayerService(
       playersRepository,
       teamsRepository,
-      positionsRepository
+      positionsRepository,
+      usersRepository
     );
     const createPlayer = new CreatePlayerService(
       playersRepository,
       teamsRepository,
-      positionsRepository
+      positionsRepository,
+      usersRepository
     );
     const createTeam = new CreateTeamService(teamsRepository);
     const createPositionService = new CreatePositionService(
       positionsRepository
     );
+    const createUserService = new CreateUserService(usersRepository);
 
     await createPositionService.execute({
       id: "1",
@@ -182,6 +203,15 @@ describe("Update Player Service", () => {
       teamLeague: "Brasileirão",
       teamGrade: EnumTeamGrade.A,
       teamLogo: "exemplo",
+      userId: "1",
+    });
+
+    await createUserService.execute({
+      id: "1",
+      username: "test",
+      email: "test@example.com",
+      password: "test123",
+      avatar: null,
     });
 
     await createPlayer.execute({
@@ -193,6 +223,7 @@ describe("Update Player Service", () => {
       jersey: 17,
       positionId: "1",
       teamId: "1",
+      userId: "1",
       corners: EnumPlayerAttributesRange.Fifteen,
       crossing: EnumPlayerAttributesRange.Fifteen,
       dribbling: EnumPlayerAttributesRange.Fifteen,
@@ -230,7 +261,6 @@ describe("Update Player Service", () => {
       stamina: EnumPlayerAttributesRange.Fifteen,
       strenght: EnumPlayerAttributesRange.Fifteen,
     });
-
     await expect(
       updatePlayer.execute({
         id: "2",
@@ -241,6 +271,7 @@ describe("Update Player Service", () => {
         jersey: 17,
         positionId: "1",
         teamId: "1",
+        userId: "1",
         corners: EnumPlayerAttributesRange.Fifteen,
         crossing: EnumPlayerAttributesRange.Fifteen,
         dribbling: EnumPlayerAttributesRange.Fifteen,
@@ -285,20 +316,24 @@ describe("Update Player Service", () => {
     const playersRepository = new InMemoryPlayersRepository();
     const teamsRepository = new InMemoryTeamsRepository();
     const positionsRepository = new InMemoryPositionsRepository();
+    const usersRepository = new InMemoryUsersRepository();
     const updatePlayer = new UpdatePlayerService(
       playersRepository,
       teamsRepository,
-      positionsRepository
+      positionsRepository,
+      usersRepository
     );
     const createPlayer = new CreatePlayerService(
       playersRepository,
       teamsRepository,
-      positionsRepository
+      positionsRepository,
+      usersRepository
     );
     const createTeam = new CreateTeamService(teamsRepository);
     const createPositionService = new CreatePositionService(
       positionsRepository
     );
+    const createUserService = new CreateUserService(usersRepository);
 
     await createPositionService.execute({
       id: "1",
@@ -315,9 +350,18 @@ describe("Update Player Service", () => {
       teamLeague: "Brasileirão",
       teamGrade: EnumTeamGrade.A,
       teamLogo: "exemplo",
+      userId: "1",
     });
 
-    createPlayer.execute({
+    await createUserService.execute({
+      id: "1",
+      username: "test",
+      email: "test@example.com",
+      password: "test123",
+      avatar: null,
+    });
+
+    await createPlayer.execute({
       id: "1",
       name: "Kevin de Bruyne",
       birthdate: "1991-08-01",
@@ -326,6 +370,7 @@ describe("Update Player Service", () => {
       jersey: 17,
       positionId: "1",
       teamId: "1",
+      userId: "1",
       corners: EnumPlayerAttributesRange.Fifteen,
       crossing: EnumPlayerAttributesRange.Fifteen,
       dribbling: EnumPlayerAttributesRange.Fifteen,
@@ -374,6 +419,7 @@ describe("Update Player Service", () => {
         jersey: 17,
         positionId: "2",
         teamId: "1",
+        userId: "1",
         corners: EnumPlayerAttributesRange.Fifteen,
         crossing: EnumPlayerAttributesRange.Fifteen,
         dribbling: EnumPlayerAttributesRange.Fifteen,
@@ -418,20 +464,24 @@ describe("Update Player Service", () => {
     const playersRepository = new InMemoryPlayersRepository();
     const teamsRepository = new InMemoryTeamsRepository();
     const positionsRepository = new InMemoryPositionsRepository();
+    const usersRepository = new InMemoryUsersRepository();
     const updatePlayer = new UpdatePlayerService(
       playersRepository,
       teamsRepository,
-      positionsRepository
+      positionsRepository,
+      usersRepository
     );
     const createPlayer = new CreatePlayerService(
       playersRepository,
       teamsRepository,
-      positionsRepository
+      positionsRepository,
+      usersRepository
     );
     const createTeam = new CreateTeamService(teamsRepository);
     const createPositionService = new CreatePositionService(
       positionsRepository
     );
+    const createUserService = new CreateUserService(usersRepository);
 
     await createPositionService.execute({
       id: "1",
@@ -448,9 +498,18 @@ describe("Update Player Service", () => {
       teamLeague: "Brasileirão",
       teamGrade: EnumTeamGrade.A,
       teamLogo: "exemplo",
+      userId: "1",
     });
 
-    createPlayer.execute({
+    await createUserService.execute({
+      id: "1",
+      username: "test",
+      email: "test@example.com",
+      password: "test123",
+      avatar: null,
+    });
+
+    await createPlayer.execute({
       id: "1",
       name: "Kevin de Bruyne",
       birthdate: "1991-08-01",
@@ -459,6 +518,7 @@ describe("Update Player Service", () => {
       jersey: 17,
       positionId: "1",
       teamId: "1",
+      userId: "1",
       corners: EnumPlayerAttributesRange.Fifteen,
       crossing: EnumPlayerAttributesRange.Fifteen,
       dribbling: EnumPlayerAttributesRange.Fifteen,
@@ -507,6 +567,7 @@ describe("Update Player Service", () => {
         jersey: 17,
         positionId: "1",
         teamId: "2",
+        userId: "1",
         corners: EnumPlayerAttributesRange.Fifteen,
         crossing: EnumPlayerAttributesRange.Fifteen,
         dribbling: EnumPlayerAttributesRange.Fifteen,

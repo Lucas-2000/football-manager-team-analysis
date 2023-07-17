@@ -12,21 +12,26 @@ import {
   EnumTeamGrade,
 } from "@prisma/client";
 import { CreatePositionService } from "../../position/create/createPositionService";
+import { InMemoryUsersRepository } from "../../../repositories/inMemory/inMemoryUsersRepository";
+import { CreateUserService } from "../../user/create/createUserService";
 
 describe("Create Player Service", () => {
   it("should be able to create a new player", async () => {
     const playersRepository = new InMemoryPlayersRepository();
     const teamsRepository = new InMemoryTeamsRepository();
     const positionsRepository = new InMemoryPositionsRepository();
+    const usersRepository = new InMemoryUsersRepository();
     const createPlayer = new CreatePlayerService(
       playersRepository,
       teamsRepository,
-      positionsRepository
+      positionsRepository,
+      usersRepository
     );
     const createTeam = new CreateTeamService(teamsRepository);
     const createPositionService = new CreatePositionService(
       positionsRepository
     );
+    const createUserService = new CreateUserService(usersRepository);
 
     await createPositionService.execute({
       id: "1",
@@ -43,6 +48,15 @@ describe("Create Player Service", () => {
       teamLeague: "Brasileirão",
       teamGrade: EnumTeamGrade.A,
       teamLogo: "exemplo",
+      userId: "1",
+    });
+
+    await createUserService.execute({
+      id: "1",
+      username: "test",
+      email: "test@example.com",
+      password: "test123",
+      avatar: null,
     });
 
     await expect(
@@ -55,6 +69,7 @@ describe("Create Player Service", () => {
         jersey: 17,
         positionId: "1",
         teamId: "1",
+        userId: "1",
         corners: EnumPlayerAttributesRange.Fifteen,
         crossing: EnumPlayerAttributesRange.Fifteen,
         dribbling: EnumPlayerAttributesRange.Fifteen,
@@ -99,15 +114,18 @@ describe("Create Player Service", () => {
     const playersRepository = new InMemoryPlayersRepository();
     const teamsRepository = new InMemoryTeamsRepository();
     const positionsRepository = new InMemoryPositionsRepository();
+    const usersRepository = new InMemoryUsersRepository();
     const createPlayer = new CreatePlayerService(
       playersRepository,
       teamsRepository,
-      positionsRepository
+      positionsRepository,
+      usersRepository
     );
     const createTeam = new CreateTeamService(teamsRepository);
     const createPositionService = new CreatePositionService(
       positionsRepository
     );
+    const createUserService = new CreateUserService(usersRepository);
 
     await createPositionService.execute({
       id: "1",
@@ -124,6 +142,15 @@ describe("Create Player Service", () => {
       teamLeague: "Brasileirão",
       teamGrade: EnumTeamGrade.A,
       teamLogo: "exemplo",
+      userId: "1",
+    });
+
+    await createUserService.execute({
+      id: "1",
+      username: "test",
+      email: "test@example.com",
+      password: "test123",
+      avatar: null,
     });
 
     await createPlayer.execute({
@@ -135,6 +162,7 @@ describe("Create Player Service", () => {
       jersey: 17,
       positionId: "1",
       teamId: "1",
+      userId: "1",
       corners: EnumPlayerAttributesRange.Fifteen,
       crossing: EnumPlayerAttributesRange.Fifteen,
       dribbling: EnumPlayerAttributesRange.Fifteen,
@@ -183,6 +211,7 @@ describe("Create Player Service", () => {
         jersey: 17,
         positionId: "1",
         teamId: "1",
+        userId: "1",
         corners: EnumPlayerAttributesRange.Fifteen,
         crossing: EnumPlayerAttributesRange.Fifteen,
         dribbling: EnumPlayerAttributesRange.Fifteen,
@@ -227,15 +256,18 @@ describe("Create Player Service", () => {
     const playersRepository = new InMemoryPlayersRepository();
     const teamsRepository = new InMemoryTeamsRepository();
     const positionsRepository = new InMemoryPositionsRepository();
+    const usersRepository = new InMemoryUsersRepository();
     const createPlayer = new CreatePlayerService(
       playersRepository,
       teamsRepository,
-      positionsRepository
+      positionsRepository,
+      usersRepository
     );
     const createTeam = new CreateTeamService(teamsRepository);
     const createPositionService = new CreatePositionService(
       positionsRepository
     );
+    const createUserService = new CreateUserService(usersRepository);
 
     await createPositionService.execute({
       id: "1",
@@ -252,6 +284,15 @@ describe("Create Player Service", () => {
       teamLeague: "Brasileirão",
       teamGrade: EnumTeamGrade.A,
       teamLogo: "exemplo",
+      userId: "1",
+    });
+
+    await createUserService.execute({
+      id: "1",
+      username: "test",
+      email: "test@example.com",
+      password: "test123",
+      avatar: null,
     });
 
     await expect(
@@ -264,6 +305,7 @@ describe("Create Player Service", () => {
         jersey: 17,
         positionId: "2",
         teamId: "1",
+        userId: "1",
         corners: EnumPlayerAttributesRange.Fifteen,
         crossing: EnumPlayerAttributesRange.Fifteen,
         dribbling: EnumPlayerAttributesRange.Fifteen,
@@ -308,15 +350,18 @@ describe("Create Player Service", () => {
     const playersRepository = new InMemoryPlayersRepository();
     const teamsRepository = new InMemoryTeamsRepository();
     const positionsRepository = new InMemoryPositionsRepository();
+    const usersRepository = new InMemoryUsersRepository();
     const createPlayer = new CreatePlayerService(
       playersRepository,
       teamsRepository,
-      positionsRepository
+      positionsRepository,
+      usersRepository
     );
     const createTeam = new CreateTeamService(teamsRepository);
     const createPositionService = new CreatePositionService(
       positionsRepository
     );
+    const createUserService = new CreateUserService(usersRepository);
 
     await createPositionService.execute({
       id: "1",
@@ -333,6 +378,15 @@ describe("Create Player Service", () => {
       teamLeague: "Brasileirão",
       teamGrade: EnumTeamGrade.A,
       teamLogo: "exemplo",
+      userId: "1",
+    });
+
+    await createUserService.execute({
+      id: "1",
+      username: "test",
+      email: "test@example.com",
+      password: "test123",
+      avatar: null,
     });
 
     await expect(
@@ -345,6 +399,7 @@ describe("Create Player Service", () => {
         jersey: 17,
         positionId: "1",
         teamId: "2",
+        userId: "1",
         corners: EnumPlayerAttributesRange.Fifteen,
         crossing: EnumPlayerAttributesRange.Fifteen,
         dribbling: EnumPlayerAttributesRange.Fifteen,

@@ -12,6 +12,7 @@ test("create a player", () => {
     jersey: 17,
     positionId: "1",
     teamId: "1",
+    userId: "1",
     corners: EnumPlayerAttributesRange.Fifteen,
     crossing: EnumPlayerAttributesRange.Fifteen,
     dribbling: EnumPlayerAttributesRange.Fifteen,

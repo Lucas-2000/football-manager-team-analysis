@@ -1,6 +1,7 @@
 import { Player, PlayerProps } from "../../../entities/player";
 import { PositionsRepository } from "../../../repositories/positionsRepository";
 import { TeamsRepository } from "../../../repositories/teamsRepository";
+import { UsersRepository } from "../../../repositories/usersRepository";
 import { EnumPlayerAttributesRange } from "../../../utils/dicts/enumPlayerAttributesRange";
 import { PlayersRepository } from "./../../../repositories/playersRepository";
 
@@ -14,6 +15,7 @@ interface CreatePlayerRequest {
   playerImage?: string;
   positionId: string;
   teamId: string;
+  userId: string;
   corners: EnumPlayerAttributesRange;
   crossing: EnumPlayerAttributesRange;
   dribbling: EnumPlayerAttributesRange;
@@ -58,7 +60,8 @@ export class CreatePlayerService {
   constructor(
     private playersRepository: PlayersRepository,
     private teamsRepository: TeamsRepository,
-    private positionsRepository: PositionsRepository
+    private positionsRepository: PositionsRepository,
+    private usersRepository: UsersRepository
   ) {}
 
   async execute({
@@ -71,6 +74,7 @@ export class CreatePlayerService {
     playerImage,
     positionId,
     teamId,
+    userId,
     corners,
     crossing,
     dribbling,
@@ -122,6 +126,10 @@ export class CreatePlayerService {
     const positionExists = await this.positionsRepository.findById(positionId);
 
     if (!positionExists) throw new Error("Position don't exists");
+
+    const userExists = await this.usersRepository.findById(userId);
+
+    if (!userExists) throw new Error("User don't exists");
 
     const attList = [
       corners,
@@ -180,6 +188,7 @@ export class CreatePlayerService {
       playerImage,
       positionId,
       teamId,
+      userId,
       corners,
       crossing,
       dribbling,

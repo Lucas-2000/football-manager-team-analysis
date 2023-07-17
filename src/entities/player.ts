@@ -10,6 +10,7 @@ export interface PlayerProps {
   playerImage?: string | null;
   positionId: string;
   teamId: string;
+  userId: string;
   corners: EnumPlayerAttributesRange;
   crossing: EnumPlayerAttributesRange;
   dribbling: EnumPlayerAttributesRange;
@@ -85,6 +86,10 @@ export class Player {
 
   get teamId() {
     return this.props.teamId;
+  }
+
+  get userId() {
+    return this.props.userId;
   }
 
   get playerImage() {
@@ -245,6 +250,7 @@ export class Player {
       jersey: this.props.jersey,
       playerImage: this.props.playerImage,
       positionId: this.props.positionId,
+      userId: this.props.userId,
       teamId: this.props.teamId,
       corners: this.props.corners,
       crossing: this.props.crossing,

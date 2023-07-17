@@ -13,18 +13,23 @@ import { InMemoryPositionsRepository } from "../../../repositories/inMemory/inMe
 import { CreatePositionService } from "../../position/create/createPositionService";
 import { EnumPlayerAttributesRange } from "../../../utils/dicts/enumPlayerAttributesRange";
 import { CreatePlayerService } from "../create/createPlayerService";
+import { CreateUserService } from "../../user/create/createUserService";
+import { InMemoryUsersRepository } from "../../../repositories/inMemory/inMemoryUsersRepository";
 
 describe("Upload Player Image Service", () => {
   it("should be able to upload a image for a player", async () => {
     const teamsRepository = new InMemoryTeamsRepository();
     const playersRepository = new InMemoryPlayersRepository();
     const positionsRepository = new InMemoryPositionsRepository();
+    const usersRepository = new InMemoryUsersRepository();
     const createTeam = new CreateTeamService(teamsRepository);
     const createPosition = new CreatePositionService(positionsRepository);
+    const createUser = new CreateUserService(usersRepository);
     const createPlayer = new CreatePlayerService(
       playersRepository,
       teamsRepository,
-      positionsRepository
+      positionsRepository,
+      usersRepository
     );
     const uploadPlayerImage = new UploadPlayerImageService(playersRepository);
 
@@ -35,6 +40,7 @@ describe("Upload Player Image Service", () => {
       teamCountry: "Brasil",
       teamLeague: "Brasileirão",
       teamGrade: EnumTeamGrade.A,
+      userId: "1",
     });
 
     await createPosition.execute({
@@ -42,6 +48,14 @@ describe("Upload Player Image Service", () => {
       basePosition: EnumPlayerPositionBase.Midfielder,
       positionRole: EnumPlayerPositionRole.AttackingMidfielder,
       roleType: [EnumRoleType.Attack, EnumRoleType.Support],
+    });
+
+    await createUser.execute({
+      id: "1",
+      username: "test",
+      email: "test@example.com",
+      password: "test123",
+      avatar: null,
     });
 
     await createPlayer.execute({
@@ -53,6 +67,7 @@ describe("Upload Player Image Service", () => {
       jersey: 17,
       positionId: "1",
       teamId: "1",
+      userId: "1",
       corners: EnumPlayerAttributesRange.Fifteen,
       crossing: EnumPlayerAttributesRange.Fifteen,
       dribbling: EnumPlayerAttributesRange.Fifteen,
@@ -103,12 +118,15 @@ describe("Upload Player Image Service", () => {
     const teamsRepository = new InMemoryTeamsRepository();
     const playersRepository = new InMemoryPlayersRepository();
     const positionsRepository = new InMemoryPositionsRepository();
+    const usersRepository = new InMemoryUsersRepository();
     const createTeam = new CreateTeamService(teamsRepository);
     const createPosition = new CreatePositionService(positionsRepository);
+    const createUser = new CreateUserService(usersRepository);
     const createPlayer = new CreatePlayerService(
       playersRepository,
       teamsRepository,
-      positionsRepository
+      positionsRepository,
+      usersRepository
     );
     const uploadPlayerImage = new UploadPlayerImageService(playersRepository);
 
@@ -119,6 +137,7 @@ describe("Upload Player Image Service", () => {
       teamCountry: "Brasil",
       teamLeague: "Brasileirão",
       teamGrade: EnumTeamGrade.A,
+      userId: "1",
     });
 
     await createPosition.execute({
@@ -126,6 +145,14 @@ describe("Upload Player Image Service", () => {
       basePosition: EnumPlayerPositionBase.Midfielder,
       positionRole: EnumPlayerPositionRole.AttackingMidfielder,
       roleType: [EnumRoleType.Attack, EnumRoleType.Support],
+    });
+
+    await createUser.execute({
+      id: "1",
+      username: "test",
+      email: "test@example.com",
+      password: "test123",
+      avatar: null,
     });
 
     await createPlayer.execute({
@@ -137,6 +164,7 @@ describe("Upload Player Image Service", () => {
       jersey: 17,
       positionId: "1",
       teamId: "1",
+      userId: "1",
       corners: EnumPlayerAttributesRange.Fifteen,
       crossing: EnumPlayerAttributesRange.Fifteen,
       dribbling: EnumPlayerAttributesRange.Fifteen,
@@ -187,12 +215,15 @@ describe("Upload Player Image Service", () => {
     const teamsRepository = new InMemoryTeamsRepository();
     const playersRepository = new InMemoryPlayersRepository();
     const positionsRepository = new InMemoryPositionsRepository();
+    const usersRepository = new InMemoryUsersRepository();
     const createTeam = new CreateTeamService(teamsRepository);
     const createPosition = new CreatePositionService(positionsRepository);
+    const createUser = new CreateUserService(usersRepository);
     const createPlayer = new CreatePlayerService(
       playersRepository,
       teamsRepository,
-      positionsRepository
+      positionsRepository,
+      usersRepository
     );
     const uploadPlayerImage = new UploadPlayerImageService(playersRepository);
 
@@ -203,6 +234,7 @@ describe("Upload Player Image Service", () => {
       teamCountry: "Brasil",
       teamLeague: "Brasileirão",
       teamGrade: EnumTeamGrade.A,
+      userId: "1",
     });
 
     await createPosition.execute({
@@ -210,6 +242,14 @@ describe("Upload Player Image Service", () => {
       basePosition: EnumPlayerPositionBase.Midfielder,
       positionRole: EnumPlayerPositionRole.AttackingMidfielder,
       roleType: [EnumRoleType.Attack, EnumRoleType.Support],
+    });
+
+    await createUser.execute({
+      id: "1",
+      username: "test",
+      email: "test@example.com",
+      password: "test123",
+      avatar: null,
     });
 
     await createPlayer.execute({
@@ -221,6 +261,7 @@ describe("Upload Player Image Service", () => {
       jersey: 17,
       positionId: "1",
       teamId: "1",
+      userId: "1",
       corners: EnumPlayerAttributesRange.Fifteen,
       crossing: EnumPlayerAttributesRange.Fifteen,
       dribbling: EnumPlayerAttributesRange.Fifteen,
@@ -258,7 +299,6 @@ describe("Upload Player Image Service", () => {
       stamina: EnumPlayerAttributesRange.Fifteen,
       strenght: EnumPlayerAttributesRange.Fifteen,
     });
-
     await expect(
       uploadPlayerImage.execute({
         id: "1",

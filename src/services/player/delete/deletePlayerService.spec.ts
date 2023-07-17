@@ -16,21 +16,26 @@ import {
 import { InMemoryTeamsRepository } from "../../../repositories/inMemory/inMemoryTeamsRepository";
 import { InMemoryPositionsRepository } from "../../../repositories/inMemory/inMemoryPositionsRepository";
 import { UploadPlayerImageService } from "../uploadImage/uploadPlayerImageService";
+import { InMemoryUsersRepository } from "../../../repositories/inMemory/inMemoryUsersRepository";
+import { CreateUserService } from "../../user/create/createUserService";
 
 describe("Delete player Service", () => {
   it("should be able to delete a player", async () => {
     const playersRepository = new InMemoryPlayersRepository();
     const teamsRepository = new InMemoryTeamsRepository();
     const positionsRepository = new InMemoryPositionsRepository();
+    const usersRepository = new InMemoryUsersRepository();
     const createPlayer = new CreatePlayerService(
       playersRepository,
       teamsRepository,
-      positionsRepository
+      positionsRepository,
+      usersRepository
     );
     const createTeam = new CreateTeamService(teamsRepository);
     const createPositionService = new CreatePositionService(
       positionsRepository
     );
+    const createUserService = new CreateUserService(usersRepository);
 
     await createPositionService.execute({
       id: "1",
@@ -47,6 +52,15 @@ describe("Delete player Service", () => {
       teamLeague: "Brasileirão",
       teamGrade: EnumTeamGrade.A,
       teamLogo: "exemplo",
+      userId: "1",
+    });
+
+    await createUserService.execute({
+      id: "1",
+      username: "test",
+      email: "test@example.com",
+      password: "test123",
+      avatar: null,
     });
     const deletePlayer = new DeletePlayerService(playersRepository);
 
@@ -59,6 +73,7 @@ describe("Delete player Service", () => {
       jersey: 17,
       positionId: "1",
       teamId: "1",
+      userId: "1",
       corners: EnumPlayerAttributesRange.Fifteen,
       crossing: EnumPlayerAttributesRange.Fifteen,
       dribbling: EnumPlayerAttributesRange.Fifteen,
@@ -108,15 +123,18 @@ describe("Delete player Service", () => {
     const playersRepository = new InMemoryPlayersRepository();
     const teamsRepository = new InMemoryTeamsRepository();
     const positionsRepository = new InMemoryPositionsRepository();
+    const usersRepository = new InMemoryUsersRepository();
     const createPlayer = new CreatePlayerService(
       playersRepository,
       teamsRepository,
-      positionsRepository
+      positionsRepository,
+      usersRepository
     );
     const createTeam = new CreateTeamService(teamsRepository);
     const createPositionService = new CreatePositionService(
       positionsRepository
     );
+    const createUserService = new CreateUserService(usersRepository);
     const deletePlayer = new DeletePlayerService(playersRepository);
     const uploadPlayerImage = new UploadPlayerImageService(playersRepository);
 
@@ -135,6 +153,15 @@ describe("Delete player Service", () => {
       teamLeague: "Brasileirão",
       teamGrade: EnumTeamGrade.A,
       teamLogo: "exemplo",
+      userId: "1",
+    });
+
+    await createUserService.execute({
+      id: "1",
+      username: "test",
+      email: "test@example.com",
+      password: "test123",
+      avatar: null,
     });
 
     await createPlayer.execute({
@@ -146,6 +173,7 @@ describe("Delete player Service", () => {
       jersey: 17,
       positionId: "1",
       teamId: "1",
+      userId: "1",
       corners: EnumPlayerAttributesRange.Fifteen,
       crossing: EnumPlayerAttributesRange.Fifteen,
       dribbling: EnumPlayerAttributesRange.Fifteen,
@@ -213,15 +241,18 @@ describe("Delete player Service", () => {
     const playersRepository = new InMemoryPlayersRepository();
     const teamsRepository = new InMemoryTeamsRepository();
     const positionsRepository = new InMemoryPositionsRepository();
+    const usersRepository = new InMemoryUsersRepository();
     const createPlayer = new CreatePlayerService(
       playersRepository,
       teamsRepository,
-      positionsRepository
+      positionsRepository,
+      usersRepository
     );
     const createTeam = new CreateTeamService(teamsRepository);
     const createPositionService = new CreatePositionService(
       positionsRepository
     );
+    const createUserService = new CreateUserService(usersRepository);
     const uploadPlayerImage = new UploadPlayerImageService(playersRepository);
 
     await createPositionService.execute({
@@ -239,7 +270,17 @@ describe("Delete player Service", () => {
       teamLeague: "Brasileirão",
       teamGrade: EnumTeamGrade.A,
       teamLogo: "exemplo",
+      userId: "1",
     });
+
+    await createUserService.execute({
+      id: "1",
+      username: "test",
+      email: "test@example.com",
+      password: "test123",
+      avatar: null,
+    });
+
     const deletePlayer = new DeletePlayerService(playersRepository);
 
     await createPlayer.execute({
@@ -251,6 +292,7 @@ describe("Delete player Service", () => {
       jersey: 17,
       positionId: "1",
       teamId: "1",
+      userId: "1",
       corners: EnumPlayerAttributesRange.Fifteen,
       crossing: EnumPlayerAttributesRange.Fifteen,
       dribbling: EnumPlayerAttributesRange.Fifteen,

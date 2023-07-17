@@ -13,6 +13,8 @@ import {
   EnumRoleType,
   EnumTeamGrade,
 } from "@prisma/client";
+import { InMemoryUsersRepository } from "../../../repositories/inMemory/inMemoryUsersRepository";
+import { CreateUserService } from "../../user/create/createUserService";
 
 describe("Find Player By Id", () => {
   it("should be able to find player by id", async () => {
@@ -20,15 +22,18 @@ describe("Find Player By Id", () => {
     const findPlayersByIdService = new FindPlayerByIdService(playersRepository);
     const teamsRepository = new InMemoryTeamsRepository();
     const positionsRepository = new InMemoryPositionsRepository();
+    const usersRepository = new InMemoryUsersRepository();
     const createPlayerService = new CreatePlayerService(
       playersRepository,
       teamsRepository,
-      positionsRepository
+      positionsRepository,
+      usersRepository
     );
     const createTeam = new CreateTeamService(teamsRepository);
     const createPositionService = new CreatePositionService(
       positionsRepository
     );
+    const createUserService = new CreateUserService(usersRepository);
 
     await createPositionService.execute({
       id: "1",
@@ -45,6 +50,15 @@ describe("Find Player By Id", () => {
       teamLeague: "Brasileirão",
       teamGrade: EnumTeamGrade.A,
       teamLogo: "exemplo",
+      userId: "1",
+    });
+
+    await createUserService.execute({
+      id: "1",
+      username: "test",
+      email: "test@example.com",
+      password: "test123",
+      avatar: null,
     });
 
     await createPlayerService.execute({
@@ -56,6 +70,7 @@ describe("Find Player By Id", () => {
       jersey: 17,
       positionId: "1",
       teamId: "1",
+      userId: "1",
       corners: EnumPlayerAttributesRange.Fifteen,
       crossing: EnumPlayerAttributesRange.Fifteen,
       dribbling: EnumPlayerAttributesRange.Fifteen,
@@ -106,15 +121,18 @@ describe("Find Player By Id", () => {
     const findPlayersByIdService = new FindPlayerByIdService(playersRepository);
     const teamsRepository = new InMemoryTeamsRepository();
     const positionsRepository = new InMemoryPositionsRepository();
+    const usersRepository = new InMemoryUsersRepository();
     const createPlayerService = new CreatePlayerService(
       playersRepository,
       teamsRepository,
-      positionsRepository
+      positionsRepository,
+      usersRepository
     );
     const createTeam = new CreateTeamService(teamsRepository);
     const createPositionService = new CreatePositionService(
       positionsRepository
     );
+    const createUserService = new CreateUserService(usersRepository);
 
     await createPositionService.execute({
       id: "1",
@@ -131,6 +149,15 @@ describe("Find Player By Id", () => {
       teamLeague: "Brasileirão",
       teamGrade: EnumTeamGrade.A,
       teamLogo: "exemplo",
+      userId: "1",
+    });
+
+    await createUserService.execute({
+      id: "1",
+      username: "test",
+      email: "test@example.com",
+      password: "test123",
+      avatar: null,
     });
 
     await createPlayerService.execute({
@@ -142,6 +169,7 @@ describe("Find Player By Id", () => {
       jersey: 17,
       positionId: "1",
       teamId: "1",
+      userId: "1",
       corners: EnumPlayerAttributesRange.Fifteen,
       crossing: EnumPlayerAttributesRange.Fifteen,
       dribbling: EnumPlayerAttributesRange.Fifteen,
