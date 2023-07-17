@@ -34,6 +34,12 @@ export class InMemoryUsersRepository implements UsersRepository {
     return user;
   }
 
+  async findByUsername(username: string): Promise<User | undefined> {
+    const user = this.users.find((u) => u.username === username);
+
+    return user;
+  }
+
   async findIndex(userId: string): Promise<number> {
     const userIndex = this.users.findIndex((obj) => obj.id === userId);
 
