@@ -1,8 +1,9 @@
 export interface UserProps {
-  id: string;
+  id?: string;
   username: string;
   email: string;
   password: string;
+  avatar?: string | null;
 }
 
 export class User {
@@ -28,12 +29,17 @@ export class User {
     return this.props.password;
   }
 
+  get avatar() {
+    return this.props.avatar;
+  }
+
   getSummary(): UserProps {
     return {
       id: this.props.id,
       username: this.props.username,
       email: this.props.email,
       password: this.props.password,
+      avatar: this.props.avatar,
     };
   }
 }

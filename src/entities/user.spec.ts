@@ -7,6 +7,7 @@ test("create a user", () => {
     username: "test",
     email: "test@example.com",
     password: "test123",
+    avatar: null,
   });
 
   expect(user).instanceOf(User);

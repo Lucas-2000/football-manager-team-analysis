@@ -8,11 +8,18 @@ export class InMemoryUsersRepository implements UsersRepository {
     this.users.push(user);
   }
 
-  async verifyExisting(username: string, email: string): Promise<boolean> {
+  async verifyExistingUsername(username: string): Promise<boolean> {
     const usernameExists = this.users.find((u) => u.username === username);
+
+    if (usernameExists) return true;
+
+    return false;
+  }
+
+  async verifyExistingEmail(email: string): Promise<boolean> {
     const emailExists = this.users.find((u) => u.email === email);
 
-    if (usernameExists || emailExists) return true;
+    if (emailExists) return true;
 
     return false;
   }
