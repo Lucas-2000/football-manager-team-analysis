@@ -17,6 +17,7 @@ describe("Find All Teams Service", () => {
       teamCountry: "Brasil",
       teamLeague: "Brasileirão",
       teamGrade: EnumTeamGrade.A,
+      userId: "1",
     });
 
     await expect(findAllTeamsService.execute()).resolves.toEqual([team]);

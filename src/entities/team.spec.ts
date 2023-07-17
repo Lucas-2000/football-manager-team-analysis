@@ -11,6 +11,7 @@ test("create a team", () => {
     teamLeague: "Brasileirão",
     teamGrade: EnumTeamGrade.A,
     teamLogo: "exemplo",
+    userId: "1",
   });
 
   expect(team).instanceOf(Team);

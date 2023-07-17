@@ -12,6 +12,7 @@ export class PrismaTeamsRepository implements TeamsRepository {
     teamGrade,
     teamLeague,
     teamLogo,
+    userId,
   }: Team): Promise<void> {
     await prisma.team.create({
       data: {
@@ -22,6 +23,7 @@ export class PrismaTeamsRepository implements TeamsRepository {
         teamGrade,
         teamLeague,
         teamLogo,
+        userId,
       },
     });
   }
@@ -49,6 +51,7 @@ export class PrismaTeamsRepository implements TeamsRepository {
           teamLeague: team.teamLeague,
           teamGrade: team.teamGrade,
           teamLogo: team.teamLogo,
+          userId: team.userId,
         })
     );
   }
@@ -70,6 +73,7 @@ export class PrismaTeamsRepository implements TeamsRepository {
       teamLeague: team.teamLeague,
       teamGrade: team.teamGrade,
       teamLogo: team.teamLogo,
+      userId: team.userId,
     });
   }
 
@@ -90,6 +94,7 @@ export class PrismaTeamsRepository implements TeamsRepository {
     teamGrade,
     teamLeague,
     teamLogo,
+    userId,
   }: Team): Promise<void> {
     await prisma.team.update({
       where: { id },
@@ -100,6 +105,7 @@ export class PrismaTeamsRepository implements TeamsRepository {
         teamGrade,
         teamLeague,
         teamLogo,
+        userId,
       },
     });
   }

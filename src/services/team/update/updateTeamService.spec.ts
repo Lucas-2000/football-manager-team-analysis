@@ -17,6 +17,7 @@ describe("Update Team Service", () => {
       teamCountry: "Brasil",
       teamLeague: "Brasileirão",
       teamGrade: EnumTeamGrade.A,
+      userId: "1",
     });
 
     await expect(
@@ -27,6 +28,7 @@ describe("Update Team Service", () => {
         teamCountry: "Brasil",
         teamLeague: "Brasileirão",
         teamGrade: EnumTeamGrade.B,
+        userId: "1",
       })
     ).resolves.toHaveProperty("id");
   });
@@ -43,6 +45,7 @@ describe("Update Team Service", () => {
       teamCountry: "Brasil",
       teamLeague: "Brasileirão",
       teamGrade: EnumTeamGrade.A,
+      userId: "1",
     });
 
     await expect(
@@ -53,6 +56,7 @@ describe("Update Team Service", () => {
         teamCountry: "Brasil",
         teamLeague: "Brasileirão",
         teamGrade: EnumTeamGrade.B,
+        userId: "1",
       })
     ).rejects.toBeInstanceOf(Error);
   });

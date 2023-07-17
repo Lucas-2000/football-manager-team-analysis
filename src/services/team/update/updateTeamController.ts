@@ -12,7 +12,7 @@ export class UpdateTeamController {
       teamCountry,
       teamGrade,
       teamLeague,
-      teamLogo,
+      userId,
     } = request.body;
 
     const team = await this.updateTeamService.execute({
@@ -22,7 +22,7 @@ export class UpdateTeamController {
       teamCountry,
       teamGrade,
       teamLeague,
-      teamLogo,
+      userId,
     });
 
     return response.status(201).json(team);

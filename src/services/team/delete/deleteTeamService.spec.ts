@@ -20,6 +20,7 @@ describe("Delete Team Service", () => {
       teamCountry: "Brasil",
       teamLeague: "Brasileirão",
       teamGrade: EnumTeamGrade.A,
+      userId: "1",
     });
 
     await expect(
@@ -42,6 +43,7 @@ describe("Delete Team Service", () => {
       teamCountry: "Brasil",
       teamLeague: "Brasileirão",
       teamGrade: EnumTeamGrade.A,
+      userId: "1",
     });
 
     const uploadsFolder = path.join(
@@ -81,6 +83,7 @@ describe("Delete Team Service", () => {
       teamCountry: "Brasil",
       teamLeague: "Brasileirão",
       teamGrade: EnumTeamGrade.A,
+      userId: "1",
     });
 
     await expect(

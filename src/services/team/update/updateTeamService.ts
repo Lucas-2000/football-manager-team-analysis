@@ -9,6 +9,7 @@ interface UpdateTeamRequest {
   teamCountry: string;
   teamLeague: string;
   teamGrade: EnumTeamGrade;
+  userId: string;
 }
 
 type UpdateTeamResponse = TeamProps;
@@ -23,6 +24,7 @@ export class UpdateTeamService {
     teamCountry,
     teamLeague,
     teamGrade,
+    userId,
   }: UpdateTeamRequest): Promise<UpdateTeamResponse> {
     const verifyIndex = await this.teamsRepository.findIndex(id);
 
@@ -38,6 +40,7 @@ export class UpdateTeamService {
       teamCountry,
       teamLeague,
       teamGrade,
+      userId,
     });
 
     await this.teamsRepository.update(team);

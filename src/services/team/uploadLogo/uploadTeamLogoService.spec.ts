@@ -17,6 +17,7 @@ describe("Upload Team Logo Service", () => {
       teamCountry: "Brasil",
       teamLeague: "Brasileirão",
       teamGrade: EnumTeamGrade.A,
+      userId: "1",
     });
 
     await expect(
@@ -39,6 +40,7 @@ describe("Upload Team Logo Service", () => {
       teamCountry: "Brasil",
       teamLeague: "Brasileirão",
       teamGrade: EnumTeamGrade.A,
+      userId: "1",
     });
 
     await expect(
@@ -61,6 +63,7 @@ describe("Upload Team Logo Service", () => {
       teamCountry: "Brasil",
       teamLeague: "Brasileirão",
       teamGrade: EnumTeamGrade.A,
+      userId: "1",
     });
 
     await expect(

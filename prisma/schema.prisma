@@ -12,12 +12,14 @@ datasource db {
 
 model Team {
   id               String        @id @default(uuid())
-  teamName         String        
+  teamName         String
   teamLocalization String
   teamCountry      String
   teamLeague       String
   teamGrade        EnumTeamGrade
   teamLogo         String?
+  user             User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId           String
   createdAt        DateTime      @default(now())
   updatedAt        DateTime      @updatedAt
   players          Player[]
@@ -39,7 +41,7 @@ model Position {
 
 model Player {
   id             String   @id @default(uuid())
-  name           String  
+  name           String
   birthdate      String
   lenght         Int
   weight         Int
@@ -85,11 +87,26 @@ model Player {
   teamId         String
   position       Position @relation(fields: [positionId], references: [id], onDelete: Cascade)
   positionId     String
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId         String
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   @@map("players")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  username  String   @unique
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  Player    Player[]
+  Team      Team[]
+
+  @@map("users")
 }
 
 //Enums

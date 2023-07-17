@@ -10,6 +10,7 @@ interface CreateTeamRequest {
   teamLeague: string;
   teamGrade: EnumTeamGrade;
   teamLogo?: string;
+  userId: string;
 }
 
 type CreateTeamResponse = TeamProps;
@@ -25,6 +26,7 @@ export class CreateTeamService {
     teamGrade,
     teamLeague,
     teamLogo,
+    userId,
   }: CreateTeamRequest): Promise<CreateTeamResponse> {
     const verifyExisting = await this.teamsRepository.verifyExisting(teamName);
 
@@ -41,6 +43,7 @@ export class CreateTeamService {
       teamGrade,
       teamLeague,
       teamLogo,
+      userId,
     });
 
     await this.teamsRepository.create(team);

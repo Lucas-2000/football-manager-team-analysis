@@ -28,6 +28,7 @@ export class UploadTeamLogoService {
       teamCountry: team.teamCountry,
       teamLeague: team.teamLeague,
       teamGrade: team.teamGrade,
+      userId: team.userId,
       teamLogo,
     });
 

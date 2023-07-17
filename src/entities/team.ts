@@ -8,6 +8,7 @@ export interface TeamProps {
   teamLeague: string;
   teamGrade: EnumTeamGrade;
   teamLogo?: string | null;
+  userId: string;
 }
 
 export class Team {
@@ -45,6 +46,10 @@ export class Team {
     return this.props.teamLogo;
   }
 
+  get userId() {
+    return this.props.userId;
+  }
+
   getSummary(): TeamProps {
     return {
       id: this.props.id,
@@ -54,6 +59,7 @@ export class Team {
       teamLeague: this.props.teamLeague,
       teamGrade: this.props.teamGrade,
       teamLogo: this.props.teamLogo,
+      userId: this.props.userId,
     };
   }
 }
