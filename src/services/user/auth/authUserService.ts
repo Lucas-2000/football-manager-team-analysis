@@ -33,7 +33,7 @@ export class AuthUserService {
 
     const token = sign({}, jwtSecret, {
       subject: user.id,
-      expiresIn: "20s",
+      expiresIn: "12h",
     });
 
     const userSummary = user.getSummary();
