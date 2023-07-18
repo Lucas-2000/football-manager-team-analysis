@@ -9,9 +9,9 @@ export class InMemoryTeamsRepository implements TeamsRepository {
     this.teams.push(team);
   }
 
-  async verifyExisting(teamName: string): Promise<boolean> {
+  async verifyExisting(teamName: string, userId: string): Promise<boolean> {
     const existingTeam = this.teams.find((team) => {
-      return team.teamName === teamName;
+      return team.teamName === teamName && team.userId === userId;
     });
 
     if (!existingTeam) return false;

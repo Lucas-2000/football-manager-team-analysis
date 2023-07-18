@@ -3,7 +3,7 @@ import { EnumTeamGrade } from "../utils/dicts/enumTeamGrade";
 
 export interface TeamsRepository {
   create(team: Team): Promise<void>;
-  verifyExisting(teamName: string): Promise<boolean>;
+  verifyExisting(teamName: string, userId: string): Promise<boolean>;
   findAll(): Promise<Team[]>;
   findById(teamId: string): Promise<Team | undefined>;
   findIndex(teamId: string): Promise<number>;

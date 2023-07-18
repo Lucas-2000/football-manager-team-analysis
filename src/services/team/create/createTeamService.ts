@@ -32,9 +32,13 @@ export class CreateTeamService {
     teamLogo,
     userId,
   }: CreateTeamRequest): Promise<CreateTeamResponse> {
-    const verifyExisting = await this.teamsRepository.verifyExisting(teamName);
+    const verifyExisting = await this.teamsRepository.verifyExisting(
+      teamName,
+      userId
+    );
 
-    if (verifyExisting) throw new Error(`Team ${teamName} already exists!`);
+    if (verifyExisting)
+      throw new Error(`Team ${teamName} already exists for this user!`);
 
     const userExists = await this.usersRepository.findById(userId);
 

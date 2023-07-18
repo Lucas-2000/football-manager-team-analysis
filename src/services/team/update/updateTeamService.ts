@@ -41,6 +41,13 @@ export class UpdateTeamService {
     if ((await this.teamsRepository.checkTeamGradeInterval(teamGrade)) == false)
       throw new Error("Incorrect Team Grade Interval!");
 
+    const teamExists = await this.teamsRepository.findById(id);
+
+    if (teamExists?.teamName !== teamName) {
+      if (await this.teamsRepository.verifyExisting(teamName, userId))
+        throw new Error(`Team ${teamName} already exists for this user!`);
+    }
+
     const team = new Team({
       id,
       teamName,
