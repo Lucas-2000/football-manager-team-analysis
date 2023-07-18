@@ -31,11 +31,18 @@ describe("Delete player Service", () => {
       positionsRepository,
       usersRepository
     );
-    const createTeam = new CreateTeamService(teamsRepository);
+    const createTeam = new CreateTeamService(teamsRepository, usersRepository);
     const createPositionService = new CreatePositionService(
       positionsRepository
     );
     const createUserService = new CreateUserService(usersRepository);
+
+    await createUserService.execute({
+      id: "1",
+      username: "test",
+      email: "test@example.com",
+      password: "test123",
+    });
 
     await createPositionService.execute({
       id: "1",
@@ -55,13 +62,6 @@ describe("Delete player Service", () => {
       userId: "1",
     });
 
-    await createUserService.execute({
-      id: "1",
-      username: "test",
-      email: "test@example.com",
-      password: "test123",
-      avatar: null,
-    });
     const deletePlayer = new DeletePlayerService(playersRepository);
 
     await createPlayer.execute({
@@ -130,13 +130,20 @@ describe("Delete player Service", () => {
       positionsRepository,
       usersRepository
     );
-    const createTeam = new CreateTeamService(teamsRepository);
+    const createTeam = new CreateTeamService(teamsRepository, usersRepository);
     const createPositionService = new CreatePositionService(
       positionsRepository
     );
     const createUserService = new CreateUserService(usersRepository);
     const deletePlayer = new DeletePlayerService(playersRepository);
     const uploadPlayerImage = new UploadPlayerImageService(playersRepository);
+
+    await createUserService.execute({
+      id: "1",
+      username: "test",
+      email: "test@example.com",
+      password: "test123",
+    });
 
     await createPositionService.execute({
       id: "1",
@@ -154,14 +161,6 @@ describe("Delete player Service", () => {
       teamGrade: EnumTeamGrade.A,
       teamLogo: "exemplo",
       userId: "1",
-    });
-
-    await createUserService.execute({
-      id: "1",
-      username: "test",
-      email: "test@example.com",
-      password: "test123",
-      avatar: null,
     });
 
     await createPlayer.execute({
@@ -248,12 +247,19 @@ describe("Delete player Service", () => {
       positionsRepository,
       usersRepository
     );
-    const createTeam = new CreateTeamService(teamsRepository);
+    const createTeam = new CreateTeamService(teamsRepository, usersRepository);
     const createPositionService = new CreatePositionService(
       positionsRepository
     );
     const createUserService = new CreateUserService(usersRepository);
     const uploadPlayerImage = new UploadPlayerImageService(playersRepository);
+
+    await createUserService.execute({
+      id: "1",
+      username: "test",
+      email: "test@example.com",
+      password: "test123",
+    });
 
     await createPositionService.execute({
       id: "1",
@@ -271,14 +277,6 @@ describe("Delete player Service", () => {
       teamGrade: EnumTeamGrade.A,
       teamLogo: "exemplo",
       userId: "1",
-    });
-
-    await createUserService.execute({
-      id: "1",
-      username: "test",
-      email: "test@example.com",
-      password: "test123",
-      avatar: null,
     });
 
     const deletePlayer = new DeletePlayerService(playersRepository);

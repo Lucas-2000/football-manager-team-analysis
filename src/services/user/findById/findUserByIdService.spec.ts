@@ -14,7 +14,6 @@ describe("Find User By Id", () => {
       username: "test",
       email: "test@example.com",
       password: "test123",
-      avatar: null,
     });
 
     expect(findUserByIdService.execute({ id: "1" })).resolves.toHaveProperty(
@@ -32,7 +31,6 @@ describe("Find User By Id", () => {
       username: "test",
       email: "test@example.com",
       password: "test123",
-      avatar: null,
     });
 
     expect(findUserByIdService.execute({ id: "2" })).rejects.toBeInstanceOf(

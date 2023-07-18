@@ -1,5 +1,6 @@
 import { Team, TeamProps } from "../../../entities/team";
 import { TeamsRepository } from "../../../repositories/teamsRepository";
+import { UsersRepository } from "../../../repositories/usersRepository";
 import { EnumTeamGrade } from "../../../utils/dicts/enumTeamGrade";
 
 interface CreateTeamRequest {
@@ -16,7 +17,10 @@ interface CreateTeamRequest {
 type CreateTeamResponse = TeamProps;
 
 export class CreateTeamService {
-  constructor(private teamsRepository: TeamsRepository) {}
+  constructor(
+    private teamsRepository: TeamsRepository,
+    private usersRepository: UsersRepository
+  ) {}
 
   async execute({
     id,
@@ -31,6 +35,10 @@ export class CreateTeamService {
     const verifyExisting = await this.teamsRepository.verifyExisting(teamName);
 
     if (verifyExisting) throw new Error(`Team ${teamName} already exists!`);
+
+    const userExists = await this.usersRepository.findById(userId);
+
+    if (!userExists) throw new Error("User not found!");
 
     if ((await this.teamsRepository.checkTeamGradeInterval(teamGrade)) == false)
       throw new Error("Incorrect Team Grade Interval!");

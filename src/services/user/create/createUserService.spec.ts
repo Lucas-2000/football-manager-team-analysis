@@ -12,7 +12,6 @@ describe("Create User Service", () => {
         username: "test",
         email: "test@example.com",
         password: "test123",
-        avatar: null,
       })
     ).resolves.toHaveProperty("id");
   });
@@ -26,7 +25,6 @@ describe("Create User Service", () => {
       username: "test",
       email: "test@example.com",
       password: "test123",
-      avatar: null,
     });
 
     await expect(
@@ -35,7 +33,6 @@ describe("Create User Service", () => {
         username: "test",
         email: "test@example1.com",
         password: "test123",
-        avatar: null,
       })
     ).rejects.toBeInstanceOf(Error);
   });
@@ -49,7 +46,6 @@ describe("Create User Service", () => {
       username: "test",
       email: "test@example.com",
       password: "test123",
-      avatar: null,
     });
 
     await expect(
@@ -58,7 +54,6 @@ describe("Create User Service", () => {
         username: "test1",
         email: "test@example.com",
         password: "test123",
-        avatar: null,
       })
     ).rejects.toBeInstanceOf(Error);
   });

@@ -29,11 +29,18 @@ describe("Find All Teams Players", () => {
       positionsRepository,
       usersRepository
     );
-    const createTeam = new CreateTeamService(teamsRepository);
+    const createTeam = new CreateTeamService(teamsRepository, usersRepository);
     const createUserService = new CreateUserService(usersRepository);
     const createPositionService = new CreatePositionService(
       positionsRepository
     );
+
+    await createUserService.execute({
+      id: "1",
+      username: "test",
+      email: "test@example.com",
+      password: "test123",
+    });
 
     await createPositionService.execute({
       id: "1",
@@ -51,14 +58,6 @@ describe("Find All Teams Players", () => {
       teamGrade: EnumTeamGrade.A,
       teamLogo: "exemplo",
       userId: "1",
-    });
-
-    await createUserService.execute({
-      id: "1",
-      username: "test",
-      email: "test@example.com",
-      password: "test123",
-      avatar: null,
     });
 
     const player = await createPlayer.execute({

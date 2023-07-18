@@ -17,7 +17,6 @@ describe("Delete User Service", () => {
       username: "test",
       email: "test@example.com",
       password: "test123",
-      avatar: null,
     });
 
     await expect(
@@ -38,7 +37,6 @@ describe("Delete User Service", () => {
       username: "test",
       email: "test@example.com",
       password: "test123",
-      avatar: null,
     });
 
     const uploadsFolder = path.join(
@@ -74,7 +72,6 @@ describe("Delete User Service", () => {
       username: "test",
       email: "test@example.com",
       password: "test123",
-      avatar: null,
     });
 
     await expect(deleteUserService.execute({ id: "2" })).rejects.toBeInstanceOf(

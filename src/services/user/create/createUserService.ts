@@ -7,7 +7,7 @@ interface CreateUserServiceRequest {
   username: string;
   email: string;
   password: string;
-  avatar?: string | null;
+  avatar?: string;
 }
 
 type CreateUserServiceResponse = UserProps;

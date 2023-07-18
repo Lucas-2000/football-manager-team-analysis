@@ -14,7 +14,6 @@ describe("Auth user service", () => {
       username: "test",
       email: "test@example.com",
       password: "test123",
-      avatar: null,
     });
 
     const authResult = await authUserService.execute({
@@ -36,7 +35,6 @@ describe("Auth user service", () => {
       username: "test",
       email: "test@example.com",
       password: "test123",
-      avatar: null,
     });
 
     await expect(

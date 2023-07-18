@@ -22,7 +22,7 @@ describe("Upload Player Image Service", () => {
     const playersRepository = new InMemoryPlayersRepository();
     const positionsRepository = new InMemoryPositionsRepository();
     const usersRepository = new InMemoryUsersRepository();
-    const createTeam = new CreateTeamService(teamsRepository);
+    const createTeam = new CreateTeamService(teamsRepository, usersRepository);
     const createPosition = new CreatePositionService(positionsRepository);
     const createUser = new CreateUserService(usersRepository);
     const createPlayer = new CreatePlayerService(
@@ -32,6 +32,13 @@ describe("Upload Player Image Service", () => {
       usersRepository
     );
     const uploadPlayerImage = new UploadPlayerImageService(playersRepository);
+
+    await createUser.execute({
+      id: "1",
+      username: "test",
+      email: "test@example.com",
+      password: "test123",
+    });
 
     await createTeam.execute({
       id: "1",
@@ -48,14 +55,6 @@ describe("Upload Player Image Service", () => {
       basePosition: EnumPlayerPositionBase.Midfielder,
       positionRole: EnumPlayerPositionRole.AttackingMidfielder,
       roleType: [EnumRoleType.Attack, EnumRoleType.Support],
-    });
-
-    await createUser.execute({
-      id: "1",
-      username: "test",
-      email: "test@example.com",
-      password: "test123",
-      avatar: null,
     });
 
     await createPlayer.execute({
@@ -119,7 +118,7 @@ describe("Upload Player Image Service", () => {
     const playersRepository = new InMemoryPlayersRepository();
     const positionsRepository = new InMemoryPositionsRepository();
     const usersRepository = new InMemoryUsersRepository();
-    const createTeam = new CreateTeamService(teamsRepository);
+    const createTeam = new CreateTeamService(teamsRepository, usersRepository);
     const createPosition = new CreatePositionService(positionsRepository);
     const createUser = new CreateUserService(usersRepository);
     const createPlayer = new CreatePlayerService(
@@ -129,6 +128,13 @@ describe("Upload Player Image Service", () => {
       usersRepository
     );
     const uploadPlayerImage = new UploadPlayerImageService(playersRepository);
+
+    await createUser.execute({
+      id: "1",
+      username: "test",
+      email: "test@example.com",
+      password: "test123",
+    });
 
     await createTeam.execute({
       id: "1",
@@ -145,14 +151,6 @@ describe("Upload Player Image Service", () => {
       basePosition: EnumPlayerPositionBase.Midfielder,
       positionRole: EnumPlayerPositionRole.AttackingMidfielder,
       roleType: [EnumRoleType.Attack, EnumRoleType.Support],
-    });
-
-    await createUser.execute({
-      id: "1",
-      username: "test",
-      email: "test@example.com",
-      password: "test123",
-      avatar: null,
     });
 
     await createPlayer.execute({
@@ -216,7 +214,7 @@ describe("Upload Player Image Service", () => {
     const playersRepository = new InMemoryPlayersRepository();
     const positionsRepository = new InMemoryPositionsRepository();
     const usersRepository = new InMemoryUsersRepository();
-    const createTeam = new CreateTeamService(teamsRepository);
+    const createTeam = new CreateTeamService(teamsRepository, usersRepository);
     const createPosition = new CreatePositionService(positionsRepository);
     const createUser = new CreateUserService(usersRepository);
     const createPlayer = new CreatePlayerService(
@@ -226,6 +224,13 @@ describe("Upload Player Image Service", () => {
       usersRepository
     );
     const uploadPlayerImage = new UploadPlayerImageService(playersRepository);
+
+    await createUser.execute({
+      id: "1",
+      username: "test",
+      email: "test@example.com",
+      password: "test123",
+    });
 
     await createTeam.execute({
       id: "1",
@@ -242,14 +247,6 @@ describe("Upload Player Image Service", () => {
       basePosition: EnumPlayerPositionBase.Midfielder,
       positionRole: EnumPlayerPositionRole.AttackingMidfielder,
       roleType: [EnumRoleType.Attack, EnumRoleType.Support],
-    });
-
-    await createUser.execute({
-      id: "1",
-      username: "test",
-      email: "test@example.com",
-      password: "test123",
-      avatar: null,
     });
 
     await createPlayer.execute({

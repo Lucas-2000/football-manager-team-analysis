@@ -14,7 +14,6 @@ describe("Upload User Avatar Service", () => {
       username: "test",
       email: "test@example.com",
       password: "test123",
-      avatar: null,
     });
 
     await expect(
@@ -35,7 +34,6 @@ describe("Upload User Avatar Service", () => {
       username: "test",
       email: "test@example.com",
       password: "test123",
-      avatar: null,
     });
 
     await expect(
@@ -56,7 +54,6 @@ describe("Upload User Avatar Service", () => {
       username: "test",
       email: "test@example.com",
       password: "test123",
-      avatar: null,
     });
 
     await expect(

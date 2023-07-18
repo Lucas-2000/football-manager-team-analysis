@@ -14,7 +14,6 @@ describe("Find All Users", () => {
       username: "test",
       email: "test@example.com",
       password: "test123",
-      avatar: null,
     });
 
     await expect(findAllUsersService.execute()).resolves.toEqual([user]);

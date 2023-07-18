@@ -34,11 +34,18 @@ describe("Update Player Service", () => {
       positionsRepository,
       usersRepository
     );
-    const createTeam = new CreateTeamService(teamsRepository);
+    const createTeam = new CreateTeamService(teamsRepository, usersRepository);
     const createPositionService = new CreatePositionService(
       positionsRepository
     );
     const createUserService = new CreateUserService(usersRepository);
+
+    await createUserService.execute({
+      id: "1",
+      username: "test",
+      email: "test@example.com",
+      password: "test123",
+    });
 
     await createPositionService.execute({
       id: "1",
@@ -56,14 +63,6 @@ describe("Update Player Service", () => {
       teamGrade: EnumTeamGrade.A,
       teamLogo: "exemplo",
       userId: "1",
-    });
-
-    await createUserService.execute({
-      id: "1",
-      username: "test",
-      email: "test@example.com",
-      password: "test123",
-      avatar: null,
     });
 
     await createPlayer.execute({
@@ -182,11 +181,18 @@ describe("Update Player Service", () => {
       positionsRepository,
       usersRepository
     );
-    const createTeam = new CreateTeamService(teamsRepository);
+    const createTeam = new CreateTeamService(teamsRepository, usersRepository);
     const createPositionService = new CreatePositionService(
       positionsRepository
     );
     const createUserService = new CreateUserService(usersRepository);
+
+    await createUserService.execute({
+      id: "1",
+      username: "test",
+      email: "test@example.com",
+      password: "test123",
+    });
 
     await createPositionService.execute({
       id: "1",
@@ -204,14 +210,6 @@ describe("Update Player Service", () => {
       teamGrade: EnumTeamGrade.A,
       teamLogo: "exemplo",
       userId: "1",
-    });
-
-    await createUserService.execute({
-      id: "1",
-      username: "test",
-      email: "test@example.com",
-      password: "test123",
-      avatar: null,
     });
 
     await createPlayer.execute({
@@ -329,11 +327,18 @@ describe("Update Player Service", () => {
       positionsRepository,
       usersRepository
     );
-    const createTeam = new CreateTeamService(teamsRepository);
+    const createTeam = new CreateTeamService(teamsRepository, usersRepository);
     const createPositionService = new CreatePositionService(
       positionsRepository
     );
     const createUserService = new CreateUserService(usersRepository);
+
+    await createUserService.execute({
+      id: "1",
+      username: "test",
+      email: "test@example.com",
+      password: "test123",
+    });
 
     await createPositionService.execute({
       id: "1",
@@ -351,14 +356,6 @@ describe("Update Player Service", () => {
       teamGrade: EnumTeamGrade.A,
       teamLogo: "exemplo",
       userId: "1",
-    });
-
-    await createUserService.execute({
-      id: "1",
-      username: "test",
-      email: "test@example.com",
-      password: "test123",
-      avatar: null,
     });
 
     await createPlayer.execute({
@@ -477,11 +474,18 @@ describe("Update Player Service", () => {
       positionsRepository,
       usersRepository
     );
-    const createTeam = new CreateTeamService(teamsRepository);
+    const createTeam = new CreateTeamService(teamsRepository, usersRepository);
     const createPositionService = new CreatePositionService(
       positionsRepository
     );
     const createUserService = new CreateUserService(usersRepository);
+
+    await createUserService.execute({
+      id: "1",
+      username: "test",
+      email: "test@example.com",
+      password: "test123",
+    });
 
     await createPositionService.execute({
       id: "1",
@@ -499,14 +503,6 @@ describe("Update Player Service", () => {
       teamGrade: EnumTeamGrade.A,
       teamLogo: "exemplo",
       userId: "1",
-    });
-
-    await createUserService.execute({
-      id: "1",
-      username: "test",
-      email: "test@example.com",
-      password: "test123",
-      avatar: null,
     });
 
     await createPlayer.execute({
