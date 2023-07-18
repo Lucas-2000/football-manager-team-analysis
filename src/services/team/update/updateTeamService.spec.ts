@@ -80,4 +80,41 @@ describe("Update Team Service", () => {
       })
     ).rejects.toBeInstanceOf(Error);
   });
+
+  it("should not be able to update a team if user don't found", async () => {
+    const teamsRepository = new InMemoryTeamsRepository();
+    const usersRepository = new InMemoryUsersRepository();
+    const createTeam = new CreateTeamService(teamsRepository, usersRepository);
+    const updateTeam = new UpdateTeamService(teamsRepository, usersRepository);
+    const createUser = new CreateUserService(usersRepository);
+
+    await createUser.execute({
+      id: "1",
+      username: "test",
+      email: "test@example.com",
+      password: "test123",
+    });
+
+    await createTeam.execute({
+      id: "1",
+      teamName: "Corinthians",
+      teamLocalization: "SP",
+      teamCountry: "Brasil",
+      teamLeague: "Brasileirão",
+      teamGrade: EnumTeamGrade.A,
+      userId: "1",
+    });
+
+    await expect(
+      updateTeam.execute({
+        id: "1",
+        teamName: "Corinthians",
+        teamLocalization: "SP",
+        teamCountry: "Brasil",
+        teamLeague: "Brasileirão",
+        teamGrade: EnumTeamGrade.B,
+        userId: "2",
+      })
+    ).rejects.toBeInstanceOf(Error);
+  });
 });

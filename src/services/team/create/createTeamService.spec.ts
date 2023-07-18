@@ -67,4 +67,40 @@ describe("Create Team Service", () => {
       })
     ).rejects.toBeInstanceOf(Error);
   });
+
+  it("should not be able to create a team if user don't exists", async () => {
+    const teamsRepository = new InMemoryTeamsRepository();
+    const usersRepository = new InMemoryUsersRepository();
+    const createTeam = new CreateTeamService(teamsRepository, usersRepository);
+    const createUser = new CreateUserService(usersRepository);
+
+    await createUser.execute({
+      id: "1",
+      username: "test",
+      email: "test@example.com",
+      password: "test123",
+    });
+
+    await createTeam.execute({
+      id: "1",
+      teamName: "Corinthians",
+      teamLocalization: "SP",
+      teamCountry: "Brasil",
+      teamLeague: "Brasileirão",
+      teamGrade: EnumTeamGrade.A,
+      userId: "1",
+    });
+
+    await expect(
+      createTeam.execute({
+        id: "1",
+        teamName: "Corinthians",
+        teamLocalization: "SP",
+        teamCountry: "Brasil",
+        teamLeague: "Brasileirão",
+        teamGrade: EnumTeamGrade.A,
+        userId: "2",
+      })
+    ).rejects.toBeInstanceOf(Error);
+  });
 });
