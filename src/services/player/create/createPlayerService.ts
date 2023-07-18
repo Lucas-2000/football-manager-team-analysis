@@ -117,7 +117,8 @@ export class CreatePlayerService {
       teamId
     );
 
-    if (playerExists) throw new Error(`Player ${name} already exists!`);
+    if (playerExists)
+      throw new Error(`Player ${name} already exists for this team!`);
 
     const teamExists = await this.teamsRepository.findById(teamId);
 

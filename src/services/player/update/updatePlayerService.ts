@@ -126,6 +126,13 @@ export class UpdatePlayerService {
 
     if (!userExists) throw new Error("User don't exists");
 
+    const playerExists = await this.playersRepository.findById(id);
+
+    if (playerExists?.name !== name) {
+      if (await this.playersRepository.verifyExists(name, teamId))
+        throw new Error(`Player ${name} already exists for this user!`);
+    }
+
     const attList = [
       corners,
       crossing,
