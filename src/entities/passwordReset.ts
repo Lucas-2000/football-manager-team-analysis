@@ -1,7 +1,9 @@
+import { generateRandomToken } from "../utils/math/generateRandomToken";
+import { v4 as uuid } from "uuid";
 export interface PasswordResetProps {
   id?: string;
-  token: string;
-  expiresDate: Date;
+  token?: string;
+  expiresDate?: Date;
   userId: string;
 }
 
@@ -9,7 +11,12 @@ export class PasswordReset {
   private props: PasswordResetProps;
 
   constructor(props: PasswordResetProps) {
-    this.props = props;
+    this.props = {
+      ...props,
+      id: props.id || uuid(),
+      token: props.token || generateRandomToken(15), // Gera um novo token caso não seja fornecido
+      expiresDate: props.expiresDate || new Date(Date.now() + 86400 * 1000), // Calcula o expiresDate caso não seja fornecido
+    };
   }
 
   get id() {
