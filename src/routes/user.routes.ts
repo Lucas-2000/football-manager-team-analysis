@@ -1,3 +1,4 @@
+import { GeneratePasswordResetFactory } from "./../services/passwordReset/generate/generatePasswordResetFactory";
 import { Router } from "express";
 import { CreateUserFactory } from "../services/user/create/createUserFactory";
 import { FindAllUsersFactory } from "../services/user/findAll/findAllUsersFactory";
@@ -32,6 +33,9 @@ userRoutes.post("/:id/avatar", upload.single("file"), (request, response) =>
 );
 userRoutes.post("/auth", (request, response) =>
   AuthUserFactory().handle(request, response)
+);
+userRoutes.post("/reset-password", (request, response) =>
+  GeneratePasswordResetFactory().handle(request, response)
 );
 
 export { userRoutes };

@@ -24,7 +24,7 @@ export class PrismaUsersRepository implements UsersRepository {
         new User({
           id: user.id,
           username: user.username,
-          email: user.id,
+          email: user.email,
           password: user.password,
           avatar: user.avatar,
         })
@@ -61,7 +61,7 @@ export class PrismaUsersRepository implements UsersRepository {
     return new User({
       id: user.id,
       username: user.username,
-      email: user.id,
+      email: user.email,
       password: user.password,
       avatar: user.avatar,
     });
@@ -77,7 +77,7 @@ export class PrismaUsersRepository implements UsersRepository {
     return new User({
       id: user.id,
       username: user.username,
-      email: user.id,
+      email: user.email,
       password: user.password,
       avatar: user.avatar,
     });
@@ -93,7 +93,7 @@ export class PrismaUsersRepository implements UsersRepository {
     return new User({
       id: user.id,
       username: user.username,
-      email: user.id,
+      email: user.email,
       password: user.password,
       avatar: user.avatar,
     });
