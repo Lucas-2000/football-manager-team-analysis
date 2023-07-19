@@ -83,6 +83,22 @@ export class PrismaUsersRepository implements UsersRepository {
     });
   }
 
+  async findByEmail(email: string): Promise<User | undefined> {
+    const user = await prisma.user.findUnique({
+      where: { id: email },
+    });
+
+    if (!user) return;
+
+    return new User({
+      id: user.id,
+      username: user.username,
+      email: user.id,
+      password: user.password,
+      avatar: user.avatar,
+    });
+  }
+
   async findIndex(userId: string): Promise<number> {
     const users = await prisma.user.findMany();
     const userIndex = users.findIndex((user) => user.id === userId);
