@@ -2,7 +2,6 @@ import { Player } from "../../entities/player";
 import { prisma } from "../../utils/config/prisma/prismaClient";
 import { EnumPlayerAttributesRange } from "../../utils/dicts/enumPlayerAttributesRange";
 import { PlayersRepository } from "../playersRepository";
-import { v4 as uuid } from "uuid";
 
 export class PrismaPlayersRepository implements PlayersRepository {
   async create({
@@ -54,7 +53,6 @@ export class PrismaPlayersRepository implements PlayersRepository {
   }: Player): Promise<void> {
     await prisma.player.create({
       data: {
-        id: uuid(),
         name,
         birthdate,
         lenght,

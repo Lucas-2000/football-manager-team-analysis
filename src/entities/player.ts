@@ -1,4 +1,5 @@
 import { EnumPlayerAttributesRange } from "../utils/dicts/enumPlayerAttributesRange";
+import { v4 as uuid } from "uuid";
 
 export interface PlayerProps {
   id?: string;
@@ -53,7 +54,10 @@ export class Player {
   private props: PlayerProps;
 
   constructor(props: PlayerProps) {
-    this.props = props;
+    this.props = {
+      ...props,
+      id: props.id || uuid(),
+    };
   }
 
   get id() {

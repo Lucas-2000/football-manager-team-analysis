@@ -6,7 +6,6 @@ import {
 import { Position } from "../../entities/position";
 import { prisma } from "../../utils/config/prisma/prismaClient";
 import { PositionsRepository } from "../positionsRepository";
-import { v4 as uuid } from "uuid";
 
 export class PrismaPositionsRepository implements PositionsRepository {
   async create({
@@ -16,7 +15,6 @@ export class PrismaPositionsRepository implements PositionsRepository {
   }: Position): Promise<void> {
     await prisma.position.create({
       data: {
-        id: uuid(),
         basePosition,
         positionRole,
         roleType,

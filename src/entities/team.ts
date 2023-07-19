@@ -1,4 +1,5 @@
 import { EnumTeamGrade } from "../utils/dicts/enumTeamGrade";
+import { v4 as uuid } from "uuid";
 
 export interface TeamProps {
   id?: string;
@@ -15,7 +16,10 @@ export class Team {
   private props: TeamProps;
 
   constructor(props: TeamProps) {
-    this.props = props;
+    this.props = {
+      ...props,
+      id: props.id || uuid(),
+    };
   }
 
   get id() {
