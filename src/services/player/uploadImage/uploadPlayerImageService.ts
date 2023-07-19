@@ -30,6 +30,7 @@ export class UploadPlayerImageService {
       jersey: player.jersey,
       positionId: player.positionId,
       teamId: player.teamId,
+      userId: player.userId,
       corners: player.corners,
       crossing: player.crossing,
       dribbling: player.dribbling,

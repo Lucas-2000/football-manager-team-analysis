@@ -1,3 +1,5 @@
+import fs from "fs/promises";
+import path from "path";
 import { User, UserProps } from "../../../entities/user";
 import { UsersRepository } from "../../../repositories/usersRepository";
 
@@ -19,14 +21,26 @@ export class UploadUserAvatarService {
 
     if (!user) throw new Error("User not found!");
 
-    if (!avatar) throw new Error("Avatar not found!");
+    const uploadsFolder = path.join(
+      __dirname,
+      "..",
+      "..",
+      "..",
+      "..",
+      "uploads"
+    ); // Caminho base da pasta de uploads
+
+    if (user.avatar) {
+      const logoPath = path.join(uploadsFolder, user.avatar as string);
+      await fs.unlink(logoPath);
+    }
 
     const uploadAvatar = new User({
       id,
       username: user.username,
       email: user.email,
       password: user.password,
-      avatar,
+      avatar: avatar || null,
     });
 
     await this.usersRepository.update(uploadAvatar);

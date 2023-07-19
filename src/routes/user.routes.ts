@@ -4,8 +4,12 @@ import { FindAllUsersFactory } from "../services/user/findAll/findAllUsersFactor
 import { FindUserByIdFactory } from "../services/user/findById/findUserByIdFactory";
 import { UpdateUserFactory } from "../services/user/update/updateUserFactory";
 import { DeleteUserFactory } from "../services/user/delete/deleteUserFactory";
+import multer from "multer";
+import { storage } from "../utils/config/multer/multerConfig";
+import { UploadUserAvatarFactory } from "../services/user/uploadAvatar/uploadUserAvatarFactory";
 
 const userRoutes = Router();
+const upload = multer({ storage: storage });
 
 userRoutes.post("/", (request, response) =>
   CreateUserFactory().handle(request, response)
@@ -21,6 +25,9 @@ userRoutes.put("/:id", (request, response) =>
 );
 userRoutes.delete("/:id", (request, response) =>
   DeleteUserFactory().handle(request, response)
+);
+userRoutes.post("/:id/avatar", upload.single("file"), (request, response) =>
+  UploadUserAvatarFactory().handle(request, response)
 );
 
 export { userRoutes };
