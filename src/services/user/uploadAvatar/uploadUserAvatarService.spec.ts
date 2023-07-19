@@ -43,23 +43,4 @@ describe("Upload User Avatar Service", () => {
       })
     ).rejects.toBeInstanceOf(Error);
   });
-
-  it("should not be able to upload user avatar if user avatar not found", async () => {
-    const userRepository = new InMemoryUsersRepository();
-    const uploadUserAvatarService = new UploadUserAvatarService(userRepository);
-    const createUserService = new CreateUserService(userRepository);
-
-    await createUserService.execute({
-      id: "1",
-      username: "test",
-      email: "test@example.com",
-      password: "test123",
-    });
-
-    await expect(
-      uploadUserAvatarService.execute({
-        id: "1",
-      })
-    ).rejects.toBeInstanceOf(Error);
-  });
 });

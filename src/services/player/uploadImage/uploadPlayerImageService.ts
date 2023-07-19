@@ -1,5 +1,7 @@
+import fs from "fs/promises";
 import { PlayersRepository } from "./../../../repositories/playersRepository";
 import { Player, PlayerProps } from "../../../entities/player";
+import path from "path";
 
 interface UploadPlayerImageRequest {
   id: string;
@@ -19,7 +21,19 @@ export class UploadPlayerImageService {
 
     if (!player) throw new Error("Player not found!");
 
-    if (!playerImage) throw new Error("Player image not found!");
+    const uploadsFolder = path.join(
+      __dirname,
+      "..",
+      "..",
+      "..",
+      "..",
+      "uploads"
+    ); // Caminho base da pasta de uploads
+
+    if (player.playerImage) {
+      const logoPath = path.join(uploadsFolder, player.playerImage as string);
+      await fs.unlink(logoPath);
+    }
 
     const uploadPlayerImage = new Player({
       id,

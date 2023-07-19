@@ -1,3 +1,5 @@
+import fs from "fs/promises";
+import path from "path";
 import { Team, TeamProps } from "../../../entities/team";
 import { TeamsRepository } from "../../../repositories/teamsRepository";
 
@@ -19,7 +21,19 @@ export class UploadTeamLogoService {
 
     if (!team) throw new Error("Team not found!");
 
-    if (!teamLogo) throw new Error("Team logo found!");
+    const uploadsFolder = path.join(
+      __dirname,
+      "..",
+      "..",
+      "..",
+      "..",
+      "uploads"
+    ); // Caminho base da pasta de uploads
+
+    if (team.teamLogo) {
+      const logoPath = path.join(uploadsFolder, team.teamLogo as string);
+      await fs.unlink(logoPath);
+    }
 
     const uploadLogo = new Team({
       id,
