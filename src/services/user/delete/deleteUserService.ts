@@ -16,7 +16,7 @@ export class DeleteUserService {
   }: DeleteUserServiceRequest): Promise<DeleteUserServiceResponse> {
     const verifyIndex = await this.usersRepository.findIndex(id);
 
-    if (verifyIndex < 0) throw new Error("Team not found!");
+    if (verifyIndex < 0) throw new Error("User not found!");
 
     const user = await this.usersRepository.findById(id);
 
