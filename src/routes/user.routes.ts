@@ -7,6 +7,7 @@ import { DeleteUserFactory } from "../services/user/delete/deleteUserFactory";
 import multer from "multer";
 import { storage } from "../utils/config/multer/multerConfig";
 import { UploadUserAvatarFactory } from "../services/user/uploadAvatar/uploadUserAvatarFactory";
+import { AuthUserFactory } from "../services/user/auth/authUserFactory";
 
 const userRoutes = Router();
 const upload = multer({ storage: storage });
@@ -28,6 +29,9 @@ userRoutes.delete("/:id", (request, response) =>
 );
 userRoutes.post("/:id/avatar", upload.single("file"), (request, response) =>
   UploadUserAvatarFactory().handle(request, response)
+);
+userRoutes.post("/auth", (request, response) =>
+  AuthUserFactory().handle(request, response)
 );
 
 export { userRoutes };

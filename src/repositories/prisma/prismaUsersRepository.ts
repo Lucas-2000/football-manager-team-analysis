@@ -69,7 +69,7 @@ export class PrismaUsersRepository implements UsersRepository {
 
   async findByUsername(username: string): Promise<User | undefined> {
     const user = await prisma.user.findUnique({
-      where: { id: username },
+      where: { username },
     });
 
     if (!user) return;
@@ -85,7 +85,7 @@ export class PrismaUsersRepository implements UsersRepository {
 
   async findByEmail(email: string): Promise<User | undefined> {
     const user = await prisma.user.findUnique({
-      where: { id: email },
+      where: { email },
     });
 
     if (!user) return;
