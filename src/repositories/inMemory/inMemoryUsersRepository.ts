@@ -40,6 +40,12 @@ export class InMemoryUsersRepository implements UsersRepository {
     return user;
   }
 
+  async findByEmail(email: string): Promise<User | undefined> {
+    const user = this.users.find((u) => u.email === email);
+
+    return user;
+  }
+
   async findIndex(userId: string): Promise<number> {
     const userIndex = this.users.findIndex((obj) => obj.id === userId);
 

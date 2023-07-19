@@ -42,11 +42,11 @@ export class PasswordReset {
   }
 
   getSummary(): PasswordResetProps {
-    return new PasswordReset({
+    return {
       id: this.props.id,
       token: this.props.token,
       expiresDate: this.props.expiresDate,
       userId: this.props.userId,
-    });
+    };
   }
 }
