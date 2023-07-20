@@ -9,6 +9,7 @@ import multer from "multer";
 import { storage } from "../utils/config/multer/multerConfig";
 import { UploadUserAvatarFactory } from "../services/user/uploadAvatar/uploadUserAvatarFactory";
 import { AuthUserFactory } from "../services/user/auth/authUserFactory";
+import { EmailSendFactory } from "../services/email/emailSendFactory";
 
 const userRoutes = Router();
 const upload = multer({ storage: storage });
@@ -36,6 +37,9 @@ userRoutes.post("/auth", (request, response) =>
 );
 userRoutes.post("/reset-password", (request, response) =>
   GeneratePasswordResetFactory().handle(request, response)
+);
+userRoutes.post("/email", (request, response) =>
+  EmailSendFactory().handle(request, response)
 );
 
 export { userRoutes };

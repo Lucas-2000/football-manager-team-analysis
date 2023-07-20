@@ -2,13 +2,20 @@ import { PasswordReset } from "../../entities/passwordReset";
 import { prisma } from "../../utils/config/prisma/prismaClient";
 import { generateRandomToken } from "../../utils/math/generateRandomToken";
 import { PasswordResetRepository } from "../passwordResetRepository";
+import { v4 as uuid } from "uuid";
 
 export class PrismaPasswordResetRepository implements PasswordResetRepository {
-  async generate({ userId }: PasswordReset): Promise<void> {
+  async generate({
+    id = uuid(),
+    token = generateRandomToken(15),
+    expiresDate = new Date(Date.now() + 86400 * 1000),
+    userId,
+  }: PasswordReset): Promise<void> {
     await prisma.passwordReset.create({
       data: {
-        token: generateRandomToken(15),
-        expiresDate: new Date(Date.now() + 86400 * 1000),
+        id,
+        token,
+        expiresDate,
         userId,
       },
     });
@@ -33,6 +40,19 @@ export class PrismaPasswordResetRepository implements PasswordResetRepository {
 
     await prisma.passwordReset.delete({
       where: { id: resetId?.id },
+    });
+  }
+
+  async findByToken(token: string): Promise<PasswordReset | undefined> {
+    const passwordReset = await prisma.passwordReset.findFirst({
+      where: { token: token },
+    });
+
+    if (passwordReset === null) return;
+
+    return new PasswordReset({
+      token: passwordReset.token,
+      userId: passwordReset.userId,
     });
   }
 }

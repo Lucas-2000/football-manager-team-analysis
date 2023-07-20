@@ -29,4 +29,10 @@ export class InMemoryPasswordResetRepository
       this.passwordReset.splice(passwordResetIndex, 1);
     }
   }
+
+  async findByToken(token: string): Promise<PasswordReset | undefined> {
+    const passwordReset = this.passwordReset.find((p) => p.token === token);
+
+    return passwordReset;
+  }
 }
