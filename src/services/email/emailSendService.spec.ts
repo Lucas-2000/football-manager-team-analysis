@@ -6,40 +6,41 @@ import { EmailSendService } from "./emailSendService";
 import { GeneratePasswordResetService } from "../passwordReset/generate/generatePasswordResetService";
 
 describe("Email Send Service", () => {
-  it("should be able to send a email", async () => {
-    const usersRepository = new InMemoryUsersRepository();
-    const passwordResetRepository = new InMemoryPasswordResetRepository();
-    const emailSendService = new EmailSendService(
-      usersRepository,
-      passwordResetRepository
-    );
-    const createUserService = new CreateUserService(usersRepository);
-    const genereatePasswordResetService = new GeneratePasswordResetService(
-      passwordResetRepository,
-      usersRepository
-    );
+  // Email comentado para não ficar enviando
+  // it("should be able to send a email", async () => {
+  //   const usersRepository = new InMemoryUsersRepository();
+  //   const passwordResetRepository = new InMemoryPasswordResetRepository();
+  //   const emailSendService = new EmailSendService(
+  //     usersRepository,
+  //     passwordResetRepository
+  //   );
+  //   const createUserService = new CreateUserService(usersRepository);
+  //   const genereatePasswordResetService = new GeneratePasswordResetService(
+  //     passwordResetRepository,
+  //     usersRepository
+  //   );
 
-    await createUserService.execute({
-      id: "1",
-      username: "test",
-      email: "test@example.com",
-      password: "test123",
-    });
+  //   await createUserService.execute({
+  //     id: "1",
+  //     username: "test",
+  //     email: "test@example.com",
+  //     password: "test123",
+  //   });
 
-    const token = await genereatePasswordResetService.execute({
-      email: "test@example.com",
-    });
+  //   const token = await genereatePasswordResetService.execute({
+  //     email: "test@example.com",
+  //   });
 
-    const strToken = token.token as string;
+  //   const strToken = token.token as string;
 
-    await expect(
-      emailSendService.execute({
-        email: "test@example.com",
-        token: strToken,
-        subject: "Reset de senha",
-      })
-    ).resolves.toHaveProperty("token");
-  });
+  //   await expect(
+  //     emailSendService.execute({
+  //       email: "test@example.com",
+  //       token: strToken,
+  //       subject: "Reset de senha",
+  //     })
+  //   ).resolves.toHaveProperty("token");
+  // });
 
   it("should not be able to send a email if user not found", async () => {
     const usersRepository = new InMemoryUsersRepository();
