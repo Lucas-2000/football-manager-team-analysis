@@ -12,6 +12,7 @@ import { PrismaTeamsRepository } from "../../../repositories/prisma/prismaTeamsR
 describe("Upload user avatar controller", () => {
   let user: request.Response;
   let team: request.Response;
+  let req: request.Response;
 
   beforeEach(async () => {
     user = await request(app).post("/users").send({
@@ -19,14 +20,21 @@ describe("Upload user avatar controller", () => {
       email: "test-integration-team-logo@example.com",
       password: "test123",
     });
-    team = await request(app).post("/teams").send({
-      teamName: "Corinthians",
-      teamLocalization: "SP",
-      teamCountry: "Brasil",
-      teamLeague: "Brasileirão",
-      teamGrade: EnumTeamGrade.A,
-      userId: user.body.id,
+    req = await request(app).post("/users/auth").send({
+      username: "test-integration-team-logo",
+      password: "test123",
     });
+    team = await request(app)
+      .post("/teams")
+      .set("Authorization", `Bearer ${req.body.token}`)
+      .send({
+        teamName: "Corinthians",
+        teamLocalization: "SP",
+        teamCountry: "Brasil",
+        teamLeague: "Brasileirão",
+        teamGrade: EnumTeamGrade.A,
+        userId: user.body.id,
+      });
   });
 
   it("should be able to update delete team logo", async () => {
@@ -45,6 +53,7 @@ describe("Upload user avatar controller", () => {
 
     const response = await request(app)
       .post(`/teams/${team.body.id}/logo`)
+      .set("Authorization", `Bearer ${req.body.token}`)
       .attach("file", tempFilePath);
 
     expect(response.status).toBe(201);

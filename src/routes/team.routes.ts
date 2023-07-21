@@ -7,28 +7,32 @@ import { DeleteTeamFactory } from "../services/team/delete/deleteTeamFactory";
 import multer from "multer";
 import { storage } from "../utils/config/multer/multerConfig";
 import { UploadTeamLogoFactory } from "../services/team/uploadLogo/uploadTeamLogoFactory";
+import { ensureAuthenticated } from "../middlewares/ensureAuthenticated";
 
 const teamRoutes = Router();
 
 const upload = multer({ storage: storage });
 
-teamRoutes.post("/", (request, response) =>
+teamRoutes.post("/", ensureAuthenticated, (request, response) =>
   CreateTeamFactory().handle(request, response)
 );
-teamRoutes.get("/", (request, response) =>
+teamRoutes.get("/", ensureAuthenticated, (request, response) =>
   FindAllTeamsFactory().handle(request, response)
 );
-teamRoutes.get("/:id", (request, response) =>
+teamRoutes.get("/:id", ensureAuthenticated, (request, response) =>
   FindTeamByIdFactory().handle(request, response)
 );
-teamRoutes.put("/:id", (request, response) =>
+teamRoutes.put("/:id", ensureAuthenticated, (request, response) =>
   UpdateTeamFactory().handle(request, response)
 );
-teamRoutes.delete("/:id", (request, response) =>
+teamRoutes.delete("/:id", ensureAuthenticated, (request, response) =>
   DeleteTeamFactory().handle(request, response)
 );
-teamRoutes.post("/:id/logo", upload.single("file"), (request, response) =>
-  UploadTeamLogoFactory().handle(request, response)
+teamRoutes.post(
+  "/:id/logo",
+  ensureAuthenticated,
+  upload.single("file"),
+  (request, response) => UploadTeamLogoFactory().handle(request, response)
 );
 
 export { teamRoutes };

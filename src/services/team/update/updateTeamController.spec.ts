@@ -12,23 +12,34 @@ describe("Update team controller", () => {
       password: "test123",
     });
 
-    const team = await request(app).post(`/teams`).send({
-      teamName: "Corinthians",
-      teamLocalization: "SP",
-      teamCountry: "Brasil",
-      teamLeague: "Brasileirão",
-      teamGrade: EnumTeamGrade.A,
-      userId: user.body.id,
+    const req = await request(app).post("/users/auth").send({
+      username: "test-integration-update-team",
+      password: "test123",
     });
 
-    const response = await request(app).put(`/teams/${team.body.id}`).send({
-      teamName: "Corinthians - SP",
-      teamLocalization: "SP",
-      teamCountry: "Brasil",
-      teamLeague: "Brasileirão",
-      teamGrade: EnumTeamGrade.A,
-      userId: user.body.id,
-    });
+    const team = await request(app)
+      .post(`/teams`)
+      .set("Authorization", `Bearer ${req.body.token}`)
+      .send({
+        teamName: "Corinthians",
+        teamLocalization: "SP",
+        teamCountry: "Brasil",
+        teamLeague: "Brasileirão",
+        teamGrade: EnumTeamGrade.A,
+        userId: user.body.id,
+      });
+
+    const response = await request(app)
+      .put(`/teams/${team.body.id}`)
+      .set("Authorization", `Bearer ${req.body.token}`)
+      .send({
+        teamName: "Corinthians - SP",
+        teamLocalization: "SP",
+        teamCountry: "Brasil",
+        teamLeague: "Brasileirão",
+        teamGrade: EnumTeamGrade.A,
+        userId: user.body.id,
+      });
 
     expect(response.status).toBe(201);
   });
@@ -40,32 +51,46 @@ describe("Update team controller", () => {
       password: "test123",
     });
 
-    await request(app).post(`/teams`).send({
-      teamName: "Corinthians",
-      teamLocalization: "SP",
-      teamCountry: "Brasil",
-      teamLeague: "Brasileirão",
-      teamGrade: EnumTeamGrade.A,
-      userId: user.body.id,
+    const req = await request(app).post("/users/auth").send({
+      username: "test-integration-update-team",
+      password: "test123",
     });
 
-    const team = await request(app).post(`/teams`).send({
-      teamName: "Flamengo",
-      teamLocalization: "RJ",
-      teamCountry: "Brasil",
-      teamLeague: "Brasileirão",
-      teamGrade: EnumTeamGrade.A,
-      userId: user.body.id,
-    });
+    await request(app)
+      .post(`/teams`)
+      .set("Authorization", `Bearer ${req.body.token}`)
+      .send({
+        teamName: "Corinthians",
+        teamLocalization: "SP",
+        teamCountry: "Brasil",
+        teamLeague: "Brasileirão",
+        teamGrade: EnumTeamGrade.A,
+        userId: user.body.id,
+      });
 
-    const response = await request(app).put(`/teams/${team.body.id}`).send({
-      teamName: "Corinthians",
-      teamLocalization: "SP",
-      teamCountry: "Brasil",
-      teamLeague: "Brasileirão",
-      teamGrade: EnumTeamGrade.A,
-      userId: user.body.id,
-    });
+    const team = await request(app)
+      .post(`/teams`)
+      .set("Authorization", `Bearer ${req.body.token}`)
+      .send({
+        teamName: "Flamengo",
+        teamLocalization: "RJ",
+        teamCountry: "Brasil",
+        teamLeague: "Brasileirão",
+        teamGrade: EnumTeamGrade.A,
+        userId: user.body.id,
+      });
+
+    const response = await request(app)
+      .put(`/teams/${team.body.id}`)
+      .set("Authorization", `Bearer ${req.body.token}`)
+      .send({
+        teamName: "Corinthians",
+        teamLocalization: "SP",
+        teamCountry: "Brasil",
+        teamLeague: "Brasileirão",
+        teamGrade: EnumTeamGrade.A,
+        userId: user.body.id,
+      });
 
     expect(response.status).toBe(400);
   });
@@ -77,23 +102,34 @@ describe("Update team controller", () => {
       password: "test123",
     });
 
-    const team = await request(app).post(`/teams`).send({
-      teamName: "Corinthians",
-      teamLocalization: "SP",
-      teamCountry: "Brasil",
-      teamLeague: "Brasileirão",
-      teamGrade: EnumTeamGrade.A,
-      userId: user.body.id,
+    const req = await request(app).post("/users/auth").send({
+      username: "test-integration-update-team",
+      password: "test123",
     });
 
-    const response = await request(app).put(`/teams/${team.body.id}`).send({
-      teamName: "Corinthians - SP",
-      teamLocalization: "SP",
-      teamCountry: "Brasil",
-      teamLeague: "Brasileirão",
-      teamGrade: EnumTeamGrade.A,
-      userId: "user.body.id",
-    });
+    const team = await request(app)
+      .post(`/teams`)
+      .set("Authorization", `Bearer ${req.body.token}`)
+      .send({
+        teamName: "Corinthians",
+        teamLocalization: "SP",
+        teamCountry: "Brasil",
+        teamLeague: "Brasileirão",
+        teamGrade: EnumTeamGrade.A,
+        userId: user.body.id,
+      });
+
+    const response = await request(app)
+      .put(`/teams/${team.body.id}`)
+      .set("Authorization", `Bearer ${req.body.token}`)
+      .send({
+        teamName: "Corinthians - SP",
+        teamLocalization: "SP",
+        teamCountry: "Brasil",
+        teamLeague: "Brasileirão",
+        teamGrade: EnumTeamGrade.A,
+        userId: "user.body.id",
+      });
 
     expect(response.status).toBe(400);
   });
@@ -105,23 +141,34 @@ describe("Update team controller", () => {
       password: "test123",
     });
 
-    await request(app).post(`/teams`).send({
-      teamName: "Corinthians",
-      teamLocalization: "SP",
-      teamCountry: "Brasil",
-      teamLeague: "Brasileirão",
-      teamGrade: EnumTeamGrade.A,
-      userId: user.body.id,
+    const req = await request(app).post("/users/auth").send({
+      username: "test-integration-update-team",
+      password: "test123",
     });
 
-    const response = await request(app).put(`/teams/1`).send({
-      teamName: "Corinthians - SP",
-      teamLocalization: "SP",
-      teamCountry: "Brasil",
-      teamLeague: "Brasileirão",
-      teamGrade: EnumTeamGrade.A,
-      userId: user.body.id,
-    });
+    await request(app)
+      .post(`/teams`)
+      .set("Authorization", `Bearer ${req.body.token}`)
+      .send({
+        teamName: "Corinthians",
+        teamLocalization: "SP",
+        teamCountry: "Brasil",
+        teamLeague: "Brasileirão",
+        teamGrade: EnumTeamGrade.A,
+        userId: user.body.id,
+      });
+
+    const response = await request(app)
+      .put(`/teams/1`)
+      .set("Authorization", `Bearer ${req.body.token}`)
+      .send({
+        teamName: "Corinthians - SP",
+        teamLocalization: "SP",
+        teamCountry: "Brasil",
+        teamLeague: "Brasileirão",
+        teamGrade: EnumTeamGrade.A,
+        userId: user.body.id,
+      });
 
     expect(response.status).toBe(400);
   });

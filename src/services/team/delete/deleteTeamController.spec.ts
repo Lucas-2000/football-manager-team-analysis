@@ -12,16 +12,26 @@ describe("Delete team controller", () => {
       password: "test123",
     });
 
-    const team = await request(app).post("/teams").send({
-      teamName: "Corinthians",
-      teamLocalization: "SP",
-      teamCountry: "Brasil",
-      teamLeague: "Brasileirão",
-      teamGrade: EnumTeamGrade.A,
-      userId: user.body.id,
+    const req = await request(app).post("/users/auth").send({
+      username: "test-integration-delete-team1",
+      password: "test123",
     });
 
-    const response = await request(app).delete(`/teams/${team.body.id}`);
+    const team = await request(app)
+      .post("/teams")
+      .set("Authorization", `Bearer ${req.body.token}`)
+      .send({
+        teamName: "Corinthians",
+        teamLocalization: "SP",
+        teamCountry: "Brasil",
+        teamLeague: "Brasileirão",
+        teamGrade: EnumTeamGrade.A,
+        userId: user.body.id,
+      });
+
+    const response = await request(app)
+      .delete(`/teams/${team.body.id}`)
+      .set("Authorization", `Bearer ${req.body.token}`);
 
     expect(response.status).toBe(201);
   });
@@ -33,16 +43,26 @@ describe("Delete team controller", () => {
       password: "test123",
     });
 
-    await request(app).post("/teams").send({
-      teamName: "Corinthians",
-      teamLocalization: "SP",
-      teamCountry: "Brasil",
-      teamLeague: "Brasileirão",
-      teamGrade: EnumTeamGrade.A,
-      userId: user.body.id,
+    const req = await request(app).post("/users/auth").send({
+      username: "test-integration-delete-team",
+      password: "test123",
     });
 
-    const response = await request(app).delete(`/teams/1`);
+    await request(app)
+      .post("/teams")
+      .set("Authorization", `Bearer ${req.body.token}`)
+      .send({
+        teamName: "Corinthians",
+        teamLocalization: "SP",
+        teamCountry: "Brasil",
+        teamLeague: "Brasileirão",
+        teamGrade: EnumTeamGrade.A,
+        userId: user.body.id,
+      });
+
+    const response = await request(app)
+      .delete(`/teams/1`)
+      .set("Authorization", `Bearer ${req.body.token}`);
 
     expect(response.status).toBe(400);
   });
