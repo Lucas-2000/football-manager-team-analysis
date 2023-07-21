@@ -1,6 +1,7 @@
 import { User, UserProps } from "../../../entities/user";
 import { UsersRepository } from "../../../repositories/usersRepository";
 import bcrypt from "bcrypt";
+import { v4 as uuid } from "uuid";
 
 interface CreateUserServiceRequest {
   id?: string;
@@ -36,7 +37,7 @@ export class CreateUserService {
     const hash = bcrypt.hashSync(password, salt);
 
     const user = new User({
-      id,
+      id: id ?? uuid(),
       username,
       email,
       password: hash,

@@ -4,10 +4,10 @@ import { UsersRepository } from "../usersRepository";
 import { v4 as uuid } from "uuid";
 
 export class PrismaUsersRepository implements UsersRepository {
-  async create({ username, email, password, avatar }: User): Promise<void> {
+  async create({ id, username, email, password, avatar }: User): Promise<void> {
     await prisma.user.create({
       data: {
-        id: uuid(),
+        id: id ?? uuid(),
         username,
         email,
         password,
