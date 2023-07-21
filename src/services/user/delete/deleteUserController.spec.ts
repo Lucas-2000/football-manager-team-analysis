@@ -11,7 +11,14 @@ describe("Delete user controller", () => {
       password: "test123",
     });
 
-    const response = await request(app).delete(`/users/${user.body.id}`);
+    const req = await request(app).post("/users/auth").send({
+      username: "test-integration-delete-user1",
+      password: "test123",
+    });
+
+    const response = await request(app)
+      .delete(`/users/${user.body.id}`)
+      .set("Authorization", `Bearer ${req.body.token}`);
 
     expect(response.status).toBe(201);
   });
@@ -23,7 +30,14 @@ describe("Delete user controller", () => {
       password: "test123",
     });
 
-    const response = await request(app).delete(`/users/1`);
+    const req = await request(app).post("/users/auth").send({
+      username: "test-integration-delete-user",
+      password: "test123",
+    });
+
+    const response = await request(app)
+      .delete(`/users/1`)
+      .set("Authorization", `Bearer ${req.body.token}`);
 
     expect(response.status).toBe(400);
   });

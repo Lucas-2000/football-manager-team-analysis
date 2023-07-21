@@ -10,6 +10,7 @@ import { storage } from "../utils/config/multer/multerConfig";
 import { UploadUserAvatarFactory } from "../services/user/uploadAvatar/uploadUserAvatarFactory";
 import { AuthUserFactory } from "../services/user/auth/authUserFactory";
 import { EmailSendFactory } from "../services/email/emailSendFactory";
+import { ensureAuthenticated } from "../middlewares/ensureAuthenticated";
 
 const userRoutes = Router();
 const upload = multer({ storage: storage });
@@ -23,14 +24,17 @@ userRoutes.get("/", (request, response) =>
 userRoutes.get("/:id", (request, response) =>
   FindUserByIdFactory().handle(request, response)
 );
-userRoutes.put("/:id", (request, response) =>
+userRoutes.put("/:id", ensureAuthenticated, (request, response) =>
   UpdateUserFactory().handle(request, response)
 );
-userRoutes.delete("/:id", (request, response) =>
+userRoutes.delete("/:id", ensureAuthenticated, (request, response) =>
   DeleteUserFactory().handle(request, response)
 );
-userRoutes.post("/:id/avatar", upload.single("file"), (request, response) =>
-  UploadUserAvatarFactory().handle(request, response)
+userRoutes.post(
+  "/:id/avatar",
+  ensureAuthenticated,
+  upload.single("file"),
+  (request, response) => UploadUserAvatarFactory().handle(request, response)
 );
 userRoutes.post("/auth", (request, response) =>
   AuthUserFactory().handle(request, response)

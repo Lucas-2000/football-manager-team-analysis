@@ -18,6 +18,11 @@ describe("Upload user avatar controller", () => {
   });
 
   it("should be able to update user avatar", async () => {
+    const req = await request(app).post("/users/auth").send({
+      username: "test-integration-user-avatar",
+      password: "test123",
+    });
+
     const uploadsFolder = path.join(
       __dirname,
       "..",
@@ -33,6 +38,7 @@ describe("Upload user avatar controller", () => {
 
     const response = await request(app)
       .post(`/users/${user.body.id}/avatar`)
+      .set("Authorization", `Bearer ${req.body.token}`)
       .attach("file", tempFilePath);
 
     expect(response.status).toBe(201);
