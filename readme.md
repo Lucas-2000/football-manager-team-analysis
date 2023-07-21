@@ -2,10 +2,10 @@
 
 ## Os problemas que iremos tentar resolver com essa api são:
 
-- [*] Cadastrar times;
-- [*] Cadastrar jogadores;
-- [*] Autenticação e reset de senha;
-- [*] Atribuir notas de 0 a 20 para características dos jogadores;
+- [x] Cadastrar times;
+- [x] Cadastrar jogadores;
+- [x] Autenticação e reset de senha;
+- [x] Atribuir notas de 0 a 20 para características dos jogadores;
 - [] Facilitar a comparação dos jogadores;
 - [] Comparar com times de outros usuários;
 - [] Gerar relatórios em pdf;
