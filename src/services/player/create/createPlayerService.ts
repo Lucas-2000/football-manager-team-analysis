@@ -4,6 +4,7 @@ import { TeamsRepository } from "../../../repositories/teamsRepository";
 import { UsersRepository } from "../../../repositories/usersRepository";
 import { EnumPlayerAttributesRange } from "../../../utils/dicts/enumPlayerAttributesRange";
 import { PlayersRepository } from "./../../../repositories/playersRepository";
+import { v4 as uuid } from "uuid";
 
 interface CreatePlayerRequest {
   id?: string;
@@ -180,7 +181,7 @@ export class CreatePlayerService {
     );
 
     const player = new Player({
-      id,
+      id: id ?? uuid(),
       name,
       birthdate,
       lenght,

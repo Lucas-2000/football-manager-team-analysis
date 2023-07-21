@@ -3,6 +3,7 @@ import { EnumPlayerPositionBase } from "../../../utils/dicts/enumPlayerPositionB
 import { EnumPlayerPositionRole } from "../../../utils/dicts/enumPlayerPositionRole";
 import { EnumRoleType } from "../../../utils/dicts/enumRoleType";
 import { PositionsRepository } from "./../../../repositories/positionsRepository";
+import { v4 as uuid } from "uuid";
 
 interface CreatePositionRequest {
   id?: string;
@@ -31,7 +32,7 @@ export class CreatePositionService {
     if (positionExists) throw new Error("Position already exists!");
 
     const position = new Position({
-      id,
+      id: id ?? uuid(),
       basePosition,
       positionRole,
       roleType,

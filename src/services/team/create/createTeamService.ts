@@ -2,6 +2,7 @@ import { Team, TeamProps } from "../../../entities/team";
 import { TeamsRepository } from "../../../repositories/teamsRepository";
 import { UsersRepository } from "../../../repositories/usersRepository";
 import { EnumTeamGrade } from "../../../utils/dicts/enumTeamGrade";
+import { v4 as uuid } from "uuid";
 
 interface CreateTeamRequest {
   id?: string;
@@ -48,7 +49,7 @@ export class CreateTeamService {
       throw new Error("Incorrect Team Grade Interval!");
 
     const team = new Team({
-      id,
+      id: id ?? uuid(),
       teamName,
       teamLocalization,
       teamCountry,
