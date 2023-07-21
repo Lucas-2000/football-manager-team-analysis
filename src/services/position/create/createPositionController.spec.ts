@@ -1,4 +1,4 @@
-import { afterAll, afterEach, describe, expect, it } from "vitest";
+import { afterAll, describe, expect, it } from "vitest";
 import request from "supertest";
 import { app } from "../../../app";
 import { prisma } from "../../../utils/config/prisma/prismaClient";
