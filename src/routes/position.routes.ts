@@ -4,16 +4,17 @@ import { FindAllPositionsFactory } from "../services/position/findAll/findAllPos
 import { FindByBasePosition } from "../services/position/findByBasePosition/findByBasePositionFactory";
 import { UpdatePositionFactory } from "../services/position/update/updatePositionFactory";
 import { DeletePositionFactory } from "../services/position/delete/deletePositionFactory";
+import { ensureAuthenticated } from "../middlewares/ensureAuthenticated";
 
 const positionRoutes = Router();
 
 positionRoutes.post("/", (request, response) =>
   CreatePositionFactory().handle(request, response)
 );
-positionRoutes.get("/", (request, response) =>
+positionRoutes.get("/", ensureAuthenticated, (request, response) =>
   FindAllPositionsFactory().handle(request, response)
 );
-positionRoutes.get("/:basePosition", (request, response) =>
+positionRoutes.get("/:basePosition", ensureAuthenticated, (request, response) =>
   FindByBasePosition().handle(request, response)
 );
 positionRoutes.put("/:id", (request, response) =>

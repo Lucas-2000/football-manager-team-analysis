@@ -13,31 +13,57 @@ describe("Find by base position Controller", () => {
   let position2: request.Response;
 
   it("should be able to find position by base position", async () => {
+    await request(app).post("/users").send({
+      username: "test-integration-find-by-base-position",
+      email: "test-integration-find-by-base-position@example.com",
+      password: "test123",
+    });
+
+    const req = await request(app).post("/users/auth").send({
+      username: "test-integration-find-by-base-position",
+      password: "test123",
+    });
+
     position = await request(app)
       .post("/positions")
+      .set("Authorization", `Bearer ${req.body.token}`)
       .send({
         basePosition: EnumPlayerPositionBase.Winger,
         positionRole: EnumPlayerPositionRole.InvertedWinger,
         roleType: [EnumRoleType.Attack, EnumRoleType.Support],
       });
 
-    const response = await request(app).get(
-      `/positions/${position.body.basePosition}`
-    );
+    const response = await request(app)
+      .get(`/positions/${position.body.basePosition}`)
+      .set("Authorization", `Bearer ${req.body.token}`);
 
     expect(response.status).toBe(201);
   });
 
   it("should not be able to find position by base position if not found", async () => {
+    await request(app).post("/users").send({
+      username: "test-integration-find-by-base-position",
+      email: "test-integration-find-by-base-position@example.com",
+      password: "test123",
+    });
+
+    const req = await request(app).post("/users/auth").send({
+      username: "test-integration-find-by-base-position",
+      password: "test123",
+    });
+
     position2 = await request(app)
       .post("/positions")
+      .set("Authorization", `Bearer ${req.body.token}`)
       .send({
         basePosition: EnumPlayerPositionBase.Winger,
         positionRole: EnumPlayerPositionRole.InvertedWinger,
         roleType: [EnumRoleType.Attack, EnumRoleType.Support],
       });
 
-    const response = await request(app).get(`/positions/1`);
+    const response = await request(app)
+      .get(`/positions/1`)
+      .set("Authorization", `Bearer ${req.body.token}`);
 
     expect(response.status).toBe(400);
   });
@@ -50,6 +76,12 @@ describe("Find by base position Controller", () => {
         id: {
           in: positionsToDelete,
         },
+      },
+    });
+
+    await prisma.user.delete({
+      where: {
+        email: "test-integration-find-by-base-position@example.com",
       },
     });
   });
