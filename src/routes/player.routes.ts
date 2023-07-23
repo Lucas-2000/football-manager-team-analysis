@@ -7,27 +7,29 @@ import { DeletePlayerFactory } from "../services/player/delete/deletePlayerFacto
 import { UploadPlayerImageFactory } from "../services/player/uploadImage/uploadPlayerImageFactory";
 import multer from "multer";
 import { storage } from "../utils/config/multer/multerConfig";
+import { ensureAuthenticated } from "../middlewares/ensureAuthenticated";
 
 const playerRoutes = Router();
 const upload = multer({ storage: storage });
 
-playerRoutes.post("/", (request, response) =>
+playerRoutes.post("/", ensureAuthenticated, (request, response) =>
   CreatePlayerFactory().handle(request, response)
 );
-playerRoutes.get("/", (request, response) =>
+playerRoutes.get("/", ensureAuthenticated, (request, response) =>
   FindAllPlayersFactory().handle(request, response)
 );
-playerRoutes.get("/:id", (request, response) =>
+playerRoutes.get("/:id", ensureAuthenticated, (request, response) =>
   FindPlayerByIdFactory().handle(request, response)
 );
-playerRoutes.put("/:id", (request, response) =>
+playerRoutes.put("/:id", ensureAuthenticated, (request, response) =>
   UpdatePlayerFactory().handle(request, response)
 );
-playerRoutes.delete("/:id", (request, response) =>
+playerRoutes.delete("/:id", ensureAuthenticated, (request, response) =>
   DeletePlayerFactory().handle(request, response)
 );
 playerRoutes.post(
   "/:id/playerImage",
+  ensureAuthenticated,
   upload.single("file"),
   (request, response) => UploadPlayerImageFactory().handle(request, response)
 );
