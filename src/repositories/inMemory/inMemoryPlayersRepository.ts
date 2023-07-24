@@ -21,6 +21,17 @@ export class InMemoryPlayersRepository implements PlayersRepository {
     return this.players;
   }
 
+  async findAllPlayersForUserAndTeam(
+    userId: string,
+    teamId: string
+  ): Promise<Player[]> {
+    const players = this.players.filter((p) => {
+      return p.userId === userId && p.teamId === teamId;
+    });
+
+    return players;
+  }
+
   async findById(playerId: string): Promise<Player | undefined> {
     const player = this.players.find((p) => p.id === playerId);
 

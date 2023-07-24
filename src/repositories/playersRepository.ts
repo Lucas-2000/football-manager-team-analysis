@@ -5,6 +5,10 @@ export interface PlayersRepository {
   create(player: Player): Promise<void>;
   verifyExists(playerName: string, teamId: string): Promise<boolean>;
   findAll(): Promise<Player[]>;
+  findAllPlayersForUserAndTeam(
+    userId: string,
+    teamId: string
+  ): Promise<Player[]>;
   findById(playerId: string): Promise<Player | undefined>;
   findIndex(playerId: string): Promise<number>;
   update(player: Player): Promise<void>;

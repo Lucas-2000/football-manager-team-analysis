@@ -8,6 +8,7 @@ import { UploadPlayerImageFactory } from "../services/player/uploadImage/uploadP
 import multer from "multer";
 import { storage } from "../utils/config/multer/multerConfig";
 import { ensureAuthenticated } from "../middlewares/ensureAuthenticated";
+import { FindAllPlayersForUserAndTeamFactory } from "../services/player/findAllForUserAndTeam/findAllPlayersForUserAndTeamFactory";
 
 const playerRoutes = Router();
 const upload = multer({ storage: storage });
@@ -17,6 +18,9 @@ playerRoutes.post("/", ensureAuthenticated, (request, response) =>
 );
 playerRoutes.get("/", ensureAuthenticated, (request, response) =>
   FindAllPlayersFactory().handle(request, response)
+);
+playerRoutes.get("/:userId/:teamId", ensureAuthenticated, (request, response) =>
+  FindAllPlayersForUserAndTeamFactory().handle(request, response)
 );
 playerRoutes.get("/:id", ensureAuthenticated, (request, response) =>
   FindPlayerByIdFactory().handle(request, response)

@@ -172,6 +172,70 @@ export class PrismaPlayersRepository implements PlayersRepository {
     );
   }
 
+  async findAllPlayersForUserAndTeam(
+    userId: string,
+    teamId: string
+  ): Promise<Player[]> {
+    const players = await prisma.player.findMany({
+      where: {
+        userId: userId,
+        teamId: teamId,
+      },
+    });
+
+    return players.map(
+      (player) =>
+        new Player({
+          id: player.id,
+          name: player.name,
+          birthdate: player.birthdate,
+          lenght: player.lenght,
+          weight: player.weight,
+          jersey: player.jersey,
+          playerImage: player.playerImage,
+          positionId: player.positionId,
+          teamId: player.teamId,
+          userId: player.userId,
+          corners: player.corners,
+          crossing: player.crossing,
+          dribbling: player.dribbling,
+          finishing: player.finishing,
+          firstTouch: player.firstTouch,
+          freeKickTaking: player.freeKickTaking,
+          heading: player.heading,
+          longShots: player.longShots,
+          longThrows: player.longThrows,
+          marking: player.marking,
+          passing: player.passing,
+          penaltyTaking: player.penaltyTaking,
+          tackling: player.tackling,
+          technique: player.technique,
+          agression: player.agression,
+          anticipation: player.anticipation,
+          bravery: player.bravery,
+          composure: player.composure,
+          concentration: player.concentration,
+          decisions: player.decisions,
+          determination: player.determination,
+          flair: player.flair,
+          leadership: player.leadership,
+          offTheBall: player.offTheBall,
+          positioning: player.positioning,
+          teamWork: player.teamWork,
+          vision: player.vision,
+          workRate: player.workRate,
+          acceleration: player.acceleration,
+          agility: player.agility,
+          balance: player.balance,
+          jumpingReach: player.jumpingReach,
+          naturalFitness: player.naturalFitness,
+          pace: player.pace,
+          stamina: player.stamina,
+          strenght: player.strenght,
+        })
+    );
+  }
+
   async findById(playerId: string): Promise<Player | undefined> {
     const player = await prisma.player.findFirst({
       where: {
