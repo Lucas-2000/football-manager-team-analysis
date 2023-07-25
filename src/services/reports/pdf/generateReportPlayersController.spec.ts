@@ -66,8 +66,6 @@ describe("Generate Report Players Controller", () => {
       .get(`/reports/players/1/${team.body.id}`)
       .set("Authorization", `Bearer ${req.body.token}`);
 
-    console.log(response.body);
-
     expect(response.status).toBe(400);
   });
 
