@@ -25,3 +25,4 @@
 - Token JWT;
 - Nodemailer;
 - PDF Maker;
+- Exceljs;
