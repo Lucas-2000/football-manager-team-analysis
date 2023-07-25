@@ -83,7 +83,7 @@ describe("Generate Report Players Controller", () => {
       password: "test123",
     });
 
-    const team = await request(app)
+    await request(app)
       .post("/teams")
       .set("Authorization", `Bearer ${req.body.token}`)
       .send({
