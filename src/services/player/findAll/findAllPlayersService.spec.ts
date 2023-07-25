@@ -56,7 +56,6 @@ describe("Find All Teams Players", () => {
       teamCountry: "Brasil",
       teamLeague: "Brasileirão",
       teamGrade: EnumTeamGrade.A,
-      teamLogo: "exemplo",
       userId: "1",
     });
 

@@ -58,7 +58,6 @@ describe("Delete player Service", () => {
       teamCountry: "Brasil",
       teamLeague: "Brasileirão",
       teamGrade: EnumTeamGrade.A,
-      teamLogo: "exemplo",
       userId: "1",
     });
 
@@ -159,7 +158,6 @@ describe("Delete player Service", () => {
       teamCountry: "Brasil",
       teamLeague: "Brasileirão",
       teamGrade: EnumTeamGrade.A,
-      teamLogo: "exemplo",
       userId: "1",
     });
 
@@ -275,7 +273,6 @@ describe("Delete player Service", () => {
       teamCountry: "Brasil",
       teamLeague: "Brasileirão",
       teamGrade: EnumTeamGrade.A,
-      teamLogo: "exemplo",
       userId: "1",
     });
 

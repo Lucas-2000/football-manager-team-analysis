@@ -61,7 +61,6 @@ describe("Update Player Service", () => {
       teamCountry: "Brasil",
       teamLeague: "Brasileirão",
       teamGrade: EnumTeamGrade.A,
-      teamLogo: "exemplo",
       userId: "1",
     });
 
@@ -161,7 +160,7 @@ describe("Update Player Service", () => {
         stamina: EnumPlayerAttributesRange.Fifteen,
         strenght: EnumPlayerAttributesRange.Fifteen,
       })
-    ).resolves.toHaveProperty("id");
+    ).resolves.toHaveProperty("name");
   });
 
   it("should not be able to update a player if player don't found", async () => {
@@ -208,7 +207,6 @@ describe("Update Player Service", () => {
       teamCountry: "Brasil",
       teamLeague: "Brasileirão",
       teamGrade: EnumTeamGrade.A,
-      teamLogo: "exemplo",
       userId: "1",
     });
 
@@ -354,7 +352,6 @@ describe("Update Player Service", () => {
       teamCountry: "Brasil",
       teamLeague: "Brasileirão",
       teamGrade: EnumTeamGrade.A,
-      teamLogo: "exemplo",
       userId: "1",
     });
 
@@ -501,7 +498,6 @@ describe("Update Player Service", () => {
       teamCountry: "Brasil",
       teamLeague: "Brasileirão",
       teamGrade: EnumTeamGrade.A,
-      teamLogo: "exemplo",
       userId: "1",
     });
 
@@ -648,7 +644,6 @@ describe("Update Player Service", () => {
       teamCountry: "Brasil",
       teamLeague: "Brasileirão",
       teamGrade: EnumTeamGrade.A,
-      teamLogo: "exemplo",
       userId: "1",
     });
 

@@ -8,7 +8,7 @@
 - [x] Atribuir notas de 0 a 20 para características dos jogadores;
 - [] Facilitar a comparação dos jogadores;
 - [] Comparar com times de outros usuários;
-- [] Gerar relatórios em pdf;
+- [x] Gerar relatórios em pdf;
 - [] Importação de bases contendo times, jogadores em formatos como csv;
 - [] Exportação em formato de planilha (xlsx);
 - [] Dashboard interativo para ver métricas;

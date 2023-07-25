@@ -43,7 +43,7 @@ export class UploadTeamLogoService {
       teamLeague: team.teamLeague,
       teamGrade: team.teamGrade,
       userId: team.userId,
-      teamLogo,
+      teamLogo: teamLogo || null,
     });
 
     await this.teamsRepository.update(uploadLogo);

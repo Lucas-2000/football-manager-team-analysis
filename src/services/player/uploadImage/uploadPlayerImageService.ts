@@ -81,7 +81,7 @@ export class UploadPlayerImageService {
       pace: player.pace,
       stamina: player.stamina,
       strenght: player.strenght,
-      playerImage,
+      playerImage: playerImage || null,
     });
 
     await this.playersRepository.update(uploadPlayerImage);

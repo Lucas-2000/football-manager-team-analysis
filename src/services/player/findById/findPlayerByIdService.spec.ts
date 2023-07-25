@@ -56,7 +56,6 @@ describe("Find Player By Id", () => {
       teamCountry: "Brasil",
       teamLeague: "Brasileirão",
       teamGrade: EnumTeamGrade.A,
-      teamLogo: "exemplo",
       userId: "1",
     });
 
@@ -154,7 +153,6 @@ describe("Find Player By Id", () => {
       teamCountry: "Brasil",
       teamLeague: "Brasileirão",
       teamGrade: EnumTeamGrade.A,
-      teamLogo: "exemplo",
       userId: "1",
     });
 

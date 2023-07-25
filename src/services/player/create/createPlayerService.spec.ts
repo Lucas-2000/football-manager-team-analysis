@@ -54,7 +54,6 @@ describe("Create Player Service", () => {
       teamCountry: "Brasil",
       teamLeague: "Brasileirão",
       teamGrade: EnumTeamGrade.A,
-      teamLogo: "exemplo",
       userId: "1",
     });
 
@@ -147,7 +146,6 @@ describe("Create Player Service", () => {
       teamCountry: "Brasil",
       teamLeague: "Brasileirão",
       teamGrade: EnumTeamGrade.A,
-      teamLogo: "exemplo",
       userId: "1",
     });
 
@@ -288,7 +286,6 @@ describe("Create Player Service", () => {
       teamCountry: "Brasil",
       teamLeague: "Brasileirão",
       teamGrade: EnumTeamGrade.A,
-      teamLogo: "exemplo",
       userId: "1",
     });
 
@@ -381,7 +378,6 @@ describe("Create Player Service", () => {
       teamCountry: "Brasil",
       teamLeague: "Brasileirão",
       teamGrade: EnumTeamGrade.A,
-      teamLogo: "exemplo",
       userId: "1",
     });
 
@@ -474,7 +470,6 @@ describe("Create Player Service", () => {
       teamCountry: "Brasil",
       teamLeague: "Brasileirão",
       teamGrade: EnumTeamGrade.A,
-      teamLogo: "exemplo",
       userId: "1",
     });
 
