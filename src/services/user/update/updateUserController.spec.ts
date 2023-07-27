@@ -11,19 +11,11 @@ describe("Update user controller", () => {
       password: "test123",
     });
 
-    const req = await request(app).post("/users/auth").send({
-      username: "test-integration-update-user",
+    const response = await request(app).put(`/users/${user.body.id}`).send({
+      username: "test-integration-update-user1",
+      email: "test-integration-update-user@example.com",
       password: "test123",
     });
-
-    const response = await request(app)
-      .put(`/users/${user.body.id}`)
-      .set("Authorization", `Bearer ${req.body.token}`)
-      .send({
-        username: "test-integration-update-user1",
-        email: "test-integration-update-user@example.com",
-        password: "test123",
-      });
 
     expect(response.status).toBe(201);
   });
@@ -35,19 +27,11 @@ describe("Update user controller", () => {
       password: "test123",
     });
 
-    const req = await request(app).post("/users/auth").send({
-      username: "test-integration-update-user",
+    const response = await request(app).put(`/users/1`).send({
+      username: "test-integration-update-user1",
+      email: "test-integration-update-user@example.com",
       password: "test123",
     });
-
-    const response = await request(app)
-      .put(`/users/1`)
-      .set("Authorization", `Bearer ${req.body.token}`)
-      .send({
-        username: "test-integration-update-user1",
-        email: "test-integration-update-user@example.com",
-        password: "test123",
-      });
 
     expect(response.status).toBe(400);
   });

@@ -11,6 +11,7 @@ import { UploadUserAvatarFactory } from "../services/user/uploadAvatar/uploadUse
 import { AuthUserFactory } from "../services/user/auth/authUserFactory";
 import { EmailSendFactory } from "../services/email/emailSendFactory";
 import { ensureAuthenticated } from "../middlewares/ensureAuthenticated";
+import { FindPasswordResetByTokenFactory } from "../services/passwordReset/findByToken/findPasswordResetByTokenFactory";
 
 const userRoutes = Router();
 const upload = multer({ storage: storage });
@@ -24,7 +25,7 @@ userRoutes.get("/", (request, response) =>
 userRoutes.get("/:id", (request, response) =>
   FindUserByIdFactory().handle(request, response)
 );
-userRoutes.put("/:id", ensureAuthenticated, (request, response) =>
+userRoutes.put("/:id", (request, response) =>
   UpdateUserFactory().handle(request, response)
 );
 userRoutes.delete("/:id", ensureAuthenticated, (request, response) =>
@@ -41,6 +42,9 @@ userRoutes.post("/auth", (request, response) =>
 );
 userRoutes.post("/reset-password", (request, response) =>
   GeneratePasswordResetFactory().handle(request, response)
+);
+userRoutes.get("/find-by-token/:token", (request, response) =>
+  FindPasswordResetByTokenFactory().handle(request, response)
 );
 userRoutes.post("/email", (request, response) =>
   EmailSendFactory().handle(request, response)
