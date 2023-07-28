@@ -6,16 +6,16 @@ import { v4 as uuid } from "uuid";
 
 export class PrismaPasswordResetRepository implements PasswordResetRepository {
   async generate({
-    id = uuid(),
-    token = generateRandomToken(15),
-    expiresDate = new Date(Date.now() + 86400 * 1000),
+    id,
+    token,
+    expiresDate,
     userId,
   }: PasswordReset): Promise<void> {
     await prisma.passwordReset.create({
       data: {
-        id,
-        token,
-        expiresDate,
+        id: id ?? uuid(),
+        token: token ?? generateRandomToken(15),
+        expiresDate: expiresDate ?? new Date(Date.now() + 86400 * 1000),
         userId,
       },
     });
@@ -51,7 +51,9 @@ export class PrismaPasswordResetRepository implements PasswordResetRepository {
     if (passwordReset === null) return;
 
     return new PasswordReset({
+      id: passwordReset.id,
       token: passwordReset.token,
+      expiresDate: passwordReset.expiresDate,
       userId: passwordReset.userId,
     });
   }
