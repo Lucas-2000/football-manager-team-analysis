@@ -46,7 +46,7 @@ export class EmailSendService {
       text: `
         Olá ${user.username},
         \n
-        segue o link para reset de senha: https://localhost:4200/reset-password/${emailObj.token}
+        segue o link para reset de senha: http://localhost:4200/reset-password/${emailObj.token}
         \n
         Obs: o link tem validade de 24h.
       `,
