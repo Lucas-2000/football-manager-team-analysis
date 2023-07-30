@@ -57,6 +57,30 @@ export class PrismaTeamsRepository implements TeamsRepository {
     );
   }
 
+  async findByUserId(userId: string): Promise<Team[] | undefined> {
+    const teams = await prisma.team.findMany({
+      where: {
+        userId: userId,
+      },
+    });
+
+    if (teams === null) return;
+
+    return teams.map(
+      (team) =>
+        new Team({
+          id: team.id,
+          teamName: team.teamName,
+          teamLocalization: team.teamLocalization,
+          teamCountry: team.teamCountry,
+          teamLeague: team.teamLeague,
+          teamGrade: team.teamGrade,
+          teamLogo: team.teamLogo,
+          userId: team.userId,
+        })
+    );
+  }
+
   async findById(teamId: string): Promise<Team | undefined> {
     const team = await prisma.team.findUnique({
       where: {

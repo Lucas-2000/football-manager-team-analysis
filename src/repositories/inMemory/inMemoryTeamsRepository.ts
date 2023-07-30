@@ -29,6 +29,12 @@ export class InMemoryTeamsRepository implements TeamsRepository {
     return team;
   }
 
+  async findByUserId(userId: string): Promise<Team[] | undefined> {
+    const team = this.teams.filter((team) => team.userId === userId);
+
+    return team;
+  }
+
   async findIndex(teamId: string): Promise<number> {
     const teamIndex = this.teams.findIndex((obj) => obj.id === teamId);
 

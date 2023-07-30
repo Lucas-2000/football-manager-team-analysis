@@ -8,6 +8,7 @@ import multer from "multer";
 import { storage } from "../utils/config/multer/multerConfig";
 import { UploadTeamLogoFactory } from "../services/team/uploadLogo/uploadTeamLogoFactory";
 import { ensureAuthenticated } from "../middlewares/ensureAuthenticated";
+import { FindTeamByUserIdFactory } from "../services/team/findByUserId/findTeamByUserIdFactory";
 
 const teamRoutes = Router();
 
@@ -21,6 +22,9 @@ teamRoutes.get("/", ensureAuthenticated, (request, response) =>
 );
 teamRoutes.get("/:id", ensureAuthenticated, (request, response) =>
   FindTeamByIdFactory().handle(request, response)
+);
+teamRoutes.get("/user/:id", ensureAuthenticated, (request, response) =>
+  FindTeamByUserIdFactory().handle(request, response)
 );
 teamRoutes.put("/:id", ensureAuthenticated, (request, response) =>
   UpdateTeamFactory().handle(request, response)
