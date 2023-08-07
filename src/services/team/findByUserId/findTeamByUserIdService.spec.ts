@@ -12,7 +12,8 @@ describe("Find Team By User Id Service", () => {
     const teamsRepository = new InMemoryTeamsRepository();
     const usersRepository = new InMemoryUsersRepository();
     const findTeamByUserIdService = new FindTeamByUserIdService(
-      teamsRepository
+      teamsRepository,
+      usersRepository
     );
     const createTeamService = new CreateTeamService(
       teamsRepository,
@@ -48,7 +49,8 @@ describe("Find Team By User Id Service", () => {
     const teamsRepository = new InMemoryTeamsRepository();
     const usersRepository = new InMemoryUsersRepository();
     const findTeamByUserIdService = new FindTeamByUserIdService(
-      teamsRepository
+      teamsRepository,
+      usersRepository
     );
     const createTeamService = new CreateTeamService(
       teamsRepository,

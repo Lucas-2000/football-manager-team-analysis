@@ -23,7 +23,7 @@ teamRoutes.get("/", ensureAuthenticated, (request, response) =>
 teamRoutes.get("/:id", ensureAuthenticated, (request, response) =>
   FindTeamByIdFactory().handle(request, response)
 );
-teamRoutes.get("/user/:id", ensureAuthenticated, (request, response) =>
+teamRoutes.get("/user/:userId", ensureAuthenticated, (request, response) =>
   FindTeamByUserIdFactory().handle(request, response)
 );
 teamRoutes.put("/:id", ensureAuthenticated, (request, response) =>
