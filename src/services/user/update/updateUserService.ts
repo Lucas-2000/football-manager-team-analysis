@@ -24,14 +24,27 @@ export class UpdateUserService {
 
     if (verifyIndex < 0) throw new Error("User not found!");
 
-    const salt = bcrypt.genSaltSync(10);
-    const hash = bcrypt.hashSync(password, salt);
+    if (password) {
+      const salt = bcrypt.genSaltSync(10);
+      const hash = bcrypt.hashSync(password, salt);
+
+      const user = new User({
+        id,
+        username,
+        email,
+        password: hash,
+      });
+
+      await this.usersRepository.update(user);
+
+      return user.getSummary();
+    }
 
     const user = new User({
       id,
       username,
       email,
-      password: hash,
+      password,
     });
 
     await this.usersRepository.update(user);
