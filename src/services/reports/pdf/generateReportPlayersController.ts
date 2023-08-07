@@ -18,7 +18,5 @@ export class GenerateReportPlayersController {
     response.setHeader("Content-Disposition", "inline; filename=Relatorio.pdf");
 
     response.end(report);
-
-    return response.status(200).json(report);
   }
 }
